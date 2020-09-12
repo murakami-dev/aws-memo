@@ -11,6 +11,7 @@ https://aws.amazon.com/jp/appstream2/resources/?amazon-appstream-2-0.sort-by=ite
 
 ## チュートリアル
 https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/getting-started.html
+
 スタックの作成
 <img width="1359" alt="スクリーンショット 2020-09-12 23 33 30" src="https://user-images.githubusercontent.com/60077121/92997750-6e017700-f550-11ea-9420-8b3bbe0b45d5.png">
 
