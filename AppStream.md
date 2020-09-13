@@ -12,6 +12,7 @@ https://aws.amazon.com/jp/appstream2/resources/?amazon-appstream-2-0.sort-by=ite
 ## チュートリアル
 https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/getting-started.html
 
+## ステップ1 サンプルスタック作成、イメージ選択、フリート作成
 スタックの作成
 <img width="1359" alt="スクリーンショット 2020-09-12 23 33 30" src="https://user-images.githubusercontent.com/60077121/92997750-6e017700-f550-11ea-9420-8b3bbe0b45d5.png">
 
@@ -30,3 +31,11 @@ https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/getting-start
 
 UserSetting
 <img width="1412" alt="スクリーンショット 2020-09-13 7 40 23" src="https://user-images.githubusercontent.com/60077121/93006215-6d8acf80-f594-11ea-954a-6c774238a36c.png">
+
+## ステップ2
+```
+AppStream 2.0 ユーザープールを介してアクセスを提供する場合、ストリーミングセッションにウェブブラウザを使用する必要があります。
+SAML 2.0 [シングルサインオン (SSO)] または AppStream 2.0 API を使用してユーザーにアクセスを提供する予定の場合は、AppStream 2.0 クライアントを使用できるようにすることができます。
+```
+<img width="1420" alt="スクリーンショット 2020-09-13 9 05 09" src="https://user-images.githubusercontent.com/60077121/93007153-56ea7580-f5a0-11ea-8f3b-2ba5c4a50fcb.png">
+
