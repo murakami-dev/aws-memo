@@ -39,3 +39,16 @@ SAML 2.0 [シングルサインオン (SSO)] または AppStream 2.0 API を使�
 ```
 <img width="1420" alt="スクリーンショット 2020-09-13 9 05 09" src="https://user-images.githubusercontent.com/60077121/93007153-56ea7580-f5a0-11ea-8f3b-2ba5c4a50fcb.png">
 
+アプリ一覧からアプリの起動には2分ほど要する
+<img width="926" alt="スクリーンショット 2020-09-13 9 28 15" src="https://user-images.githubusercontent.com/60077121/93007387-91a1dd00-f5a3-11ea-8170-a1a36c59910d.png">
+
+# ドキュメントのメモ
+## VPCセットアップの推奨事項
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/vpc-setup-recommendations.html
+```
+ストリーミングインスタンス（フリートインスタンスまたはイメージビルダー）にインターネットへのアクセスを提供することを計画している場合、ストリーミングインスタンス用の2つのプライベートサブネットとパブリックサブネット内のNATゲートウェイでVPCを構成することをお勧めします。
+```
+また、関連づけるサブネットを2つ指定することで、可用性と容量不足を防ぐ
+
+
+
