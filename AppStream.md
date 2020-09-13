@@ -23,7 +23,8 @@ https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/getting-start
 ![screencapture-ap-northeast-1-console-aws-amazon-appstream2-home-2020-09-13-07_00_27](https://user-images.githubusercontent.com/60077121/93005743-e6872880-f58e-11ea-8b3e-9dfaa19e1460.png)
 
 ネットワークの設定
-インターネットアクセスの場合、パブリックサブネットしか選べない
+インターネットアクセスの場合、パブリックサブネットしか選べない。インターネットアクセスのチェックを外すとプライベートサブネット選択できる。これはフリートを一時停止すれば後から変更可能
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/managing-network-manual-enable-internet-access.html
 <img width="1142" alt="スクリーンショット 2020-09-13 7 13 17" src="https://user-images.githubusercontent.com/60077121/93005882-acb72180-f590-11ea-800e-b71e18175b5b.png">
 
 ストレージ
