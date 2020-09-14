@@ -51,5 +51,11 @@ https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/vpc-setup-rec
 ```
 また、関連づけるサブネットを2つ指定することで、可用性と容量不足を防ぐ
 
+### ENIのCIDRおよびポートについて
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/appstream2-port-requirements-appstream2.html
 
+### AppStream 2.0ユーザーデバイスのIPアドレスとポートの要件
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/client-application-ports.html
 
+### インターフェイスVPCエンドポイントからの作成とストリーミング
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/creating-streaming-from-interface-vpc-endpoints.html
