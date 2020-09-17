@@ -4,6 +4,9 @@
 ブラックベルト
 https://d1.awsstatic.com/webinars/jp/pdf/services/20191126_AWS-BlackBelt_AmazonAppStream2.0.pdf
 
+良記事`AWS再入門ブログリレー Amazon AppStream 2.0 編`
+https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
+
 入門ガイド
 https://aws.amazon.com/jp/appstream2/resources/?amazon-appstream-2-0.sort-by=item.additionalFields.postDateTime&amazon-appstream-2-0.sort-order=desc
 
