@@ -86,7 +86,12 @@ Switch User
 
 うまくいけばセッションが終了する
 
+イメージビルダーのステータスは以下のようになる
+`イメージが作成されると、Image Builder のステータスが [Snapshotting] と表示されます。このプロセスが終了するまで Image Builder に接続することはできません。`
+
 ### フリートの作成
+![image](https://user-images.githubusercontent.com/60077121/93669223-94359280-facd-11ea-8bd9-b30a2c353686.png)
+
 
 
 ## チュートリアル
