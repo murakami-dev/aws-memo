@@ -51,8 +51,10 @@ Administratorでログイン
 ![image](https://user-images.githubusercontent.com/60077121/93666678-110b4100-fabb-11ea-91a8-e2c011d4ae8f.png)
 
 イメージビルダーインスタンスで起動した時点で文字化けした
-・`Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
-・設定の画面から日本語をインストール
+
+* `Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
+* 設定の画面から日本語をインストール
+
 ![image](https://user-images.githubusercontent.com/60077121/93668276-57b26880-fac6-11ea-8eba-39676b8f4e0a.png)
 
 
