@@ -18,11 +18,11 @@ https://aws.amazon.com/jp/appstream2/resources/?amazon-appstream-2-0.sort-by=ite
 ※再掲
 https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
 
-ユーザ作成
+### ユーザ作成
 
 ![image](https://user-images.githubusercontent.com/60077121/93658154-f95c9a00-fa73-11ea-9920-16df61c48b1b.png)
 
-イメージビルダー作成
+### イメージビルダー作成
 ![image](https://user-images.githubusercontent.com/60077121/93658203-7ab42c80-fa74-11ea-97be-c28bac6a60d1.png)
 
 イメージの選択
@@ -50,13 +50,21 @@ Administratorでログイン
 
 ![image](https://user-images.githubusercontent.com/60077121/93666678-110b4100-fabb-11ea-91a8-e2c011d4ae8f.png)
 
+※インターネット経由できないものはS3を経由する
+AppStream2.0 インターネット経由でインストールできないアプリをS3経由でインストールする
+https://dev.classmethod.jp/articles/appstream2-install-from-s3/
+
+
 イメージビルダーインスタンスで起動した時点で文字化けした
 
 * `Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
 * 設定の画面から日本語をインストール
-
+https://blog.trainocate.co.jp/blog/azure_setting_024
 ![image](https://user-images.githubusercontent.com/60077121/93668276-57b26880-fac6-11ea-8eba-39676b8f4e0a.png)
+![image](https://user-images.githubusercontent.com/60077121/93668951-4881e980-facb-11ea-9ca9-3ce13edfb5fb.png)
+![image](https://user-images.githubusercontent.com/60077121/93668991-93036600-facb-11ea-8873-37de7f69f8e2.png)
 
+### 最後にマネコンからイメージビルダーインスタンスをstop->runningにすることで再起動され日本語になった
 
 
 
@@ -68,6 +76,17 @@ Switch User
 
 ![image](https://user-images.githubusercontent.com/60077121/93667363-58e09700-fac0-11ea-9bd4-fd31decbd18e.png)
 
+テストユーザーに切り替えて動作確認を行う
+
+![image](https://user-images.githubusercontent.com/60077121/93669067-30f73080-facc-11ea-8723-ac13414c05ab.png)
+
+問題なければローンチする
+名前など決める
+![image](https://user-images.githubusercontent.com/60077121/93669103-85021500-facc-11ea-8fc3-0af1779ea954.png)
+
+うまくいけばセッションが終了する
+
+### フリートの作成
 
 
 ## チュートリアル
