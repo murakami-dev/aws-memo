@@ -5,12 +5,52 @@
 https://d1.awsstatic.com/webinars/jp/pdf/services/20191126_AWS-BlackBelt_AmazonAppStream2.0.pdf
 
 良記事`AWS再入門ブログリレー Amazon AppStream 2.0 編`
+
 https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
 
 入門ガイド
 https://aws.amazon.com/jp/appstream2/resources/?amazon-appstream-2-0.sort-by=item.additionalFields.postDateTime&amazon-appstream-2-0.sort-order=desc
 
 <img width="914" alt="スクリーンショット 2020-09-12 23 21 52" src="https://user-images.githubusercontent.com/60077121/92997566-3940f000-f54f-11ea-963e-e580f9c9c5d0.png">
+
+
+## クラメソブログに沿ってやってみる
+※再掲
+https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
+
+ユーザ作成
+
+![image](https://user-images.githubusercontent.com/60077121/93658154-f95c9a00-fa73-11ea-9920-16df61c48b1b.png)
+
+イメージビルダー作成
+![image](https://user-images.githubusercontent.com/60077121/93658203-7ab42c80-fa74-11ea-97be-c28bac6a60d1.png)
+
+イメージの選択
+![image](https://user-images.githubusercontent.com/60077121/93658311-615fb000-fa75-11ea-93ae-9cb8379365bc.png)
+
+インスタンスタイプの選択
+通常のWindows Serverなので汎用インスタンス、コンピューティング最適化インスタンス、メモリ最適化インスタンスしかない
+![image](https://user-images.githubusercontent.com/60077121/93658384-15613b00-fa76-11ea-8286-08a395e3e4e2.png)
+
+料金について
+https://aws.amazon.com/jp/appstream2/pricing/
+
+ネットワーク設定
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/internet-access.html
+![image](https://user-images.githubusercontent.com/60077121/93658663-a0dbcb80-fa78-11ea-829a-692b68920b23.png)
+
+接続
+![image](https://user-images.githubusercontent.com/60077121/93658971-5b6ccd80-fa7b-11ea-9876-6bdd675382ec.png)
+
+Administratorでログイン
+![image](https://user-images.githubusercontent.com/60077121/93658980-70496100-fa7b-11ea-8b60-6042de7fb2de.png)
+
+インターネット経由でアプリの実行ファイルをダウンロード
+![image](https://user-images.githubusercontent.com/60077121/93666678-110b4100-fabb-11ea-91a8-e2c011d4ae8f.png)
+
+
+
+
 
 ## チュートリアル
 https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/getting-started.html
