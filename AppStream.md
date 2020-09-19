@@ -43,12 +43,28 @@ https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/internet-acce
 ![image](https://user-images.githubusercontent.com/60077121/93658971-5b6ccd80-fa7b-11ea-9876-6bdd675382ec.png)
 
 Administratorでログイン
+
 ![image](https://user-images.githubusercontent.com/60077121/93658980-70496100-fa7b-11ea-8b60-6042de7fb2de.png)
 
-インターネット経由でアプリの実行ファイルをダウンロード
+インターネット経由でアプリの実行ファイルをダウンロード（ここではTeratermをインストールした）
+
 ![image](https://user-images.githubusercontent.com/60077121/93666678-110b4100-fabb-11ea-91a8-e2c011d4ae8f.png)
 
+イメージビルダーインスタンスで起動した時点で文字化けした
+・`Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
+・設定の画面から日本語をインストール
+![image](https://user-images.githubusercontent.com/60077121/93668276-57b26880-fac6-11ea-8eba-39676b8f4e0a.png)
 
+
+
+
+Add Fileからアプリの実行ファイルを選択
+![image](https://user-images.githubusercontent.com/60077121/93666731-7eb76d00-fabb-11ea-9017-ffae2104a65c.png)
+![image](https://user-images.githubusercontent.com/60077121/93666756-b1f9fc00-fabb-11ea-8845-f42df6fc359d.png)
+
+Switch User
+
+![image](https://user-images.githubusercontent.com/60077121/93667363-58e09700-fac0-11ea-9bd4-fd31decbd18e.png)
 
 
 
