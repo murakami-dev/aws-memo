@@ -95,6 +95,45 @@ Snapshottingが終了するとイメージビルダーインスタンスは`stop
 ### フリートの作成
 ![image](https://user-images.githubusercontent.com/60077121/93669223-94359280-facd-11ea-8bd9-b30a2c353686.png)
 
+イメージの選択
+![image](https://user-images.githubusercontent.com/60077121/93693744-b1567980-fb3e-11ea-8a7a-f29e1dd16a79.png)
+
+フリートの設定
+![image](https://user-images.githubusercontent.com/60077121/93693805-989a9380-fb3f-11ea-92c6-dc41254a2062.png)
+
+ネットワークの設定
+イメージビルダーインスタンスはパブリックサブネット、フリートインスタンスはプライベートとかもできる
+![image](https://user-images.githubusercontent.com/60077121/93693828-efa06880-fb3f-11ea-8fea-3b433edda165.png)
+
+### スタックの作成
+https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html#set-up-stacks-fleets-install
+アプリケーション設定の永続性のしくみ
+https://docs.aws.amazon.com/appstream2/latest/developerguide/how-it-works-app-settings-persistence.html
+
+スタックの設定
+![image](https://user-images.githubusercontent.com/60077121/93694026-ffb94780-fb41-11ea-91d1-dae2803cd41c.png)
+
+ストレージの設定
+![image](https://user-images.githubusercontent.com/60077121/93694045-27a8ab00-fb42-11ea-8011-42f8d51c26bb.png)
+
+### ユーザーとスタックの紐づけ
+ユーザーをスタックにアサイン
+![image](https://user-images.githubusercontent.com/60077121/93694122-01cfd600-fb43-11ea-9dfe-75252828c01c.png)
+
+ユーザーにメールが届く
+![image](https://user-images.githubusercontent.com/60077121/93694131-2a57d000-fb43-11ea-857b-112ca8a9a0ba.png)
+
+ユーザー登録時の初期パスワードでログインするとアプリが使用できる
+![image](https://user-images.githubusercontent.com/60077121/93694256-80794300-fb44-11ea-9461-16a8a5b10eb6.png)
+
+※クライアントソフトからアクセスする場合は以下
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/client-application.html
+
+※オンデマンドの場合アプリの起動には2分ほどかかる
+
+#### ローカル->フリートへファイルのコピー（スタック設定に依る）
+左上のメニューからフリートのホームフォルダへアクセスできる
+![image](https://user-images.githubusercontent.com/60077121/93694316-26c54880-fb45-11ea-98be-58be1cbf5b10.png)
 
 
 ## チュートリアル
