@@ -18,3 +18,15 @@
 - セキュリティワークショップで疑似攻撃など試せる
 https://awssecworkshops.jp/
 
+### Edge Services を利用した DDoS 防御の構成（AWS WAF/Shield）
+資料：https://pages.awscloud.com/rs/112-TZM-766/images/B1-03.pdf
+
+- まずはDDos対策のホワイトペーパー読もう
+  - https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
+
+- Layer3,4,7の攻撃ってなんだ
+ - <img width="927" alt="スクリーンショット 2020-09-30 8 56 44" src="https://user-images.githubusercontent.com/60077121/94628451-fd51ad00-02fa-11eb-9c69-da7a2cebfa70.png">
+
+- WAF,Shieldだけじゃだめ。
+  - <img width="940" alt="スクリーンショット 2020-09-30 8 56 04" src="https://user-images.githubusercontent.com/60077121/94628507-2114f300-02fb-11eb-95e6-9fbf33b4218d.png">
+  - <img width="931" alt="スクリーンショット 2020-09-30 8 56 12" src="https://user-images.githubusercontent.com/60077121/94628542-3853e080-02fb-11eb-916e-2f35adfa4062.png">
