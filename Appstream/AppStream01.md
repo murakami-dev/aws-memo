@@ -37,8 +37,10 @@ https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
 料金について
 https://aws.amazon.com/jp/appstream2/pricing/
 
-ネットワーク設定
+ネットワーク設定  
 https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/internet-access.html
+セキュリティグループ  
+https://docs.aws.amazon.com/appstream2/latest/developerguide/managing-network-security-groups.html
 ![image](https://user-images.githubusercontent.com/60077121/93658663-a0dbcb80-fa78-11ea-829a-692b68920b23.png)
 
 接続
