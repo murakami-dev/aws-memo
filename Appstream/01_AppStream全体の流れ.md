@@ -70,8 +70,8 @@ https://blog.trainocate.co.jp/blog/azure_setting_024
 
 ### 最後にマネコンからイメージビルダーインスタンスをstop->runningにすることで再起動され日本語になった
 
-
-
+ImageBuilderにアプリケーションをインストールする  
+https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/tutorial-image-builder.html  
 Add Fileからアプリの実行ファイルを選択
 ![image](https://user-images.githubusercontent.com/60077121/93666731-7eb76d00-fabb-11ea-9017-ffae2104a65c.png)
 ![image](https://user-images.githubusercontent.com/60077121/93666756-b1f9fc00-fabb-11ea-8845-f42df6fc359d.png)
