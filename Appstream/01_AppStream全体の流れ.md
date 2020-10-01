@@ -76,11 +76,17 @@ Add Fileからアプリの実行ファイルを選択
 ![image](https://user-images.githubusercontent.com/60077121/93666731-7eb76d00-fabb-11ea-9017-ffae2104a65c.png)
 ![image](https://user-images.githubusercontent.com/60077121/93666756-b1f9fc00-fabb-11ea-8845-f42df6fc359d.png)
 
-Switch User
+テンプレートユーザーにSwitch Userする  
+```
+このステップでは、AppStream 2.0 ユーザーに対してデフォルトのアプリケーションと Windows の設定を作成します。これにより、ユーザーがこれらの設定を作成または構成する必要がなくなるため、AppStream 2.0 ストリーミングセッション中にアプリケーションを迅速に開始できます。
+```
 
 ![image](https://user-images.githubusercontent.com/60077121/93667363-58e09700-fac0-11ea-9bd4-fd31decbd18e.png)
 
 テストユーザーに切り替えて動作確認を行う
+```
+このステップでは、追加したアプリケーションが、正しく開き、予想どおり動作することを確認します。確認するには、対象ユーザーと同じアクセス権限を持つユーザーとして新規に Windows セッションを開始します。
+```
 
 ![image](https://user-images.githubusercontent.com/60077121/93669067-30f73080-facc-11ea-8723-ac13414c05ab.png)
 
