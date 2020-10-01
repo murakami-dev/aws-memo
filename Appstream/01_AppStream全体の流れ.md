@@ -59,6 +59,8 @@ AppStream2.0 インターネット経由でインストールできないアプ�
 https://dev.classmethod.jp/articles/appstream2-install-from-s3/
 
 
+### イメージビルダーインスタンスに.exeファイルを持ってきたら実行してアプリを起動。
+
 イメージビルダーインスタンスで起動した時点で文字化けした
 
 * `Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
@@ -72,7 +74,7 @@ https://blog.trainocate.co.jp/blog/azure_setting_024
 
 ImageBuilderにアプリケーションをインストールする  
 https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/tutorial-image-builder.html  
-Add Fileからアプリの実行ファイルを選択
+Add Fileからアプリを選択（** 未実行の.exeファイルではない! **）
 ![image](https://user-images.githubusercontent.com/60077121/93666731-7eb76d00-fabb-11ea-9017-ffae2104a65c.png)
 ![image](https://user-images.githubusercontent.com/60077121/93666756-b1f9fc00-fabb-11ea-8845-f42df6fc359d.png)
 
