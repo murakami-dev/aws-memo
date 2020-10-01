@@ -63,11 +63,15 @@ https://dev.classmethod.jp/articles/appstream2-install-from-s3/
 
 イメージビルダーインスタンスで起動した時点で文字化けした
 
-* `Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
+* PowerShellを管理者として開き、`Set-TimeZone -Id "Tokyo Standard Time"`でタイムゾーン設定
 * 設定の画面から日本語をインストール
 https://blog.trainocate.co.jp/blog/azure_setting_024
-![image](https://user-images.githubusercontent.com/60077121/93668276-57b26880-fac6-11ea-8eba-39676b8f4e0a.png)
-![image](https://user-images.githubusercontent.com/60077121/93668951-4881e980-facb-11ea-9ca9-3ce13edfb5fb.png)
+  * スタート->歯車マーク->Time and Language->左メニューLanguage ->Add Languageから日本語をインストール  
+
+![image](https://user-images.githubusercontent.com/60077121/93668276-57b26880-fac6-11ea-8eba-39676b8f4e0a.png)  
+
+![image](https://user-images.githubusercontent.com/60077121/93668951-4881e980-facb-11ea-9ca9-3ce13edfb5fb.png)  
+
 ![image](https://user-images.githubusercontent.com/60077121/93668991-93036600-facb-11ea-8873-37de7f69f8e2.png)
 
 ### 最後にマネコンからイメージビルダーインスタンスをstop->runningにすることで再起動され日本語になった
