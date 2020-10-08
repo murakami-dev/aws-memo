@@ -32,6 +32,9 @@ https://dev.classmethod.jp/articles/re-introduction-2020-appstream2/
 通常のWindows Serverなので汎用インスタンス、コンピューティング最適化インスタンス、メモリ最適化インスタンスしかない
 - IAMロール：AWS 認証情報を手動で管理することなく、Image Builder インスタンスから AWS API リクエストを行うことができます。
 - VPCエンドポイントの`Internet`or`VPCEndpoint`はストリーミングアクセスをどちらにするか決定するということ。次の画面ではインスタンス（正確にはENI）のインターネットアクセスを設定する。
+- AppStream 2.0 インスタンスファミリー
+- https://docs.aws.amazon.com/ja_jp/appstream2/latest/developerguide/instance-types.html  
+
 ![image](https://user-images.githubusercontent.com/60077121/93658384-15613b00-fa76-11ea-8286-08a395e3e4e2.png)
 
 料金について
