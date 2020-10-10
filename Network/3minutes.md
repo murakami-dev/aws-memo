@@ -103,3 +103,36 @@
 # 35 ping
 - pingが成功したのに繋がらないのはレイヤ４以上に障害があることを示すしpingが失敗したならレイヤ３以下に障害があることになる。
 
+# 39 TCPコネクション
+<img width="629" alt="スクリーンショット 2020-10-11 6 51 52" src="https://user-images.githubusercontent.com/60077121/95665791-81732280-0b8e-11eb-8bc0-57986c0176ea.png">
+<img width="561" alt="スクリーンショット 2020-10-11 6 54 34" src="https://user-images.githubusercontent.com/60077121/95665807-a8315900-0b8e-11eb-91b0-d8bc220ec101.png">
+
+- スリーウェイハンドシェイク
+<img width="486" alt="スクリーンショット 2020-10-11 6 55 19" src="https://user-images.githubusercontent.com/60077121/95665822-c4cd9100-0b8e-11eb-869a-260ea0b0ecdb.png">
+
+# シーケンスと確認応答
+<img width="714" alt="スクリーンショット 2020-10-11 7 05 10" src="https://user-images.githubusercontent.com/60077121/95666027-a6689500-0b90-11eb-88cc-90eb0602579a.png">
+
+# 43 ポート
+<img width="585" alt="スクリーンショット 2020-10-11 7 17 20" src="https://user-images.githubusercontent.com/60077121/95666141-dfedd000-0b91-11eb-88e7-5d64150e0d7e.png">
+
+# 44 UDP
+- UDPヘッダはTCPヘッダの約４割
+- UDPはソケットを確立している時間が短時間（#45で言及）
+<img width="625" alt="スクリーンショット 2020-10-11 7 19 06" src="https://user-images.githubusercontent.com/60077121/95666198-52f74680-0b92-11eb-92df-4d1676f3588d.png">
+
+#45 netstat
+- ローカルのどのポートでどこと通信しているか確認する
+- `netstat -na`-aで全て、-nでDNS逆引きを省略（-aだけだと時間かかる）。
+  - https://www.atmarkit.co.jp/fnetwork/netcom/netstat/netstat.html
+
+# 47 NAPT
+- GIPがひとつだけでも複数機器をLANにぶら下げられるのはNAPTのおかげ
+- NAPTはプライベートIPだけでなく送信元ポート番号も変換してくれる。送り返された際は変換したポートあてにデータが来るので記憶しておいた変換元の機器に送り返す
+- 静的NAPTはLAN内でWEBサーバを公開している際など、80番をずっと記憶してくれる機能のこと
+<img width="555" alt="スクリーンショット 2020-10-11 7 45 50" src="https://user-images.githubusercontent.com/60077121/95666565-d8c8c100-0b95-11eb-9da3-6af17d64f822.png">
+
+# 50 L6
+- レイヤ６はデータの変換、圧縮、暗号化を行う。
+- レイヤ６の機能により、異なるハードウェアやOSでのデータ形式の違いを考えなくてもよいデータ転送が可能になる。
+
