@@ -167,4 +167,36 @@
 # 71 HTTP
 <img width="855" alt="スクリーンショット 2020-10-11 8 48 18" src="https://user-images.githubusercontent.com/60077121/95667312-2e559b80-0b9f-11eb-9ac3-979e2162eb2f.png">
 
+# 73 HTTPメッセージヘッダ
+- 代表的なもの
+  - Host (Request/End-to-End):唯一必須のヘッダ。宛先サーバのドメイン名
+  - User-Agent (Request/End-to-End):送信元のブラウザの種類
+<img width="899" alt="スクリーンショット 2020-10-11 8 59 25" src="https://user-images.githubusercontent.com/60077121/95667383-3eba4600-0ba0-11eb-94a3-610c31dc52e6.png">
 
+# 75 Cookie
+- サーバはステートレスなのでクライアントにCookieをつくるよう要求しセッション状態を保つ
+- サーバはクライアントにSet-Cookieメッセージヘッダを送る（ネットスケープ社独自）
+- クライアントからCookieの内容を送る時は「Cookie」メッセージヘッダ
+<img width="524" alt="スクリーンショット 2020-10-11 9 13 25" src="https://user-images.githubusercontent.com/60077121/95667513-29deb200-0ba2-11eb-9d3b-754bd30aace8.png">
+
+- Cookieの例（名前のみ必須であとはサーバ側が決める）
+```
+Set-Cookie：userid = 123 ; Expire = Thursday, 30-Jun-2005 00:00:00 GMT ; path = /net/ ; domain = www.3min.net ; username = prof;
+```
+  - 名前(userid) … 123
+  - 有効期限（Expire）… 2005/06/30(木) 0時0分0秒
+  - パス属性（path） … /net/
+  - サーバドメイン名（domain）… www.3min.net
+  - その他サーバが処理に必要な識別情報(username) … prof
+  
+- もしCookieの中身にExpireがあった場合、ファイルとして保存される。
+- Expireがない場合はファイルとして保存されずにブラウザが閉じるまでしか使われない。これはセッションCookieと呼ばれる。
+- XSS対策にはセッションCookieにするのが定石
+
+# 77 認証（ただし現在はSSLが主流）
+- Basic認証（基本認証）
+  - サーバはWWW-Authenticateメッセージヘッダをクライアントに送信し、クライアントはユーザ名とパスワードをAuthorizationリクエストヘッダをつけて通信する。
+  - 基本認証の欠点はパスワードがそのまま送られてしまう。BASE64でコード化されるが、戻すのが簡単
+- ダイジェスト認証
+  - ハッシュ関数を使ってハッシュ値にして通信する
+<img width="481" alt="スクリーンショット 2020-10-11 9 31 52" src="https://user-images.githubusercontent.com/60077121/95667720-bf7b4100-0ba4-11eb-98bd-7c7ad9df2b7b.png">
