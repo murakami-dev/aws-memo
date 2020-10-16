@@ -70,6 +70,248 @@ error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 
 
 ## 参考
+### Linux
+```
+[ec2-user@ip-10-123-20-247 log]$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+=============================================================
+= Welcome to the AWS CloudWatch Agent Configuration Manager =
+=============================================================
+On which OS are you planning to use the agent?
+1. linux
+2. windows
+default choice: [1]:
+1
+Trying to fetch the default region based on ec2 metadata...
+Are you using EC2 or On-Premises hosts?
+1. EC2
+2. On-Premises
+default choice: [1]:
+
+Which user are you planning to run the agent?
+1. root
+2. cwagent
+3. others
+default choice: [1]:
+
+Do you want to turn on StatsD daemon?
+1. yes
+2. no
+default choice: [1]:
+
+Which port do you want StatsD daemon to listen to?
+default choice: [8125]
+
+What is the collect interval for StatsD daemon?
+1. 10s
+2. 30s
+3. 60s
+default choice: [1]:
+
+What is the aggregation interval for metrics collected by StatsD daemon?
+1. Do not aggregate
+2. 10s
+3. 30s
+4. 60s
+default choice: [4]:
+
+Do you want to monitor metrics from CollectD?
+1. yes
+2. no
+default choice: [1]:
+
+Do you want to monitor any host metrics? e.g. CPU, memory, etc.
+1. yes
+2. no
+default choice: [1]:
+
+Do you want to monitor cpu metrics per core? Additional CloudWatch charges may apply.
+1. yes
+2. no
+default choice: [1]:
+
+Do you want to add ec2 dimensions (ImageId, InstanceId, InstanceType, AutoScalingGroupName) into all of your metrics if the info is available?
+1. yes
+2. no
+default choice: [1]:
+
+Would you like to collect your metrics at high resolution (sub-minute resolution)? This enables sub-minute resolution for all metrics, but you can customize for specific metrics in the output json file.
+1. 1s
+2. 10s
+3. 30s
+4. 60s
+default choice: [4]:
+
+Which default metrics config do you want?
+1. Basic
+2. Standard
+3. Advanced
+4. None
+default choice: [1]:
+
+Current config as follows:
+{
+        "agent": {
+                "metrics_collection_interval": 60,
+                "run_as_user": "root"
+        },
+        "metrics": {
+                "append_dimensions": {
+                        "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                        "ImageId": "${aws:ImageId}",
+                        "InstanceId": "${aws:InstanceId}",
+                        "InstanceType": "${aws:InstanceType}"
+                },
+                "metrics_collected": {
+                        "collectd": {
+                                "metrics_aggregation_interval": 60
+                        },
+                        "disk": {
+                                "measurement": [
+                                        "used_percent"
+                                ],
+                                "metrics_collection_interval": 60,
+                                "resources": [
+                                        "*"
+                                ]
+                        },
+                        "mem": {
+                                "measurement": [
+                                        "mem_used_percent"
+                                ],
+                                "metrics_collection_interval": 60
+                        },
+                        "statsd": {
+                                "metrics_aggregation_interval": 60,
+                                "metrics_collection_interval": 10,
+                                "service_address": ":8125"
+                        }
+                }
+        }
+}
+Are you satisfied with the above config? Note: it can be manually customized after the wizard completes to add additional items.
+1. yes
+2. no
+default choice: [1]:
+
+Do you have any existing CloudWatch Log Agent (http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html) configuration file to import for migration?
+1. yes
+2. no
+default choice: [2]:
+
+Do you want to monitor any log files?
+1. yes
+2. no
+default choice: [1]:
+
+Log file path:
+/var/log/httpd/access_log
+Log group name:
+default choice: [access_log]
+test-daimatsu-access_log
+Log stream name:
+default choice: [{instance_id}]
+
+Do you want to specify any additional log files to monitor?
+1. yes
+2. no
+default choice: [1]:
+
+Log file path:
+/var/log/httpd/error_log
+Log group name:
+default choice: [error_log]
+test-daimatsu-error_log
+Log stream name:
+default choice: [{instance_id}]
+
+Do you want to specify any additional log files to monitor?
+1. yes
+2. no
+default choice: [1]:
+2
+Saved config file to /opt/aws/amazon-cloudwatch-agent/bin/config.json successfully.
+Current config as follows:
+{
+        "agent": {
+                "metrics_collection_interval": 60,
+                "run_as_user": "root"
+        },
+        "logs": {
+                "logs_collected": {
+                        "files": {
+                                "collect_list": [
+                                        {
+                                                "file_path": "/var/log/httpd/access_log",
+                                                "log_group_name": "test-daimatsu-access_log",
+                                                "log_stream_name": "{instance_id}"
+                                        },
+                                        {
+                                                "file_path": "/var/log/httpd/error_log",
+                                                "log_group_name": "test-daimatsu-error_log",
+                                                "log_stream_name": "{instance_id}"
+                                        }
+                                ]
+                        }
+                }
+        },
+        "metrics": {
+                "append_dimensions": {
+                        "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                        "ImageId": "${aws:ImageId}",
+                        "InstanceId": "${aws:InstanceId}",
+                        "InstanceType": "${aws:InstanceType}"
+                },
+                "metrics_collected": {
+                        "collectd": {
+                                "metrics_aggregation_interval": 60
+                        },
+                        "disk": {
+                                "measurement": [
+                                        "used_percent"
+                                ],
+                                "metrics_collection_interval": 60,
+                                "resources": [
+                                        "*"
+                                ]
+                        },
+                        "mem": {
+                                "measurement": [
+                                        "mem_used_percent"
+                                ],
+                                "metrics_collection_interval": 60
+                        },
+                        "statsd": {
+                                "metrics_aggregation_interval": 60,
+                                "metrics_collection_interval": 10,
+                                "service_address": ":8125"
+                        }
+                }
+        }
+}
+Please check the above content of the config.
+The config file is also located at /opt/aws/amazon-cloudwatch-agent/bin/config.json.
+Edit it manually if needed.
+Do you want to store the config in the SSM parameter store?
+1. yes
+2. no
+default choice: [1]:
+
+What parameter store name do you want to use to store your config? (Use 'AmazonCloudWatch-' prefix if you use our managed AWS policy)
+default choice: [AmazonCloudWatch-linux]
+AmazonCloudWatch-linux-test-daimatsu
+Trying to fetch the default region based on ec2 metadata...
+Which region do you want to store the config in the parameter store?
+default choice: [ap-northeast-1]
+
+Which AWS credential should be used to send json config to parameter store?
+1. ASIA5JSSKBHLOS3JRTNB(From SDK)
+2. Other
+default choice: [1]:
+
+Successfully put config to parameter store AmazonCloudWatch-linux-test-daimatsu.
+Program exits now.
+```
+### Windows
 ```
 PS C:\Program Files\Amazon\AmazonCloudWatchAgent> .\amazon-cloudwatch-agent-config-wizard.exe
 =============================================================
