@@ -44,15 +44,41 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
   - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
 
 ## 起動
-- インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときも起動コマンドをやれば出力された**
-- 起動にはPowerShellを管理者として実行して以下コマンドを入力
-    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
-  - ※WindowsはスペースNGなので”で囲む
-    - https://www.itmedia.co.jp/help/tips/windows/w0140.html
+- RunCommandでやる方法と、コマンドでやる方法の2つがある。
+- インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときは起動コマンドをやれば出力された**
+
+### RunCommand（Win、Linux共通）
+https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance-fleet.html#start-CloudWatch-Agent-EC2-fleet
+
+- RunCommandで`AmazonCloudWatch-ManageAgent`を選択
+- Actionリストにconfigure、Optional Configuration Sourceリストにssm、**Optional Configuration Locationにパラメータストアに保存したconfigの名前を入力する**
+
+#### LinuxでCWagentが起動しない問題
+- デフォルトでCollectdのメトリクスを収集する設定なのに、Collectdが入っていない。
+  - https://dev.classmethod.jp/articles/amazon-linux-2-cloudwatch-agent-error-solution/
+
+- Collectdが入っているか確認する
+```
+sudo find -name collectd
+```
+- Collectdをインストールする
+```
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install -y collectd
+```
+
+### コマンドでやる
+#### Linux
 - Linux(EC2)
 ```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:config.json
 ```
+
+#### Windows
+- 起動にはPowerShellを管理者として実行して以下コマンドを入力
+    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
+  - ※WindowsはスペースNGなので”で囲む
+    - https://www.itmedia.co.jp/help/tips/windows/w0140.html
 
 - Windows(EC2)
 ```
@@ -67,9 +93,10 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-Windows-start
 error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 ```
+## CWagentのステータスを確認する
+https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-verify-running
 
-
-## 参考
+## 参考:configのウィザード
 ### Linux
 ```
 [ec2-user@ip-10-123-20-247 log]$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
