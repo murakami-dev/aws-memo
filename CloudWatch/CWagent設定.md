@@ -1,3 +1,5 @@
+インストール→設定ファイルの編集→IAMロール設定→起動コマンド
+
 ## CWagentインストール
 - SSMを利用するバターン
 - CLIを利用するパターン
@@ -17,26 +19,6 @@
 - Windowsサーバに入ってインストールする場合は以下
   - https://hacknote.jp/archives/50483/
 
-### 注意
-- インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときも起動コマンドをやれば出力された**
-- 起動にはPowerShellを管理者として実行して以下コマンドを入力
-    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
-  - ※WindowsはスペースNGなので”で囲む
-    - https://www.itmedia.co.jp/help/tips/windows/w0140.html
-```
-cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
-& "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -s -c file:config.json
-```
-
-- ※以下のようなエラーは管理者権限で実行していないから
-`error: Cannot open・・・`
-
-- ※以下のようなエラーはWindows特有。エージェントの起動には30秒以上かかるがWinではデフォルトで止まるようになっている。これを解消するには以下の手順（再起動含む）が必要。
-```
-https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-Windows-start
-error: Cannot start service AmazonCloudWatchAgent on computer '.'.
-```
-
 ## IAMロール設定
 - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html
 
@@ -44,7 +26,14 @@ error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 `CloudWatchAgentAdminPolicy`・・・パラメータストアに設定を保存できる
 
 ## CWagent config編集
-### Windows(セッションマネージャーでいける)
+- Linux
+```
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+```
+- 参考「アパッチのaccess_logおよびerror_logの出力場所」
+  - `/var/log/httpd/access_log`、`/var/log/httpd/error_log`
+
+- Windows(セッションマネージャーでいける)
 ```
 cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 .\amazon-cloudwatch-agent-config-wizard.exe
@@ -53,6 +42,31 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 - cloudwatchlogsに出力するファイルのパスを聞かれるとき、`C:\inetpub\logs\LogFiles\W3SVC2\**.log`のようにすると、パラメータストアには`"C:\\inetpub\\logs\\LogFiles\\W3SVC2\\**.log"`と登録される
 - ファイル名の指定方法などは以下を参照。
   - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
+
+## 起動
+- インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときも起動コマンドをやれば出力された**
+- 起動にはPowerShellを管理者として実行して以下コマンドを入力
+    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
+  - ※WindowsはスペースNGなので”で囲む
+    - https://www.itmedia.co.jp/help/tips/windows/w0140.html
+- Linux(EC2)
+```
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:config.json
+```
+
+- Windows(EC2)
+```
+cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
+& "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -s -c file:config.json
+```
+- ※以下のようなエラーは管理者権限で実行していないから
+`error: Cannot open・・・`
+
+- ※以下のようなエラーはWindows特有。エージェントの起動には30秒以上かかるがWinではデフォルトで止まるようになっている。これを解消するには以下の手順（再起動含む）が必要。
+```
+https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-Windows-start
+error: Cannot start service AmazonCloudWatchAgent on computer '.'.
+```
 
 
 ## 参考
