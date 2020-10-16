@@ -99,7 +99,7 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshoo
 ## 参考:configのウィザード
 ### Linux
 ```
-[ec2-user@ip-10-123-20-247 log]$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+[ec2-user@ip-10-123-20-247 ~]$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
 =============================================================
 = Welcome to the AWS CloudWatch Agent Configuration Manager =
 =============================================================
@@ -107,7 +107,7 @@ On which OS are you planning to use the agent?
 1. linux
 2. windows
 default choice: [1]:
-1
+
 Trying to fetch the default region based on ec2 metadata...
 Are you using EC2 or On-Premises hosts?
 1. EC2
@@ -145,7 +145,7 @@ Do you want to monitor metrics from CollectD?
 1. yes
 2. no
 default choice: [1]:
-
+2
 Do you want to monitor any host metrics? e.g. CPU, memory, etc.
 1. yes
 2. no
@@ -189,9 +189,6 @@ Current config as follows:
                         "InstanceType": "${aws:InstanceType}"
                 },
                 "metrics_collected": {
-                        "collectd": {
-                                "metrics_aggregation_interval": 60
-                        },
                         "disk": {
                                 "measurement": [
                                         "used_percent"
@@ -289,9 +286,6 @@ Current config as follows:
                         "InstanceType": "${aws:InstanceType}"
                 },
                 "metrics_collected": {
-                        "collectd": {
-                                "metrics_aggregation_interval": 60
-                        },
                         "disk": {
                                 "measurement": [
                                         "used_percent"
@@ -331,7 +325,7 @@ Which region do you want to store the config in the parameter store?
 default choice: [ap-northeast-1]
 
 Which AWS credential should be used to send json config to parameter store?
-1. ASIA5JSSKBHLOS3JRTNB(From SDK)
+1. ASIA5JSSKBHLGLS6RC5J(From SDK)
 2. Other
 default choice: [1]:
 
