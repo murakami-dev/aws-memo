@@ -3,7 +3,7 @@
 - CLIを利用するパターン
 - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html  
 
-### SSMを利用
+### SSMを利用（Win,Linux共通）
 - CloudWatch AgentのWindows版を試す
   - https://dev.classmethod.jp/articles/cloudwatch-agent-windows/
   - RunCommandで`AWS-ConfigureAWSPackage`を選択する
