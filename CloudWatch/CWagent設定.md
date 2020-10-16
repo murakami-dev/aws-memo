@@ -1,4 +1,3 @@
-
 ## CWagentインストール
 - SSMを利用するバターン
 - CLIを利用するパターン
@@ -19,11 +18,10 @@
   - https://hacknote.jp/archives/50483/
 
 ### 注意
-- インストールしてconfigファイルを作成しただけではダメ。起動すること。
-    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
-
+- インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときも起動コマンドをやれば出力された**
 - 起動にはPowerShellを管理者として実行して以下コマンドを入力
-    - ※WindowsはスペースNGなので”で囲む
+    - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html
+  - ※WindowsはスペースNGなので”で囲む
     - https://www.itmedia.co.jp/help/tips/windows/w0140.html
 ```
 cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
@@ -39,8 +37,13 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshoo
 error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 ```
 
-## CWagent config編集
+## IAMロール設定
+- https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html
 
+`CloudWatchAgentServerPolicy`・・・CWに書き込めるロール
+`CloudWatchAgentAdminPolicy`・・・パラメータストアに設定を保存できる
+
+## CWagent config編集
 ### Windows(セッションマネージャーでいける)
 ```
 cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
@@ -48,6 +51,8 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 ```
 
 - cloudwatchlogsに出力するファイルのパスを聞かれるとき、`C:\inetpub\logs\LogFiles\W3SVC2\**.log`のようにすると、パラメータストアには`"C:\\inetpub\\logs\\LogFiles\\W3SVC2\\**.log"`と登録される
+- ファイル名の指定方法などは以下を参照。
+  - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
 
 
 ## 参考
