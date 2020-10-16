@@ -41,12 +41,13 @@ error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 
 ## CWagent config編集
 
-### Windows
+### Windows(セッションマネージャーでいける)
 ```
 cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
-amazon-cloudwatch-agent-config-wizard.exe
+.\amazon-cloudwatch-agent-config-wizard.exe
 ```
 
+- cloudwatchlogsに出力するファイルのパスを聞かれるとき、`C:\inetpub\logs\LogFiles\W3SVC2\**.log`のようにすると、パラメータストアには`"C:\\inetpub\\logs\\LogFiles\\W3SVC2\\**.log"`と登録される
 
 
 ## 参考
@@ -59,18 +60,18 @@ On which OS are you planning to use the agent?
 1. linux
 2. windows
 default choice: [2]:
-2
+
 Trying to fetch the default region based on ec2 metadata...
 Are you using EC2 or On-Premises hosts?
 1. EC2
 2. On-Premises
 default choice: [1]:
-1
+
 Do you want to turn on StatsD daemon?
 1. yes
 2. no
 default choice: [1]:
-1
+
 Which port do you want StatsD daemon to listen to?
 default choice: [8125]
 
@@ -107,8 +108,7 @@ Do you want to add ec2 dimensions (ImageId, InstanceId, InstanceType, AutoScalin
 2. no
 default choice: [1]:
 
-Would you like to collect your metrics at high resolution (sub-minute resolution)? This enables sub-minute resolution for all metrics, but you can customize for specific metrics in the output json fil
-e.
+Would you like to collect your metrics at high resolution (sub-minute resolution)? This enables sub-minute resolution for all metrics, but you can customize for specific metrics in the output json file.
 1. 1s
 2. 10s
 3. 30s
@@ -166,7 +166,7 @@ Do you want to monitor any customized log files?
 default choice: [1]:
 
 Log file path:
-C:\\inetpub\\logs\\LogFiles\\W3SVC2\\**.log
+C:\inetpub\logs\LogFiles\W3SVC2\**.log
 Log group name:
 default choice: [**.log]
 test-daimatsu
@@ -235,7 +235,7 @@ Current config as follows:
                         "files": {
                                 "collect_list": [
                                         {
-                                                "file_path": "C:\\\\inetpub\\\\logs\\\\LogFiles\\\\W3SVC2\\\\**.log",
+                                                "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC2\\**.log",
                                                 "log_group_name": "test-daimatsu",
                                                 "log_stream_name": "{instance_id}"
                                         }
