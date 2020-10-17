@@ -1,4 +1,7 @@
 インストール→設定ファイルの編集→IAMロール設定→起動コマンド
+- ELBヘルスチェックはアパッチだけでなくてindex.htmlが必要
+- てっとりばやくWEBサーバたてるには以下ユーザーデータが良い
+- https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/user-data.html
 
 ## 1.CWagentインストール
 - SSMを利用するバターン
