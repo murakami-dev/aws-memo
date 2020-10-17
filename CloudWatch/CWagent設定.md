@@ -1,6 +1,6 @@
 インストール→設定ファイルの編集→IAMロール設定→起動コマンド
 
-## CWagentインストール
+## 1.CWagentインストール
 - SSMを利用するバターン
 - CLIを利用するパターン
 - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html  
@@ -15,17 +15,22 @@
 
   
 ### CLIを利用
+#### Linux
+```
+sudo yum install amazon-cloudwatch-agent
+```
+
 #### Windows(CLIが入っていないので入れること)
 - Windowsサーバに入ってインストールする場合は以下
   - https://hacknote.jp/archives/50483/
 
-## IAMロール設定
+## 2.IAMロール設定
 - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html
 
 `CloudWatchAgentServerPolicy`・・・CWに書き込めるロール
 `CloudWatchAgentAdminPolicy`・・・パラメータストアに設定を保存できる
 
-## CWagent config編集
+## 3.CWagent config編集（最初の1回だけ、2台目以降はパラメータストアから読み込んで起動できる）
 - Linux
 ```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
@@ -43,29 +48,9 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 - ファイル名の指定方法などは以下を参照。
   - https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
 
-## 起動
+## 4.起動（最初の1回だけ、2台目以降はパラメータストアから読み込んで起動できる）
 - RunCommandでやる方法と、コマンドでやる方法の2つがある。
 - インストールしてconfigファイルを作成しただけではダメ。起動すること。**CloudWatchlogsに出力されないときは起動コマンドをやれば出力された**
-
-### RunCommand（Win、Linux共通）
-https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance-fleet.html#start-CloudWatch-Agent-EC2-fleet
-
-- RunCommandで`AmazonCloudWatch-ManageAgent`を選択
-- Actionリストにconfigure、Optional Configuration Sourceリストにssm、**Optional Configuration Locationにパラメータストアに保存したconfigの名前を入力する**
-
-## LinuxでCWagentが起動しない問題
-- デフォルトでCollectdのメトリクスを収集する設定なのに、Collectdが入っていない。
-  - https://dev.classmethod.jp/articles/amazon-linux-2-cloudwatch-agent-error-solution/
-
-- Collectdが入っているか確認する
-```
-sudo find -name collectd
-```
-- Collectdをインストールする
-```
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum install -y collectd
-```
 
 ### コマンドでやる
 #### Linux
@@ -93,6 +78,27 @@ cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
 https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-Windows-start
 error: Cannot start service AmazonCloudWatchAgent on computer '.'.
 ```
+# SSM RunCommandでパラメータストアのCWagent設定ファイルを読み込み、起動する（2台目以降はコレ）
+## RunCommand（Win、Linux共通）
+https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance-fleet.html#start-CloudWatch-Agent-EC2-fleet
+
+- RunCommandで`AmazonCloudWatch-ManageAgent`を選択
+- Actionリストにconfigure、Optional Configuration Sourceリストにssm、**Optional Configuration Locationにパラメータストアに保存したconfigの名前を入力する**
+
+## LinuxでCWagentが起動しない問題
+- デフォルトでCollectdのメトリクスを収集する設定なのに、Collectdが入っていない。
+  - https://dev.classmethod.jp/articles/amazon-linux-2-cloudwatch-agent-error-solution/
+
+- Collectdが入っているか確認する
+```
+sudo find -name collectd
+```
+- Collectdをインストールする
+```
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install -y collectd
+```
+
 ## CWagentのステータスを確認する
 https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html#CloudWatch-Agent-troubleshooting-verify-running
 
