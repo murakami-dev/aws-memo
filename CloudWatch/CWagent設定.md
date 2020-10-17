@@ -85,6 +85,11 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-Clo
 - RunCommandで`AmazonCloudWatch-ManageAgent`を選択
 - Actionリストにconfigure、Optional Configuration Sourceリストにssm、**Optional Configuration Locationにパラメータストアに保存したconfigの名前を入力する**
 
+- コマンドでパラメータストアの設定を読み込み起動するには以下
+```
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:configuration-parameter-store-name
+```
+
 ## LinuxでCWagentが起動しない問題
 - デフォルトでCollectdのメトリクスを収集する設定なのに、Collectdが入っていない。
   - https://dev.classmethod.jp/articles/amazon-linux-2-cloudwatch-agent-error-solution/
