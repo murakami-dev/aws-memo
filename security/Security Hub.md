@@ -72,6 +72,7 @@
 https://security-hub-workshop.awssecworkshops.com/
 
 ## 自動化修復アクションを実装する
+- [ちなみにオリジナルのカスタムアクションをつくる方法はこちら](https://aws.amazon.com/jp/blogs/news/automated-response-and-remediation-with-aws-security-hub/)
 ### 事前構築
 - ServiceCatalogを使ったカスタムアクションの自動デプロイ（手順は以下のクラメソブログがとっても良い記事）
   - AWS Security Hub の自動化された応答と修復
