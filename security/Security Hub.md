@@ -99,9 +99,7 @@ https://security-hub-workshop.awssecworkshops.com/
 ![image](https://user-images.githubusercontent.com/60077121/96569694-6af26700-1304-11eb-91f2-c3c4a2cb87c3.png)
 
 - デフォルトのSGのルールが削除された(これには1分もかかってない、たぶんSGだから)
-![image](https://user-images.githubusercontent.com/60077121/96573886-b1969000-1309-11eb-9ff9-cc87f2ecd3a0.png)
+![image](https://user-images.githubusercontent.com/60077121/96574221-2073e900-130a-11eb-8d58-592eff3bb0cc.png)
 
-
-![image](https://user-images.githubusercontent.com/60077121/96570345-37fca300-1305-11eb-92a2-ac9ee82ce518.png)
 
 
