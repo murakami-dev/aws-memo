@@ -40,6 +40,8 @@
     - AWSセキュリティ専門家により定義された統制項目。セキュリティベストプラクティスに沿わないAWSアカウントやリソースを検知する
   - CIS AWS Foundations Benchmark v1.2.0
     - Center for Internet Security が定義した要件の一部に対してチェックをする
+    - CISとは？
+    -   https://dev.classmethod.jp/articles/reading-cis-aws-foundation-benchmark/
   - PCI DSS v3.2.1
     - クレジットカード情報を保存・処理・転送する組織が従うセキュリティ標準であるPCI DSS要件の一部に対してチェックする
     
