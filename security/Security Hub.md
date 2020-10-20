@@ -70,3 +70,36 @@
   
 ## slackに通知するワークショップ
 https://security-hub-workshop.awssecworkshops.com/
+
+## 自動化修復アクションを実装する
+### 事前構築
+- ServiceCatalogを使ったカスタムアクションの自動デプロイ（手順は以下のクラメソブログがとっても良い記事）
+  - AWS Security Hub の自動化された応答と修復
+    - https://aws.amazon.com/jp/solutions/implementations/aws-security-hub-automated-response-and-remediation/
+  - [神機能]Security HubでCISの違反を自動修復する仕組みが提供されたので試したりちょっと深堀りして理解してみた
+    - https://dev.classmethod.jp/articles/security-hub-cis-auto-remediation/
+    
+- 以下リンクの`ステップ1.スタックを起動します`のCFnを対象のリージョンで流す
+  - https://docs.aws.amazon.com/solutions/latest/aws-security-hub-automated-response-and-remediation/deployment.html
+- 作成されたIAMグループ（サービスカタログの管理者、使用者）に使用するIAMユーザーを加える
+  - スイッチロールを使用する場合はサービスカタログのポートフォリオの設定を変更して該当ロールを加える。デフォルトではポートフォリオにアクセス権限あるのはIAMグループの`SO0111-SHARR_Catalog_Admin_ap-northeast-1`,`SO0111-SHARR_Catalog_User_ap-northeast-1`
+- サービスカタログの製品（管理者メニューじゃない方）から、製品名CISを選択し製品の起動を選択。
+- 名前を入力（グルーバルに一意）。バージョンを選択して次へ
+- パラメータは全て`DISABLE`にする。`ENABLE`にするとセキュリティ違反になったリソースが直ちに矯正される。
+- **SNS通知は有効にしない、ゼッタイ、メール500通きた**
+- 冒頭リンクの`手順4.ソリューションのアクセス許可を展開する`のCFn流す
+
+### 修復アクション
+- 検出結果で修復したい事項をチェック。リソースごとに表示されている
+![image](https://user-images.githubusercontent.com/60077121/96569524-37afd800-1304-11eb-828b-3298d365b953.png)
+
+- アクションからデプロイしたカスタムアクションを実行。押した瞬間CloudWatchイベントに送信され修復されるので注意
+  - **ここで誤って違うアクション選択しないようデプロイするアクションを取捨選択できないか**
+![image](https://user-images.githubusercontent.com/60077121/96569694-6af26700-1304-11eb-91f2-c3c4a2cb87c3.png)
+
+- デフォルトのSGのルールが削除された(これには1分もかかってない、たぶんSGだから)
+![image](https://user-images.githubusercontent.com/60077121/96570418-519dea80-1305-11eb-9862-128cdb9f4f04.png)
+
+![image](https://user-images.githubusercontent.com/60077121/96570345-37fca300-1305-11eb-92a2-ac9ee82ce518.png)
+
+
