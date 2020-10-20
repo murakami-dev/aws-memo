@@ -101,5 +101,16 @@ https://security-hub-workshop.awssecworkshops.com/
 - デフォルトのSGのルールが削除された(これには1分もかかってない、たぶんSGだから)
 ![image](https://user-images.githubusercontent.com/60077121/96574221-2073e900-130a-11eb-8d58-592eff3bb0cc.png)
 
+### どうなっているのか（わかる範囲で書く）
+- CFnについて
+- `aws-sharr-deploy.template`
+- `SC-913926916566-pp-egzwu2lwyewj6`
+  - サービスカタログの製品をデプロイしたときに流れたCFn。CloudwatchイベントとそのターゲットであるLambdaが作成されている。
+- `CISPermissions`
+  - IAMロールが作成されている。このIAMロールがLambdaの実行ロールになる。
+  - 例えばCIS43のSGに関する項目なら、`SO0111_CIS43_memberRole_ap-northeast-1`というSG触れるロールができる。それをLambdaがassumeroleしてクロスアカウントでAPIコールする仕組み。
+- CloudWatchイベントが作成される
+![image](https://user-images.githubusercontent.com/60077121/96591390-2c6ba500-1322-11eb-8ef2-d8f4355df853.png)
+
 
 
