@@ -1,0 +1,16 @@
+
+# インストール
+- ファイルダウンロードは許可しておく
+<img width="1141" alt="スクリーンショット 2020-10-22 8 20 30" src="https://user-images.githubusercontent.com/60077121/96800283-e86ec200-143f-11eb-8b79-22084a166cc1.png">
+
+# 画面について
+## キャプチャオプションについて
+- inputタブ
+- プロミスキャスモードを有効にすると自分に関係ないパケットもキャプチャする。無効にすると自分宛のパケットだけキャプチャ。
+<img width="622" alt="スクリーンショット 2020-10-22 8 40 33" src="https://user-images.githubusercontent.com/60077121/96801346-55835700-1442-11eb-8f52-4251293e97f5.png">
+
+- outputタブ
+<img width="605" alt="スクリーンショット 2020-10-22 8 42 19" src="https://user-images.githubusercontent.com/60077121/96801488-adba5900-1442-11eb-9b5b-f84578907178.png">
+
+- オプションタブ
+<img width="584" alt="スクリーンショット 2020-10-22 8 44 29" src="https://user-images.githubusercontent.com/60077121/96801552-d5112600-1442-11eb-9e5a-270a19c56637.png">
