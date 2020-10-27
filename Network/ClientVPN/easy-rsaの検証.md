@@ -1,6 +1,46 @@
 https://docs.aws.amazon.com/ja_jp/vpn/latest/clientvpn-admin/client-authentication.html#mutual
 
-## 一度認証局（CA）をたてたあと、同じサーバで別のCAをたてて証明書を作成する
+## ひとつのCAで複数の証明書を作成する
+- ドキュメントにあるサーバ証明書を作成するコマンド`./easyrsa build-server-full server nopass`の`server`部分がサーバ証明書のドメイン。
+- 以下のようにドメイン部分を変更すれば証明書は何個でも作れる
+- `/pki/issued`配下にサーバ・クライアント証明書が配置される
+- `/pki/private`配下にサーバ・クライアント秘密鍵が配置される
+```
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ls
+easyrsa  openssl-easyrsa.cnf  pki  vars.example  x509-types
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ./easyrsa build-server-full domain nopass  #ドメイン部分を変えれば何個でも作れる
+Using SSL: openssl OpenSSL 1.0.2k-fips  26 Jan 2017
+Generating a 2048 bit RSA private key
+...........+++
+....+++
+writing new private key to '/home/ec2-user/easy-rsa/easyrsa3/pki/easy-rsa-13373.46z01K/tmp.D88wyx'
+-----
+Using configuration from /home/ec2-user/easy-rsa/easyrsa3/pki/easy-rsa-13373.46z01K/tmp.LlizVJ
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'domain'
+Certificate is to be certified until Jan 30 11:25:03 2023 GMT (825 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cd pki
+[ec2-user@ip-10-123-10-212 pki]$ ls
+ca.crt           index.txt       index.txt.attr.old  issued               private  reqs     safessl-easyrsa.cnf  serial.old
+certs_by_serial  index.txt.attr  index.txt.old       openssl-easyrsa.cnf  renewed  revoked  serial
+[ec2-user@ip-10-123-10-212 pki]$ cd issued
+[ec2-user@ip-10-123-10-212 issued]$ ls -la
+total 24
+drwx------ 2 ec2-user ec2-user   72 Oct 27 11:25 .
+drwx------ 8 ec2-user ec2-user  286 Oct 27 11:25 ..
+-rw------- 1 ec2-user ec2-user 4460 Sep 30 13:02 client1.domain.tld.crt
+-rw------- 1 ec2-user ec2-user 4552 Oct 27 11:25 domain.crt
+-rw------- 1 ec2-user ec2-user 4552 Sep 30 13:02 server.crt
+```
+
+
+## 一度認証局（CA）をたてたあと、同じサーバで別のCAをたてて証明書を作成することもできる
 
 - 当初、easy-rsaをgit cloneしてきたら`home/ec2-user/easy-rsa/easyrsa3`が作成される
 - 2つめのCAをつくる場合、ホームフォルダに適当なディレクトリ作成してやるのが早そう。
