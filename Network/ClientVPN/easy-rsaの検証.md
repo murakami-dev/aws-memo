@@ -1,0 +1,118 @@
+https://docs.aws.amazon.com/ja_jp/vpn/latest/clientvpn-admin/client-authentication.html#mutual
+
+## 一度認証局（CA）をたてたあと、同じサーバで別のCAをたてて証明書を作成する
+
+- 当初、easy-rsaをgit cloneしてきたら`home/ec2-user/easy-rsa/easyrsa3`が作成される
+- 2つめのCAをつくる場合、ホームフォルダに適当なディレクトリ作成してやるのが早そう。
+```
+[ec2-user@ip-10-123-10-212 ~]$ mkdir test
+[ec2-user@ip-10-123-10-212 ~]$ ls
+custom_folder  easy-rsa  test
+[ec2-user@ip-10-123-10-212 ~]$ cd test
+[ec2-user@ip-10-123-10-212 test]$ git clone https://github.com/OpenVPN/easy-rsa.git
+Cloning into 'easy-rsa'...
+remote: Enumerating objects: 2077, done.
+remote: Total 2077 (delta 0), reused 0 (delta 0), pack-reused 2077
+Receiving objects: 100% (2077/2077), 11.69 MiB | 7.17 MiB/s, done.
+Resolving deltas: 100% (910/910), done.
+[ec2-user@ip-10-123-10-212 test]$ ls
+easy-rsa
+[ec2-user@ip-10-123-10-212 test]$ cd easy-rsa/
+[ec2-user@ip-10-123-10-212 easy-rsa]$ ls
+build      COPYING.md  doc       KNOWN_ISSUES  op_test.orig  README.md             release-keys  wop_test.sh
+ChangeLog  distro      easyrsa3  Licensing     op_test.sh    README.quickstart.md  wop_test.bat
+[ec2-user@ip-10-123-10-212 easy-rsa]$ cd easy-rsa/easyrsa3
+-bash: cd: easy-rsa/easyrsa3: No such file or directory
+[ec2-user@ip-10-123-10-212 easy-rsa]$ cd ..
+[ec2-user@ip-10-123-10-212 test]$ cd easy-rsa/easyrsa3
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ./easyrsa init-pki
+
+init-pki complete; you may now create a CA or requests.
+Your newly created PKI dir is: /home/ec2-user/test/easy-rsa/easyrsa3/pki
+
+
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ./easyrsa build-ca nopass
+Using SSL: openssl OpenSSL 1.0.2k-fips  26 Jan 2017
+Generating RSA private key, 2048 bit long modulus
+...+++
+......+++
+e is 65537 (0x10001)
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Common Name (eg: your user, host, or server name) [Easy-RSA CA]:test
+
+CA creation complete and you may now import and sign cert requests.
+Your new CA certificate file for publishing is at:
+/home/ec2-user/test/easy-rsa/easyrsa3/pki/ca.crt
+
+
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ./easyrsa build-server-full server nopass
+Using SSL: openssl OpenSSL 1.0.2k-fips  26 Jan 2017
+Generating a 2048 bit RSA private key
+...................+++
+............................................................+++
+writing new private key to '/home/ec2-user/test/easy-rsa/easyrsa3/pki/easy-rsa-13041.yKOXCU/tmp.GHPt43'
+-----
+Using configuration from /home/ec2-user/test/easy-rsa/easyrsa3/pki/easy-rsa-13041.yKOXCU/tmp.pOgdPU
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'server'
+Certificate is to be certified until Jan 30 10:57:12 2023 GMT (825 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+[ec2-user@ip-10-123-10-212 easyrsa3]$ ./easyrsa build-client-full client1.domain.tld nopass
+Using SSL: openssl OpenSSL 1.0.2k-fips  26 Jan 2017
+Generating a 2048 bit RSA private key
+.......................+++
+......+++
+writing new private key to '/home/ec2-user/test/easy-rsa/easyrsa3/pki/easy-rsa-13128.6Quoxj/tmp.trTZgM'
+-----
+Using configuration from /home/ec2-user/test/easy-rsa/easyrsa3/pki/easy-rsa-13128.6Quoxj/tmp.efPKRk
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'client1.domain.tld'
+Certificate is to be certified until Jan 30 10:57:33 2023 GMT (825 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+[ec2-user@ip-10-123-10-212 easyrsa3]$ mkdir ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cp pki/ca.crt ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cp pki/issued/server.crt ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cp pki/private/server.key ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cp pki/issued/client1.domain.tld.crt ~/test/custom_folder
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cp pki/private/client1.domain.tld.key ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 easyrsa3]$ cd ~/test/custom_folder/
+[ec2-user@ip-10-123-10-212 custom_folder]$ ls
+ca.crt  client1.domain.tld.crt  client1.domain.tld.key  server.crt  server.key
+```
+
+- ローカルにもってくるときは以下
+- `easy-rsa`以下を保存しておけば、後に別のサーバでも同じCAが使えるし、証明書も`easy-rsa`配下に置かれている。
+```
+[ec2-user@ip-10-123-10-212 test]$ ls
+custom_folder  easy-rsa
+[ec2-user@ip-10-123-10-212 test]$ zip easy-rsa easy-rsa
+  adding: easy-rsa/ (stored 0%)
+[ec2-user@ip-10-123-10-212 test]$ ls
+custom_folder  easy-rsa  easy-rsa.zip
+```
+```
+[ec2-user@ip-10-123-10-212 custom_folder]$ zip test ca.crt client1.domain.tld.crt client1.domain.tld.key server.crt server.key
+  adding: ca.crt (deflated 26%)
+  adding: client1.domain.tld.crt (deflated 45%)
+  adding: client1.domain.tld.key (deflated 23%)
+  adding: server.crt (deflated 46%)
+  adding: server.key (deflated 23%)
+[ec2-user@ip-10-123-10-212 custom_folder]$ ls
+ca.crt  client1.domain.tld.crt  client1.domain.tld.key  server.crt  server.key  test.zip
+```
