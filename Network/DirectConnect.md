@@ -1,5 +1,6 @@
 
 - オンプレ-DXロケーション間の接続を「コネクション」という
+- [LOA-CFA は、AWS に接続するための認可であり、クロスネットワーク接続 (クロスコネクト) を確立するためにコロケーションプロバイダーまたはネットワークプロバイダーで必要になります](https://docs.aws.amazon.com/ja_jp/directconnect/latest/UserGuide/getting_started.html)
 
 ## 文献
 - 1.[Direct Connect接続タイプとVIF作成パターンをまとめてみた](https://dev.classmethod.jp/articles/direct-connect-connection-pattern-vif/)
