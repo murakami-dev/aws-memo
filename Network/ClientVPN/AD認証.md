@@ -58,4 +58,45 @@ https://dev.classmethod.jp/articles/control-bgp-route-on-site-to-site-vpn/
 - クライアントソフトの場合、ファイル⇒プロファイルを追加から設定ファイルをアップする
 ![image](https://user-images.githubusercontent.com/60077121/98258340-19183500-1fc4-11eb-84f6-7841cadc7e88.png)
 
+- 証明書本文・鍵へのパス、ドメインの前にランダム文字列を入れる必要あり
+```
+client
+dev tun
+proto udp
+remote asdfa.cvpn-endpoint-0b32df75b779c0cf7.prod.clientvpn.ap-northeast-1.amazonaws.com 443
+remote-random-hostname
+resolv-retry infinite
+nobind
+remote-cert-tls server
+cipher AES-256-GCM
+verb 3
+<ca>
+-----BEGIN CERTIFICATE-----
+MIIDPjCCAiagAwIBAgIJAIOA3Fa9S6fjMA0GCSqGSIb3DQEBCwUAMBkxFzAVBgNV
+BAMMDktPS1VZTyBDby4sTHRkMB4XDTIwMDIyODEwMTUwM1oXDTMwMDIyNTEwMTUw
+M1owGTEXMBUGA1UEAwwOS09LVVlPIENvLixMdGQwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQCkDOUZJWPkCviBPcjuLLdTykkrmf6o52oCdmRgmbWaxlBJ
+ips+EKzr1UJ3dYfwoiz16UyFkGYefSMZUEKseXGFoabZtITxT8C84c+R2SxNsEjV
+e+wsUpL4VQ5u2m8Rpw6Unslamk1UsvbENaGgW/q1W2SmE0TXKlj8HbyRZ/jMxgu9
+jbot6vLFAnSyCtvqgOL0rie/m29iqj4bG3qd7dfvcKSXLr8+HM8R8pGTuqvbA6uw
+38/VNdQ9TfXieE1W6s2Z706D/jHwc7NJW4dRnBZSG/b6Kdr3aHUx3TVTklNaqB/y
+JohHBM3LgWufNLN3DG5V35yfyjC4RdzWKtH2vYSBAgMBAAGjgYgwgYUwHQYDVR0O
+BBYEFNpeghKuPoELWkw8Bkv7zrdvQXO1MEkGA1UdIwRCMECAFNpeghKuPoELWkw8
+Bkv7zrdvQXO1oR2kGzAZMRcwFQYDVQQDDA5LT0tVWU8gQ28uLEx0ZIIJAIOA3Fa9
+S6fjMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IB
+AQAKjxT2sSrhBnAPxOoSqbFl294g2KNyRsXljEzyEg/pMkcScMvTx0TJ+CEIXYSj
+RSINJPL+Lcc31uyMs4ZwFu68vTAwuA6QlpB1qrQK6Oo7reytuwa72TpAlqQURuG2
+MtEHPcLwrlfpXkmc0LhjxliLiVyP2d2sGRH6QfYjVzzwOAqpa4cDtZMCf8WO8tGH
+5SI5KhOeyYrzQtST4yJ1ds1NI2G2xdfxhsfiQm5IZrJUga9M9KYZ48mlNU7Fi2Ks
+yvrUUQyUejIAqL+FhlhTO/47YELfVWrBYVN06gNNmzfix/mOqU5LdxwRQz2Za6TT
+c4FjN1n17i2CYgGLKMlI1bUf
+-----END CERTIFICATE-----
 
+</ca>
+auth-user-pass
+
+reneg-sec 0
+
+cert C:\\Users\\user\\OpenVPN\\config\\kokuyo-test\\common-client.domain.tld.crt
+key C:\\Users\\user\\OpenVPN\\config\\kokuyo-test\\common-client.domain.tld.key
+```
