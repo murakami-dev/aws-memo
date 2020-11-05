@@ -39,6 +39,28 @@ drwx------ 8 ec2-user ec2-user  286 Oct 27 11:25 ..
 -rw------- 1 ec2-user ec2-user 4552 Sep 30 13:02 server.crt
 ```
 
+## 証明書の運用
+- `easy-rsa`以下を保存しておけば、後に別のサーバでも同じCAが使えるし、証明書も`easy-rsa`配下に置かれている。
+- ローカルにもってくるときは以下の手順
+```
+[ec2-user@ip-10-123-10-212 test]$ ls
+custom_folder  easy-rsa
+[ec2-user@ip-10-123-10-212 test]$ zip easy-rsa easy-rsa
+  adding: easy-rsa/ (stored 0%)
+[ec2-user@ip-10-123-10-212 test]$ ls
+custom_folder  easy-rsa  easy-rsa.zip
+```
+```
+[ec2-user@ip-10-123-10-212 custom_folder]$ zip test ca.crt client1.domain.tld.crt client1.domain.tld.key server.crt server.key
+  adding: ca.crt (deflated 26%)
+  adding: client1.domain.tld.crt (deflated 45%)
+  adding: client1.domain.tld.key (deflated 23%)
+  adding: server.crt (deflated 46%)
+  adding: server.key (deflated 23%)
+[ec2-user@ip-10-123-10-212 custom_folder]$ ls
+ca.crt  client1.domain.tld.crt  client1.domain.tld.key  server.crt  server.key  test.zip
+```
+
 
 ## 一度認証局（CA）をたてたあと、同じサーバで別のCAをたてて証明書を作成することもできる
 
@@ -136,23 +158,4 @@ Data Base Updated
 ca.crt  client1.domain.tld.crt  client1.domain.tld.key  server.crt  server.key
 ```
 
-- ローカルにもってくるときは以下
-- `easy-rsa`以下を保存しておけば、後に別のサーバでも同じCAが使えるし、証明書も`easy-rsa`配下に置かれている。
-```
-[ec2-user@ip-10-123-10-212 test]$ ls
-custom_folder  easy-rsa
-[ec2-user@ip-10-123-10-212 test]$ zip easy-rsa easy-rsa
-  adding: easy-rsa/ (stored 0%)
-[ec2-user@ip-10-123-10-212 test]$ ls
-custom_folder  easy-rsa  easy-rsa.zip
-```
-```
-[ec2-user@ip-10-123-10-212 custom_folder]$ zip test ca.crt client1.domain.tld.crt client1.domain.tld.key server.crt server.key
-  adding: ca.crt (deflated 26%)
-  adding: client1.domain.tld.crt (deflated 45%)
-  adding: client1.domain.tld.key (deflated 23%)
-  adding: server.crt (deflated 46%)
-  adding: server.key (deflated 23%)
-[ec2-user@ip-10-123-10-212 custom_folder]$ ls
-ca.crt  client1.domain.tld.crt  client1.domain.tld.key  server.crt  server.key  test.zip
-```
+
