@@ -3,7 +3,8 @@
 ## Tips
 ### VPN設定にある「性的ルートタブ」について
 ```
-静的ルーティングでは、Site-to-Site VPN 接続の状態が UP であるときに、VPN 設定に指定した静的 IP プレフィックスがルートテーブルに伝播されます。同様に、動的なルーティングでは、Site-to-Site VPN 接続の状態が UP のときに、カスタマーゲートウェイから BGP でアドバタイズされたルートがルートテーブルに伝播されます。
+静的ルーティングでは、Site-to-Site VPN 接続の状態が UP であるときに、VPN 設定に指定した静的 IP プレフィックスがルートテーブルに伝播されます。
+同様に、動的なルーティングでは、Site-to-Site VPN 接続の状態が UP のときに、カスタマーゲートウェイから BGP でアドバタイズされたルートがルートテーブルに伝播されます。
 ```
 https://docs.aws.amazon.com/ja_jp/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-routing
 
