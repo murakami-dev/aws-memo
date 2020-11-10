@@ -87,8 +87,9 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/install-Clo
 
 - RunCommandで`AmazonCloudWatch-ManageAgent`を選択
 - Actionリストにconfigure、Optional Configuration Sourceリストにssm、**Optional Configuration Locationにパラメータストアに保存したconfigの名前を入力する**
+- パラメータストアでCloudWatchの設定ファイルを更新しただけではCloudWatchlogsへ新たなlogは出力されない。再度RunCommandでagentの起動が必要。`optionalRestart`もyesにしてagent再起動しないとダメ。
 
-- コマンドでパラメータストアの設定を読み込み起動するには以下
+- コマンドラインでパラメータストアの設定を読み込み起動するには以下
 ```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:configuration-parameter-store-name
 ```
