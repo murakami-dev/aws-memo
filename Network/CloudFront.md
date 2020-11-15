@@ -1,0 +1,25 @@
+# 文献
+- まとめ
+  - [AWS再入門ブログリレー Amazon CloudFront編](https://dev.classmethod.jp/articles/re-introduction-2020-cloudfront/#toc-1)
+  - [AWS再入門ブログリレー Amazon CloudFront 編](https://dev.classmethod.jp/articles/blogrelay2019_cloudfront/)
+    - こっちの方が古いけど内容充実
+- マルチオリジン
+  - [CloudFrontでマルチオリジンとCache Behavior設定してみた](https://dev.classmethod.jp/articles/cloudfront-multioriginbehavior/)
+  - [CloudFrontで特定のパスへのアクセスをリダイレクトさせる](https://dev.classmethod.jp/articles/cloudfront-redirect/)
+
+
+
+# 総論
+- オリジンはEC2,ALB,S3などAWSのサービス以外に、WEBサーバもオリジンとして指定することができます。
+- セキュリティ対策にACM,AWS Shield（デフォルトで使用可能）、AWS WAFが使用可能。
+
+# キャッシュコントロール
+
+## キャッシュファイルの無効化(Invalidation)
+
+
+# 料金
+- [Amazon CloudFront の料金](https://aws.amazon.com/jp/cloudfront/pricing/)
+- 料金は以下のオンデマンドの欄にある料金体系ごとに課金される
+- エッジロケーションを絞ることで、料金クラスを抑えることができる
+![image](https://user-images.githubusercontent.com/60077121/99171321-56f72500-274b-11eb-8a69-8bb6ff3c007d.png)
