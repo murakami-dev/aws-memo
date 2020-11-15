@@ -8,6 +8,7 @@
     - ホワイトペーパー「セキュリティベストプラクティス」まとめ
   - [WAFがなぜWebアプリケーションのセキュリティ対策に必要なのか？理由を徹底解説](https://www.shadan-kun.com/blog/measure/1395/)
   - [Web Application Firewall 読本](https://www.ipa.go.jp/security/vuln/waf.html)
+- 他にもブログはあるので読むこと
 
 ## 概要
 - 純粋なファイアウォールと重複した役割(L3/L4の保護機能)を持っているわけではない
