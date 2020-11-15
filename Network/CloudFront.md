@@ -8,15 +8,17 @@
   - [CloudFrontで特定のパスへのアクセスをリダイレクトさせる](https://dev.classmethod.jp/articles/cloudfront-redirect/)
 
 
-
 # 総論
 - オリジンはEC2,ALB,S3などAWSのサービス以外に、WEBサーバもオリジンとして指定することができます。
 - セキュリティ対策にACM,AWS Shield（デフォルトで使用可能）、AWS WAFが使用可能。
 
 # マルチオリジン
-- ブログより
+- ブログ（CloudFrontでマルチオリジンとCache Behavior設定してみた）より
 >はじめは1つのオリジンしか登録できませんので、S3-Originを登録します。 
 また、Cache BehaviorもPath Patternが Default(*) の1つだけしか登録できないので、このまま先に進みます。
+
+- Cache Behaviorで設定する
+- 同一オリジンで異なるパスパターンで振り分け先を変更する設定も可能
 
 # キャッシュコントロール
 
