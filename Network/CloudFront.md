@@ -3,7 +3,7 @@
   - [AWS再入門ブログリレー Amazon CloudFront編](https://dev.classmethod.jp/articles/re-introduction-2020-cloudfront/#toc-1)
   - [AWS再入門ブログリレー Amazon CloudFront 編](https://dev.classmethod.jp/articles/blogrelay2019_cloudfront/)
     - こっちの方が古いけど内容充実
-- マルチオリジン
+- [マルチオリジン](#マルチオリジン)
   - [CloudFrontでマルチオリジンとCache Behavior設定してみた](https://dev.classmethod.jp/articles/cloudfront-multioriginbehavior/)
   - [CloudFrontで特定のパスへのアクセスをリダイレクトさせる](https://dev.classmethod.jp/articles/cloudfront-redirect/)
 
@@ -12,6 +12,11 @@
 # 総論
 - オリジンはEC2,ALB,S3などAWSのサービス以外に、WEBサーバもオリジンとして指定することができます。
 - セキュリティ対策にACM,AWS Shield（デフォルトで使用可能）、AWS WAFが使用可能。
+
+# マルチオリジン
+- ブログより
+>はじめは1つのオリジンしか登録できませんので、S3-Originを登録します。 
+また、Cache BehaviorもPath Patternが Default(*) の1つだけしか登録できないので、このまま先に進みます。
 
 # キャッシュコントロール
 
