@@ -80,3 +80,6 @@ https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html
 - スキャン時のGET、LISTリクエストのS3料金も発生
 ![image](https://user-images.githubusercontent.com/60077121/99397711-c37a4b80-2926-11eb-98b4-4891a5b96dc5.png)
 
+# 利用する
+- 有効化
+
