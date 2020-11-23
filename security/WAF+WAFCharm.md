@@ -75,10 +75,41 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 - 仕組みとしてはWAFCharm用のIAMユーザーがプログラムによるアクセスでログインし、WAFを運用してくれる。
 - 必要なポリシーは「AWSWAFFullAccess」と「AmazonS3ReadOnlyAccess」の2つ
 
-## WAFログ用のS3作成（作成中）
+## WAFログ出力設定
 ### 概要
 >AWS WAF のログを S3 バケットに出力するには、Kinesis Data Firehose を利用する必要があります。
 >WafCharm の利用にこの設定は必須ではありませんが、後述する月次レポートの機能で利用します。（文献2）
+
+### Name and Resource
+- Kinesis Data Firehoseの配信ストリームを作成
+  - **`aws-waf-logs-<任意の名前>`に設定しないとWAFと連携できない**
+  - ポイントはWeb ACLに設定したリソースと同じリージョンを選択してData Firehoseのリソースを作成すること(CloudFrontならバージニア北部にリソースを作成します）
+- Sourceに`Direct PUT or other sources`
+- 暗号化はチェックせず次へ
+
+### Process records
+- Data transformation、Record format conversionは、`Disabeld`
+
+### Choose a destination
+- S3を選択
+- WAFのログ出力用のバケットを選択
+- **オプションでS3のプレフィックスを指定できる**
+  - 未入力だとUTCの日付名のファイル？
+  - `waf-log/`と入力してみる
+  - https://docs.aws.amazon.com/ja_jp/firehose/latest/dev/s3-prefixes.html
+
+### Configure settings
+- 以下の設定
+  - Buffer size: 5 MiB
+  - Buffer interval: 60 seconds
+  - S3 compression: GZIP
+  - S3 encryption: Disabled
+- IAMロールは新規作成してもらう（`KinesisFirehoseServiceRole-test-waf-ap-northeast-1-xxxx`ができる）
+
+### WAFでログの有効化
+- 東京リージョンへ移動
+- ログのタブから有効化
+- `Redacted`はセンシティブ情報を記録しない仕組み。チェックしない
 
 ## 月次レポート のための AWS Lambda（作成中）
 ### 概要
