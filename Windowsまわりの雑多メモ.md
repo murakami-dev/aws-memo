@@ -1,0 +1,2 @@
+- [Windowsネットワークの基礎/ファイル共有の使い方](https://www.atmarkit.co.jp/ait/articles/1406/12/news097.html)
+  - ファイル共有を制限する場合はGPOでいけそう？？
