@@ -75,13 +75,24 @@ https://security-hub-workshop.awssecworkshops.com/
 
 ## 自動化修復アクションを実装する
 - [ちなみにオリジナルのカスタムアクションをつくる方法はこちら](https://aws.amazon.com/jp/blogs/news/automated-response-and-remediation-with-aws-security-hub/)
-### 事前構築
+### 文献
 - ServiceCatalogを使ったカスタムアクションの自動デプロイ（手順は以下のクラメソブログがとっても良い記事）
   - AWS Security Hub の自動化された応答と修復
     - https://aws.amazon.com/jp/solutions/implementations/aws-security-hub-automated-response-and-remediation/
   - [神機能]Security HubでCISの違反を自動修復する仕組みが提供されたので試したりちょっと深堀りして理解してみた
     - https://dev.classmethod.jp/articles/security-hub-cis-auto-remediation/
-    
+### 全体の概要
+- (事前に)Security Hubを有効化しCISベンチマークのスタンダードを有効化する
+- 1つ目のCloudFormation`aws-sharr-deploy.template`からService Catalogを展開する
+  - `SO0111-SHARR_Catalog_Admin_ap-northeast-1`および`SO0111-SHARR_Catalog_User_ap-northeast-1`というIAMグループができる
+  - `Security Hub Playbooks`というポートフォリオがデプロイされる。中には`CIS`という製品がある。
+    - SO0111-SHARR_Catalog_Admin： このロールにより、メンバーはソリューションのポートフォリオであるSecurity Hub Playbooks（SO0111）に管理アクセスできます。
+    - SO0111-SHARR_Catalog_User： このロールを使用すると、メンバーはソリューションのポートフォリオであるセキュリティハブプレイブック（SO0111）のプレイブックを展開、更新、および終了できます。
+  - IAMグループに属すなどアクセス権限があれば、エンドユーザーメニュー（管理者メニューではない）の製品に`CIS`が表示される。
+- Service CatalogからCISの自動修復の仕組み(プレイブック)を展開「製品を起動」
+- 2つ目のCloudFormationから自動修復に必要なIAMリソースを展開
+
+
 - 以下リンクの`ステップ1.スタックを起動します`のCFnを対象のリージョンで流す
   - https://docs.aws.amazon.com/solutions/latest/aws-security-hub-automated-response-and-remediation/deployment.html
 - 作成されたIAMグループ（サービスカタログの管理者、使用者）に使用するIAMユーザーを加える
