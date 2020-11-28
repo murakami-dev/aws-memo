@@ -1,4 +1,8 @@
 # このページでは全体像をまとめる
+## 文献
+- [AWSホワイトペーパーセキュリティベストプラクティス](https://d1.awsstatic.com/whitepapers/ja_JP/Security/AWS_Security_Best_Practices.pdf)
+- [WAFとはbyIPA](https://www.ipa.go.jp/files/000017312.pdf)
+
 ## AWS Summit2019
 ### AWS 環境における脅威検知と対応
 資料:https://pages.awscloud.com/rs/112-TZM-766/images/A1-02.pdf
