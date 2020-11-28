@@ -43,6 +43,26 @@
 - `DeleteOnTermination`（終了に合わせて削除）をfalseにする。
 >デフォルトでは、Amazon EBS-backed AMI のルートボリュームは、インスタンスを終了すると削除されます。インスタンスの終了後もボリュームが永続化するように、デフォルトの動作を変更できます。デフォルトの動作を変更するには、ブロックデバイスマッピングを使用して、DeleteOnTermination 属性を false に設定します。
 
+## リポジトリ（作成中）
+- 保管場所
+- [Amazon Linux 2のyumリポジトリ構造を読み取る](https://dev.classmethod.jp/articles/amazon-linux-2-yum-repository/)
+- [Amazon Linux 2のExtras Library(amazon-linux-extras)を使ってみた](https://dev.classmethod.jp/articles/how-to-work-with-amazon-linux2-amazon-linux-extras/)
+
+## インスタンスタイプ
+### 汎用
+- https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/general-purpose-instances.html
+- A1
+  - AWS Graviton プロセッサ（Armベース）
+  - >AWS Graviton プロセッサには 64 ビットの Arm Neoverse コアと AWS が設計したカスタムシリコンが搭載されており、パフォーマンスおよびコストを最適化します。
+  - [AWS Graviton プロセッサ](https://aws.amazon.com/jp/ec2/graviton/)
+  - [[AWS] Graviton2 プロセッサを搭載した新しいEC2インスタンスタイプ T4g が利用可能になりました](https://dev.classmethod.jp/articles/aws-ec2-t4g-powered-by-graviton2/)
+- M5、M5a インスタンス
+- M6g インスタンスと M6gd インスタンス
+  - AWS Graviton2 プロセッサを搭載
+- t2,t3
+#### バーストパフォーマンス
+
+
 
 ## シャットダウン操作
 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior
