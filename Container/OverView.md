@@ -12,7 +12,8 @@
 　　- クラスターはタスク定義を参照してタスクを実行する（**タスク定義に基づいてインスタンス化される**）
 - サービスはタスクをコピーして維持する
 - **クラスター内では複数のタスクが実行される。そのタスク実行のインフラ管理戦略がキャパシティプロバイダー。**
-![image](https://user-images.githubusercontent.com/60077121/100529035-633cb100-3226-11eb-86e6-6048c7b69c9e.png)
+![image](https://user-images.githubusercontent.com/60077121/100529951-9fc0da80-322f-11eb-9673-11d073402a32.png)
+
 
 # ECSクラスター
 - https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/clusters.html
