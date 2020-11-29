@@ -59,6 +59,311 @@ MacBook-Pro:~ murakamihiroya$ aws ecs describe-clusters --clusters test
     "failures": []
 }
 ```
+### 作成したクラスターインスタンス
+```
+MacBook-Pro:~ murakamihiroya$ aws ecs describe-container-instances \
+>     --cluster test \
+>     --container-instances c7b9537c6a534e26b1dd17d3d9e13a4c
+{
+    "containerInstances": [
+        {
+            "containerInstanceArn": "arn:aws:ecs:ap-northeast-1:358455993290:container-instance/test/c7b9537c6a534e26b1dd17d3d9e13a4c",
+            "ec2InstanceId": "i-0d6f8d9a4508ea6f1",
+            "version": 6,
+            "versionInfo": {
+                "agentVersion": "1.48.1",
+                "agentHash": "e9b600d2",
+                "dockerVersion": "DockerVersion: 19.03.6-ce"
+            },
+            "remainingResources": [
+                {
+                    "name": "CPU",
+                    "type": "INTEGER",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 2038
+                },
+                {
+                    "name": "MEMORY",
+                    "type": "INTEGER",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 159
+                },
+                {
+                    "name": "PORTS",
+                    "type": "STRINGSET",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 0,
+                    "stringSetValue": [
+                        "22",
+                        "2376",
+                        "2375",
+                        "80",
+                        "51678",
+                        "51679"
+                    ]
+                },
+                {
+                    "name": "PORTS_UDP",
+                    "type": "STRINGSET",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 0,
+                    "stringSetValue": []
+                }
+            ],
+            "registeredResources": [
+                {
+                    "name": "CPU",
+                    "type": "INTEGER",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 2048
+                },
+                {
+                    "name": "MEMORY",
+                    "type": "INTEGER",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 459
+                },
+                {
+                    "name": "PORTS",
+                    "type": "STRINGSET",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 0,
+                    "stringSetValue": [
+                        "22",
+                        "2376",
+                        "2375",
+                        "51678",
+                        "51679"
+                    ]
+                },
+                {
+                    "name": "PORTS_UDP",
+                    "type": "STRINGSET",
+                    "doubleValue": 0.0,
+                    "longValue": 0,
+                    "integerValue": 0,
+                    "stringSetValue": []
+                }
+            ],
+            "status": "ACTIVE",
+            "agentConnected": true,
+            "runningTasksCount": 1,
+            "pendingTasksCount": 0,
+            "attributes": [
+                {
+                    "name": "ecs.capability.secrets.asm.environment-variables"
+                },
+                {
+                    "name": "ecs.capability.branch-cni-plugin-version",
+                    "value": "a21d3a41-"
+                },
+                {
+                    "name": "ecs.ami-id",
+                    "value": "ami-0ba238c6cfa8b1e42"
+                },
+                {
+                    "name": "ecs.capability.secrets.asm.bootstrap.log-driver"
+                },
+                {
+                    "name": "ecs.capability.task-eia.optimized-cpu"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.none"
+                },
+                {
+                    "name": "ecs.capability.ecr-endpoint"
+                },
+                {
+                    "name": "ecs.capability.docker-plugin.local"
+                },
+                {
+                    "name": "ecs.capability.task-cpu-mem-limit"
+                },
+                {
+                    "name": "ecs.capability.secrets.ssm.bootstrap.log-driver"
+                },
+                {
+                    "name": "ecs.capability.efsAuth"
+                },
+                {
+                    "name": "ecs.capability.full-sync"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.30"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.31"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.32"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.fluentd"
+                },
+                {
+                    "name": "ecs.capability.firelens.options.config.file"
+                },
+                {
+                    "name": "ecs.availability-zone",
+                    "value": "ap-northeast-1a"
+                },
+                {
+                    "name": "ecs.capability.aws-appmesh"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
+                },
+                {
+                    "name": "ecs.capability.task-eni-trunking"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.26"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.27"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.privileged-container"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+                },
+                {
+                    "name": "ecs.cpu-architecture",
+                    "value": "x86_64"
+                },
+                {
+                    "name": "ecs.capability.firelens.fluentbit"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.ecr-auth"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.20"
+                },
+                {
+                    "name": "ecs.os-type",
+                    "value": "linux"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.22"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.23"
+                },
+                {
+                    "name": "ecs.capability.task-eia"
+                },
+                {
+                    "name": "ecs.capability.private-registry-authentication.secretsmanager"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.syslog"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.awsfirelens"
+                },
+                {
+                    "name": "ecs.capability.firelens.options.config.s3"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.logging-driver.json-file"
+                },
+                {
+                    "name": "ecs.capability.execution-role-awslogs"
+                },
+                {
+                    "name": "ecs.vpc-id",
+                    "value": "vpc-0178ec2ab606c2bc2"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+                },
+                {
+                    "name": "ecs.capability.docker-plugin.amazon-ecs-volume-plugin"
+                },
+                {
+                    "name": "ecs.capability.task-eni"
+                },
+                {
+                    "name": "ecs.capability.firelens.fluentd"
+                },
+                {
+                    "name": "ecs.capability.efs"
+                },
+                {
+                    "name": "ecs.capability.execution-role-ecr-pull"
+                },
+                {
+                    "name": "ecs.capability.task-eni.ipv6"
+                },
+                {
+                    "name": "ecs.capability.container-health-check"
+                },
+                {
+                    "name": "ecs.subnet-id",
+                    "value": "subnet-0b7eac18a11d4eb1d"
+                },
+                {
+                    "name": "ecs.instance-type",
+                    "value": "t3.nano"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.task-iam-role-network-host"
+                },
+                {
+                    "name": "ecs.capability.container-ordering"
+                },
+                {
+                    "name": "ecs.capability.cni-plugin-version",
+                    "value": "55b2ae77-2020.09.0"
+                },
+                {
+                    "name": "ecs.capability.env-files.s3"
+                },
+                {
+                    "name": "ecs.capability.secrets.ssm.environment-variables"
+                },
+                {
+                    "name": "ecs.capability.pid-ipc-namespace-sharing"
+                },
+                {
+                    "name": "com.amazonaws.ecs.capability.task-iam-role"
+                }
+            ],
+            "registeredAt": 1606607178.315,
+            "attachments": [],
+            "tags": []
+        }
+    ],
+    "failures": []
+}
+```
 
 ## ステップ 3: サービスを作成する
 - タスク定義やクラスターを指定して紐付ける必要あり
