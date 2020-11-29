@@ -1,7 +1,7 @@
 # ECSチュートリアル
 - https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/getting-started-ecs-ec2.html
 ## タスク定義
-```
+```JSON
 {
     "containerDefinitions": [
         {
@@ -32,7 +32,7 @@
 ## ステップ 2: クラスターを作成する
 EC2のインスタンスタイプやストレージ、VPC設定
 ### 作成したクラスター
-```
+```JSON
 MacBook-Pro:~ murakamihiroya$ aws ecs describe-clusters --clusters test
 {
     "clusters": [
@@ -60,7 +60,7 @@ MacBook-Pro:~ murakamihiroya$ aws ecs describe-clusters --clusters test
 }
 ```
 ### 作成したクラスターインスタンス
-```
+```JSON
 MacBook-Pro:~ murakamihiroya$ aws ecs describe-container-instances \
 >     --cluster test \
 >     --container-instances c7b9537c6a534e26b1dd17d3d9e13a4c
@@ -369,7 +369,7 @@ MacBook-Pro:~ murakamihiroya$ aws ecs describe-container-instances \
 - タスク定義やクラスターを指定して紐付ける必要あり
 - ELB設定やASG設定もここ
 ### 作成したサービス
-```
+```JSON
 MacBook-Pro:~ murakamihiroya$ aws ecs describe-services --cluster test --services test-service
 {
     "services": [
