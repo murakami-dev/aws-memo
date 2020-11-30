@@ -58,4 +58,7 @@
   - 作成中。Dockerを学んでから
 - dependsOn
 
-  
+
+# ログ
+- [ECS/Fargateでログ出力先をカスタマイズできる「FireLens」機能がリリースされました](https://dev.classmethod.jp/articles/ecs-firelens/)
+  - logConfiguration にログ出力の設定を記述します。logDriver に awslogs を指定することで、ログ出力先をCloudWatch Logsに設定することができます。
