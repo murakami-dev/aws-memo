@@ -1,3 +1,9 @@
+# ディレクトリ削除
+```
+Mac
+rm -rf ディレクトリ名（内容も含め削除）
+```
+- https://xtech.nikkei.com/it/atcl/column/15/042000103/052100016/
 
 # RPM
 - 文献
