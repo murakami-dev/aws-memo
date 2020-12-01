@@ -16,9 +16,17 @@
 - ブログ（CloudFrontでマルチオリジンとCache Behavior設定してみた）より
 >はじめは1つのオリジンしか登録できませんので、S3-Originを登録します。 
 また、Cache BehaviorもPath Patternが Default(*) の1つだけしか登録できないので、このまま先に進みます。
-
-- Cache Behaviorで設定する
 - 同一オリジンで異なるパスパターンで振り分け先を変更する設定も可能
+
+- 手順
+  - ディストリビューション作成後、2つめのオリジンを登録
+    - Origin Pathにはオリジン内のディレクトリを登録する
+    - >`/production`と入力した場合、ユーザーがブラウザに「example.com/index.html」と入力すると、CloudFront は myawsbucket/production/index.html に対するリクエストを Amazon S3 に送信します。
+    - https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath
+  - Behaviorからパスパターンを設定
+    - https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern
+- ![image](https://user-images.githubusercontent.com/60077121/100808902-629b5900-3478-11eb-99b8-a648c0d34232.png)
+
 
 # キャッシュコントロール
 
