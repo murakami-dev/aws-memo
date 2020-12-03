@@ -24,3 +24,9 @@
   - https://docs.trendmicro.com/ja-jp/smb/worry-free-business-security-services-56/section_agent_install/agent_install_download_pkg_overview/agent_install_deployment_script.aspx
 
 - インストーラの実行には、というか常にインターネットに通信できる環境が必要
+
+
+# URLフィルタリング
+
+![image](https://user-images.githubusercontent.com/60077121/101020771-574c4880-35b2-11eb-8527-7fc3c70c74f7.png)
+
