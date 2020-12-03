@@ -28,5 +28,5 @@
 
 # URLフィルタリング
 
-![image](https://user-images.githubusercontent.com/60077121/101020771-574c4880-35b2-11eb-8527-7fc3c70c74f7.png)
+![image](https://user-images.githubusercontent.com/60077121/101042691-ce88d900-35c0-11eb-8c25-702c28b74d78.png)
 
