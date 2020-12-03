@@ -27,6 +27,8 @@
 
 
 # URLフィルタリング
-
 ![image](https://user-images.githubusercontent.com/60077121/101042691-ce88d900-35c0-11eb-8c25-702c28b74d78.png)
+
+## URLフィルタリング　トラブル
+- [ChromeまたはEdgeでHTTPSサイトがブロックされない場合がある](https://success.trendmicro.com/jp/solution/000154688)
 
