@@ -1,0 +1,1 @@
+- [【LDAP基礎用語】DCとは？OUとは？バインドDN,ベースDN,サフィックスとは？匿名バインドとは？ldapsearchのオプション](https://milestone-of-se.nesuke.com/l7protocol/ldap/binddn-basedn/)
