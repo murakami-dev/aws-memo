@@ -19,7 +19,9 @@
   - ![image](https://user-images.githubusercontent.com/60077121/100849201-918bec00-34c5-11eb-8ab1-19d3f6b186d1.png)
 
 ### クライアントはインストーラをDLする必要がある。
-- ログインスクリプトは
+- ログインスクリプトはビジネスセキュリティサーバでセットアップスクリプトを実行し、クライアントがネットワークにログオンしたときに自動的にエージェントをインストールさせるもの。ビジネス[セキュリティサーバ](https://docs.trendmicro.com/ja-jp/smb/worry-free-business-security-90-sp3-server-help/getting-started/security-server.aspx)とは管理コンソールがホストされているサーバ。AWSでは無理。ADサーバで実行しても無意味だった。
+  - 手順としてはスクリプト実行→ドメイン表示→ユーザ選択。
+  - https://success.trendmicro.com/jp/solution/1313525
 - 配信スクリプトはインストーラを共有フォルダに配置して、スクリプトを使用し各クライアントがDLする方法。スクリプトの中身に共有フォルダのパスを追記する必要あり。
   - https://docs.trendmicro.com/ja-jp/smb/worry-free-business-security-services-56/section_agent_install/agent_install_download_pkg_overview/agent_install_deployment_script.aspx
 
