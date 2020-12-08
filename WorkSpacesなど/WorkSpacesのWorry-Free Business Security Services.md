@@ -55,11 +55,15 @@
 | Intuit™ QuickBook™保護 |無効 | |
 | イベント監視 |無効 |不正プログラム挙動ブロックによる保護ではなくイベントごとに許可/ブロックを設定する要件がある場合のみ有効|
 
+- 挙動監視とは
+  - https://success.trendmicro.com/jp/solution/1104299
 - Intuit™ QuickBookhはアメリカの会計ソフトのファイル
   - https://docs.trendmicro.com/ja-jp/smb/worry-free-business-security-services-56/section_groups_sec_settings/section_config_win/be_monit_config_wfbs-svc.aspx
 - イベント監視の制御イメージ
   - ![image](https://user-images.githubusercontent.com/60077121/101235935-18340980-3710-11eb-8b2a-54c018ec4d6f.png)
 
+## 機械学習型検索
+https://success.trendmicro.com/jp/solution/1117519
 
 ## URLフィルタリング
 ![image](https://user-images.githubusercontent.com/60077121/101042691-ce88d900-35c0-11eb-8c25-702c28b74d78.png)
