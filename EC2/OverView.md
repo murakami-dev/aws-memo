@@ -68,5 +68,10 @@
 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior
 
 
+## 休止
+- [新機能 – EC2インスタンスの休止](https://aws.amazon.com/jp/blogs/news/new-hibernate-your-ec2-instances/)
+  - >休止プロセスはそのインスタンスのメモリ状態を保管し、また休止したタイミングで設定されていたプライベートIPアドレスとEIPを保持します。
+  - >休止の指示を受け取ったインスタンスは、ルートEBSボリュームに格納されたファイルにメモリ状態を書き出し、（事実上）自分自身をシャットダウンします。休止できるインスタンスのAMI, ルートEBSボリュームは**暗号化されている必要があります。**暗号化することで、メモリの内容がEBSボリュームにコピーされる際に機密データを保護することができます。**インスタンスが休止状態の間、お支払いいただくのはEBSボリュームとアタッチされたEIPの料金だけです。停止状態と同じく、時間当たりのインスタンス料金は発生しません。**
+
 これまとめたい
 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-launch-templates.html
