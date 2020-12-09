@@ -80,5 +80,8 @@ https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.
   - 専用ハードウェアインスタンス：ハードウェア専有インスタンス。`Dedicated Instance`。Dedicated Instance が稼働しているホスト上には、それを利用している AWS アカウントが起動した別のインスタンスが動作することはあっても、他の AWS アカウントの起動したインスタンスが動作することはない。
   - 専有ホスト：`Dedicated Host`。他の AWS アカウントのインスタンスはもちろん、利用者の AWS アカウントの別のインスタンスが起動されることもありません。
 
+## GPU
+- [GPUとは？CPUとの違いや性能と活用](https://www.kagoya.jp/howto/rentalserver/gpu1/)
+
 これまとめたい
 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-launch-templates.html
