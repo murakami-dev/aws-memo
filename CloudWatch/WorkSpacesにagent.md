@@ -1,6 +1,8 @@
 # 文献
 - 1[WorkSpacesにCloudWatchAgentを導入してWindowsイベントログを出力してみた](https://dev.classmethod.jp/articles/workspaces-cwa-windows-event-logs/)
 - 2[WorkSpacesにCloudWatchAgentを導入してログ転送する方法](https://qiita.com/mo_chiee/items/36b292eed009f16d8b6d)
+- 3[管理権限を持っていないユーザーで PowerShell スクリプトを実行する](http://www.vwnet.jp/Windows/PowerShell/2020072901/SetExecutionPolicy.htm)
+  - `Set-ExecutionPolicy RemoteSigned -Scope Process`が何をやっているのか
 
 # 手順
 - 基本文献の1でいける
