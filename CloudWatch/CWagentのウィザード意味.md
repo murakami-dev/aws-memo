@@ -1,0 +1,2 @@
+- これがわかりやすい
+  - [はじめてのCloudWatch Agent導入 (SSM & CentOS)](https://blog.serverworks.co.jp/tech/2020/01/28/cloudwtach-agent-ssm-centos/)
