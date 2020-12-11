@@ -100,6 +100,9 @@ https://success.trendmicro.com/jp/solution/1117519
     - [情報漏えい対策リスト]
 - ![image](https://user-images.githubusercontent.com/60077121/101235900-d5723180-370f-11eb-97c5-29280d951f44.png)
 
+# 検証：イメージ作成→複製でライセンスはアクティベートされるのか
+- された
+![image](https://user-images.githubusercontent.com/60077121/101931660-13de8380-3c1d-11eb-9f84-c1367e56b6ed.png)
 
 
 # その他参考
