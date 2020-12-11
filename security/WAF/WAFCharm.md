@@ -76,6 +76,7 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 - 必要なポリシーは「AWSWAFFullAccess」と「AmazonS3ReadOnlyAccess」の2つ
 
 ## WAFログ出力設定
+- 以下はレポート設定手順に記載あり。管理画面のHELPより参照できる。
 ### 概要
 >AWS WAF のログを S3 バケットに出力するには、Kinesis Data Firehose を利用する必要があります。
 >WafCharm の利用にこの設定は必須ではありませんが、後述する月次レポートの機能で利用します。（文献2）
