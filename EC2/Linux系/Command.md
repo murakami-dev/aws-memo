@@ -21,7 +21,8 @@ rm -rf ディレクトリ名（内容も含め削除）
 
 # CentOS
 - [AWS用CentOS8公式イメージ](https://note.com/hironobuu/n/n823e922606dc)
-  - このページから辿ってCentOS公式AMIのIDとると良い。
+  - **注意！centosのWikiは手入れされていないので使用しない。マケプレで検索した方がいい**このページから辿ってCentOS公式AMIのIDとると良い。
+- [CentOS7の最新AMI IDの取得方法考えてみた](https://dev.classmethod.jp/articles/get-centos7-ami-id/)
 ## UserDataモデル
 - [CentOS インスタンスに SSM エージェント を手動でインストールする](https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/agent-install-centos.html)
 ### userdata
