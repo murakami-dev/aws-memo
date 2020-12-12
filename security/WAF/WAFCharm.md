@@ -10,12 +10,12 @@
 - 7.[AWS WAF のログからブロックが発生したAWSリソースを特定する](https://blog.serverworks.co.jp/awswaf-httpsourceId)
 
 # 導入手順
-## AWS WAFの設定（ALB等のリソースに割り当てるのは後で）
+## ①AWS WAFの設定（ALB等のリソースに割り当てるのは後で）
 - ルールなしのWEB ACLを作成する（文献1参照）
 - `Request sampling options`とは？（Disableにする）
   - 
 
-## ALBのアクセスログ有効化
+## ②ALBのアクセスログ有効化
 ### なんのために？
 - 文献2参照
 ```
@@ -70,12 +70,12 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 }
 ```
 
-## IAMの作成
+## ③IAMの作成
 - IAMユーザとIAMポリシーを作成する
 - 仕組みとしてはWAFCharm用のIAMユーザーがプログラムによるアクセスでログインし、WAFを運用してくれる。
 - 必要なポリシーは「AWSWAFFullAccess」と「AmazonS3ReadOnlyAccess」の2つ
 
-## WAFログ出力設定
+## ④WAFログ出力設定
 - 以下はレポート設定手順に記載あり。管理画面のHELPより参照できる。
 ### 概要
 >AWS WAF のログを S3 バケットに出力するには、Kinesis Data Firehose を利用する必要があります。
@@ -107,12 +107,15 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
   - S3 encryption: Disabled
 - IAMロールは新規作成してもらう（`KinesisFirehoseServiceRole-test-waf-ap-northeast-1-xxxx`ができる）
 
-### WAFでログの有効化
+## ⑤WAFでログの有効化
 - 東京リージョンへ移動
 - ログのタブから有効化
 - `Redacted`はセンシティブ情報を記録しない仕組み。チェックしない
 
-## 月次レポート のための AWS Lambda（作成中）
+## ⑥月次レポート のための AWS Lambda
+![image](https://user-images.githubusercontent.com/60077121/101999217-30aeb000-3d1e-11eb-9499-def4b5a4b291.png)
+- Helpページにソースあり。
+
 ### 概要
 >AWS WAF のログをサイバーセキュリティクラウド (CSC) が管理する S3 バケットに転送することで、WafCharm の月次レポートが作成可能です。このためには S3 バケットに配置されたファイルをそのまま転送するように AWS Lambda を構築します。AWS Lambda に必要な権限(IAM Role)は、AWS WAF のログを出力している S3 バケットへの Read (Get 及び List) 権限と wafcharm.com という S3 バケットへの Put 権限 (PutObject, PutObjectAcl) です。
 ![image](https://user-images.githubusercontent.com/60077121/99891831-9eccfd80-2cb1-11eb-9a6e-cfe25ec2d668.png)
