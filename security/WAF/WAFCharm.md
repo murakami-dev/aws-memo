@@ -8,6 +8,17 @@
 - 5.[WafCharmご利用の際に必要となるIAMポリシー](https://www.wafcharm.com/blog/aws-iam-setting-for-wafcharm-jp/)
 - 6.[WafCharm レポート機能の構築方法](https://oji-cloud.net/2020/09/03/post-5344/)
 - 7.[AWS WAF のログからブロックが発生したAWSリソースを特定する](https://blog.serverworks.co.jp/awswaf-httpsourceId)
+- 8.[AWS WAF v2でWafCharmを導入設定する際に知っておきたいこと](https://dev.classmethod.jp/articles/aws-waf-v2-wafcharm/)
+  - 9.[new AWS WAF でのルールグループの例外設定](https://www.wafcharm.com/blog/new-aws-waf-managed-rule-rulegourp-exception-jp/)
+
+# 文献8が良記事なので抜粋
+- `Web ACL Config`の作成時に`Default WAF Action`を`COUNT`にすることで、適用されるルールグループに`Override rules action`が適用される（要はカウントモード）
+- `Web Site Config`について
+  - >Web Site Configの作成は、この「S3 Path」ごとに必要となります。
+  - >なお、Web Site Configには「FQDN」という設定項目がありますが、ここで指定した値にWafCharmがアクセスすることはないため、任意の値を設定して構いません。ただし、WafCharmを管理していくことを考えると「FQDN」でどのサイトに対する設定なのか識別できる値が望ましいと思います。**ここでお伝えしたいことは、Web Site Configの作成単位は「S3 Path」ごとに作成するのであって、「FQDN」ごとに作成するのではないといった点になります。**
+- >WafCharmを利用する上で、FirehoseのPrefix設定はwaflog/のような設定であれば問題になりませんが、Firehoseによりデフォルトで付与される**プレフィックスYYYY/MM/DD/HHをカスタマイズすると、エラーになると思いますのでご注意ください。**
+![image](https://user-images.githubusercontent.com/60077121/101999951-4f647500-3d25-11eb-88a0-717fac138fd6.png)
+
 
 # 導入手順
 ## ①AWS WAFの設定（ALB等のリソースに割り当てるのは後で）
@@ -122,5 +133,8 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 ### 概要
 >AWS WAF のログをサイバーセキュリティクラウド (CSC) が管理する S3 バケットに転送することで、WafCharm の月次レポートが作成可能です。このためには S3 バケットに配置されたファイルをそのまま転送するように AWS Lambda を構築します。AWS Lambda に必要な権限(IAM Role)は、AWS WAF のログを出力している S3 バケットへの Read (Get 及び List) 権限と wafcharm.com という S3 バケットへの Put 権限 (PutObject, PutObjectAcl) です。
 ![image](https://user-images.githubusercontent.com/60077121/99891831-9eccfd80-2cb1-11eb-9a6e-cfe25ec2d668.png)
+
+# 通知機能
+- これもHELPのレポート・通知機能のPDFにマニュアルあり
 
 ## WafCharm の Web ACL Config 、 Web Site Configとは
