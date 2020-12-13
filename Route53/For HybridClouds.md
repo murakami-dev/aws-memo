@@ -7,3 +7,13 @@
   - 以前の手法。とてもわかりやすい
 - 4.[AWSハイブリッド構成のDNS設計レシピ](https://dev.classmethod.jp/articles/aws-hybrid-cloud-dns-designs/)
   - 「Route53forHybridCloudsが使えないからSimpleAD」は安直すぎ。設計の概念を知る  
+
+# 概要
+- 3つのコンポーネント
+  - インバウンドエンドポイント
+  - アウトバウンドエンドポイント
+  - リゾルバールール
+![image](https://user-images.githubusercontent.com/60077121/102027269-51dad380-3de6-11eb-88aa-36873a289b32.png)
+
+## ユースケース
+![image](https://user-images.githubusercontent.com/60077121/102027524-14774580-3de8-11eb-8d6e-32796981df08.png)
