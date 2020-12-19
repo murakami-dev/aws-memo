@@ -13,9 +13,12 @@
 
 # 個人検証
 ## PrivateHostedZoneを使ってみる
-![image](https://user-images.githubusercontent.com/60077121/102682460-f73ddf00-420c-11eb-829f-51d698fa3519.png)
+- PrivateHostedZoneは作成時、1つ以上のVPCと紐づける。
+- 特にDHCPオプションセットとか設定しなくても、Route53Resolverが良い感じで名前解決してくれる。
+  - 図の下部分
+![image](https://user-images.githubusercontent.com/60077121/102682779-6e747280-420f-11eb-9528-ff5e6306029d.png)
 
-
+- 解決できた
 ```
 [ec2-user@radius ~]$ dig myad.test +short
 ip-10-123-10-31.ap-northeast-1.compute.internal.
