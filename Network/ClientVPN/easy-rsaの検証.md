@@ -50,6 +50,7 @@ drwx------ 8 ec2-user ec2-user  286 Oct 27 11:25 ..
 - `easy-rsa`以下を保存しておけば、後に別のサーバでも同じCAが使えるし、証明書も`easy-rsa`配下に置かれている。
 - ローカルにもってくるときは以下の手順
   - カレントディレクトリのすべてのファイルをサブディレクトリも含めてeasy-rsa.zipとして保存。
+  - https://www.atmarkit.co.jp/ait/articles/1607/25/news021.html
 ```
 [ec2-user@radius easy-rsa]$ zip -r easy-rsa *
 ```
