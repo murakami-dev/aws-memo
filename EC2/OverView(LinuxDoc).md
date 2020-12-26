@@ -65,6 +65,8 @@
 - M6g インスタンスと M6gd インスタンス
   - AWS Graviton2 プロセッサを搭載
 - t2,t3
+![image](https://user-images.githubusercontent.com/60077121/103152020-fdacf780-47c6-11eb-9bb5-024ea783a1d2.png)
+
 ### バーストパフォーマンス
 
 ## インスタンスタイプを変更する
