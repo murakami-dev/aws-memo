@@ -103,12 +103,20 @@ https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.
 - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/processor_state_control.html
 
 ### CPUオプション
+- [CPU性能について](http://www.fujitsu-webmart.com/pc/webmart/ui2505.jsp#:~:text=%E3%82%B9%E3%83%AC%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF%E3%80%81%E5%90%8C%E6%99%82%E3%81%AB%E5%87%A6%E7%90%86,%E5%8A%B9%E7%8E%87%E3%81%8C%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E3%81%BE%E3%81%99%E3%80%82&text=%E4%BE%8B%E3%81%88%E3%81%B0%E3%80%814%E3%81%A4%E3%81%AE%E3%82%B3%E3%82%A2%E3%82%92,%E3%81%99%E3%82%8B%E6%A9%9F%E8%83%BD%E3%81%AE%E3%81%93%E3%81%A8%E3%81%A7%E3%81%99%E3%80%82)
 - インスタンスタイプごとにCPUコア、スレッド（ほぼ2）が決まっている（vCPU = CPUコア数 x スレッド数）
 - これをユーザー側で**起動時のみ**設定できる。ただし減らす方向にのみ
 - 追加・割引はない。
 - やるメリットないと思う
 
 ## インスタンスメタデータ
+- インスタンス内部から当該インスタンスのメタデータを取得できる。
+  - [インスタンスメタデータのカテゴリ](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/instancedata-data-categories.html)
+- [待望のアプデ EC2インスタンスメタデータサービスv2がリリースされてSSRF脆弱性等への攻撃に対するセキュリティが強化されました！](https://dev.classmethod.jp/articles/ec2-imdsv2-release/)
+  - 分かりやすい
+  - デフォルトではv1,v2両方メタデータにアクセスできる
+  - トークンが必要な設定にするとv1ではアクセスできなくなる
+  
 
 ## GPU
 - [GPUとは？CPUとの違いや性能と活用](https://www.kagoya.jp/howto/rentalserver/gpu1/)
