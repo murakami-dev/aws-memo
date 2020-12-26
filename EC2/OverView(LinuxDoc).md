@@ -47,11 +47,11 @@
 - >Amazon Linux はパッケージ管理に RPM と yum を使用しています。これは、新しいアプリケーションをインストールする最も簡単な方法です。
 - >Amazon Linux 2 は EPEL リポジトリを使用するように設定されていません。EPEL は、リポジトリのパッケージのほか、サードパーティ製のパッケージを提供します。AWS はサードパーティ製のパッケージをサポートしていません。EPEL レポジトリは、次のコマンドを使って有効にできます。
 
-### リポジトリ（作成中）
+### リポジトリ
 - 保管場所
-- [Amazon Linux 2のyumリポジトリ構造を読み取る](https://dev.classmethod.jp/articles/amazon-linux-2-yum-repository/)
-- [Amazon Linux 2のExtras Library(amazon-linux-extras)を使ってみた](https://dev.classmethod.jp/articles/how-to-work-with-amazon-linux2-amazon-linux-extras/)
-- [あらためてEPELリポジトリの使い方をまとめてみた](https://qiita.com/yamada-hakase/items/fdf9c276b9cae51b3633)
+  - [Amazon Linux 2のyumリポジトリ構造を読み取る](https://dev.classmethod.jp/articles/amazon-linux-2-yum-repository/)
+  - [Amazon Linux 2のExtras Library(amazon-linux-extras)を使ってみた](https://dev.classmethod.jp/articles/how-to-work-with-amazon-linux2-amazon-linux-extras/)
+  - [あらためてEPELリポジトリの使い方をまとめてみた](https://qiita.com/yamada-hakase/items/fdf9c276b9cae51b3633)
 
 # インスタンスタイプ
 ## 汎用
