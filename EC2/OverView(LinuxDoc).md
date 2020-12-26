@@ -4,8 +4,7 @@
 - [InstanceMetaDataV2を分かりやすく解説してみる](https://blog.serverworks.co.jp/tech/2019/11/27/imdsv2/)
 - [Windows EC2インスタンスのハイバネーション(休止)を試してみた](https://dev.classmethod.jp/articles/ec2-windows-support-hibernation/)
 
-# Linuxのドキュメントを基にする
-## AMI
+# AMI
 - AMIに含まれるもの
   - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-instances-and-amis.html
 >AMI に含まれるものとして、ウェブサーバー、関連する静的コンテンツ、動的ページ用のコードが考えられます。この AMI からインスタンスを起動すると、ウェブサーバーが起動し、アプリケーションはリクエストを受け付け可能な状態になります。
@@ -19,14 +18,14 @@
   - Amazon EC2 instance store-backed インスタンスは停止できない（他の違いは上記参照）
   - 課金は秒で計算される
   
-### Linux AMI 仮想化タイプ
+## Linux AMI 仮想化タイプ
 - HVMが推奨
 >2 つの仮想化タイプ (準仮想化 (PV) およびハードウェア仮想マシン (HVM)) のどちらかを使用します。PV AMI と HVM AMI の主な違いは、起動の方法と、パフォーマンス向上のための特別なハードウェア拡張機能 (CPU、ネットワーク、ストレージ) を利用できるかどうかという点です。
 
-### AMI検索方法
+## AMI検索方法
 - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/finding-an-ami.html
 
-### 暗号化されたEBS-backed AMIの挙動
+## 暗号化されたEBS-backed AMIの挙動
 - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/AMIEncryption.html
 - もともとのAMIのEBSが暗号化されていれば、起動後も暗号化はされる。
 - 下記いろんなパターンがドキュメントにある。
@@ -43,13 +42,19 @@
 - `DeleteOnTermination`（終了に合わせて削除）をfalseにする。
 >デフォルトでは、Amazon EBS-backed AMI のルートボリュームは、インスタンスを終了すると削除されます。インスタンスの終了後もボリュームが永続化するように、デフォルトの動作を変更できます。デフォルトの動作を変更するには、ブロックデバイスマッピングを使用して、DeleteOnTermination 属性を false に設定します。
 
-## リポジトリ（作成中）
+## Amazon Linux
+- [Amazon Linuxパッケージリポジトリ](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#package-repository)
+- >Amazon Linux はパッケージ管理に RPM と yum を使用しています。これは、新しいアプリケーションをインストールする最も簡単な方法です。
+- >Amazon Linux 2 は EPEL リポジトリを使用するように設定されていません。EPEL は、リポジトリのパッケージのほか、サードパーティ製のパッケージを提供します。AWS はサードパーティ製のパッケージをサポートしていません。EPEL レポジトリは、次のコマンドを使って有効にできます。
+
+### リポジトリ（作成中）
 - 保管場所
 - [Amazon Linux 2のyumリポジトリ構造を読み取る](https://dev.classmethod.jp/articles/amazon-linux-2-yum-repository/)
 - [Amazon Linux 2のExtras Library(amazon-linux-extras)を使ってみた](https://dev.classmethod.jp/articles/how-to-work-with-amazon-linux2-amazon-linux-extras/)
+- [あらためてEPELリポジトリの使い方をまとめてみた](https://qiita.com/yamada-hakase/items/fdf9c276b9cae51b3633)
 
-## インスタンスタイプ
-### 汎用
+# インスタンスタイプ
+## 汎用
 - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/general-purpose-instances.html
 - A1
   - AWS Graviton プロセッサ（Armベース）
@@ -60,28 +65,46 @@
 - M6g インスタンスと M6gd インスタンス
   - AWS Graviton2 プロセッサを搭載
 - t2,t3
-#### バーストパフォーマンス
+### バーストパフォーマンス
 
+## インスタンスタイプを変更する
 
+## インスタンスの購入オプション
+→特出ししてまとめる
 
-## シャットダウン操作
-https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior
-
-
-## 休止
-- [新機能 – EC2インスタンスの休止](https://aws.amazon.com/jp/blogs/news/new-hibernate-your-ec2-instances/)
-  - >休止プロセスはそのインスタンスのメモリ状態を保管し、また休止したタイミングで設定されていたプライベートIPアドレスとEIPを保持します。
-  - >休止の指示を受け取ったインスタンスは、ルートEBSボリュームに格納されたファイルにメモリ状態を書き出し、（事実上）自分自身をシャットダウンします。休止できるインスタンスのAMI, ルートEBSボリュームは**暗号化されている必要があります。**暗号化することで、メモリの内容がEBSボリュームにコピーされる際に機密データを保護することができます。**インスタンスが休止状態の間、お支払いいただくのはEBSボリュームとアタッチされたEIPの料金だけです。停止状態と同じく、時間当たりのインスタンス料金は発生しません。**
-
-## テナンシー
+### テナンシー
 - ひとつのハードウェアには複数のゲストOSが立つことを思い出そう
 - [EC2 インスタンスのテナント属性を理解する](https://dev.classmethod.jp/articles/ec2-tenancy/)
   - 共有ハードウェアインスタンス：デフォルト
   - 専用ハードウェアインスタンス：ハードウェア専有インスタンス。`Dedicated Instance`。Dedicated Instance が稼働しているホスト上には、それを利用している AWS アカウントが起動した別のインスタンスが動作することはあっても、他の AWS アカウントの起動したインスタンスが動作することはない。
   - 専有ホスト：`Dedicated Host`。他の AWS アカウントのインスタンスはもちろん、利用者の AWS アカウントの別のインスタンスが起動されることもありません。
 
+# インスタンスのライフサイクル
+## シャットダウン操作
+https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior
+
+## 休止
+- [新機能 – EC2インスタンスの休止](https://aws.amazon.com/jp/blogs/news/new-hibernate-your-ec2-instances/)
+  - >休止プロセスはそのインスタンスのメモリ状態を保管し、また休止したタイミングで設定されていたプライベートIPアドレスとEIPを保持します。
+  - >休止の指示を受け取ったインスタンスは、ルートEBSボリュームに格納されたファイルにメモリ状態を書き出し、（事実上）自分自身をシャットダウンします。休止できるインスタンスのAMI, ルートEBSボリュームは**暗号化されている必要があります。**暗号化することで、メモリの内容がEBSボリュームにコピーされる際に機密データを保護することができます。**インスタンスが休止状態の間、お支払いいただくのはEBSボリュームとアタッチされたEIPの料金だけです。停止状態と同じく、時間当たりのインスタンス料金は発生しません。**
+
+# インスタンスの設定
+## インスタンスメタデータ
+
 ## GPU
 - [GPUとは？CPUとの違いや性能と活用](https://www.kagoya.jp/howto/rentalserver/gpu1/)
+
+# モニタリング
+
+# ネットワーク
+
+# セキュリティ
+
+# ストレージ
+
+# リソースとタグ
+
+
 
 これまとめたい
 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-launch-templates.html
