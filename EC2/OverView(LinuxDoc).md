@@ -66,8 +66,16 @@
   - AWS Graviton2 プロセッサを搭載
 - t2,t3
 ![image](https://user-images.githubusercontent.com/60077121/103152020-fdacf780-47c6-11eb-9bb5-024ea783a1d2.png)
+![image](https://user-images.githubusercontent.com/60077121/103167795-95672000-4871-11eb-924e-0cf82c8e0b21.png)
+
 
 ### バーストパフォーマンス
+- ネットワークパフォーマンスで`最大`とつくものはクレジットによるバーストパフォマンスであることを示す
+  - つまり`最大10Gbps`ならバースト状態で10Gbpsということ
+- t系のインスタンスはCPUパフォーマンスもクレジットによる。
+  - ベースライン以下の時にクレジットがたまる
+  - CWを使って現在のクレジットの状態をみれる
+![image](https://user-images.githubusercontent.com/60077121/103168127-e8da6d80-4873-11eb-926d-98fcac9bf0b8.png)
 
 ## インスタンスタイプを変更する
 
