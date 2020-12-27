@@ -119,6 +119,10 @@ https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/terminating-instances.
 - 追加・割引はない。
 - やるメリットないと思う
 
+#### AWS Summit2019
+- [Amazon EC2 パフォーマンス Deep Dive](https://pages.awscloud.com/rs/112-TZM-766/images/B1-06.pdf)
+  - これめちゃ詳しい。理解したい
+
 ## インスタンスメタデータ
 - インスタンス内部から当該インスタンスのメタデータを取得できる。
   - [インスタンスメタデータのカテゴリ](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/instancedata-data-categories.html)
