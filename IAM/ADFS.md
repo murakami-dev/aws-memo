@@ -6,7 +6,10 @@
 - 3.[AWS Managed Microsoft AD環境でADFSサーバーを構築する](https://dev.classmethod.jp/articles/setup-adfs-server-on-aws-microsoft-ad/)
   - 3-1.[AWS Managed Microsoft ADでグループ管理サービスアカウント(gMSA)を作成する](https://dev.classmethod.jp/articles/how-to-create-gmsa-on-microsoft-ad/)
     - グループ管理サービスアカウント（gMSA）って何？が解説
-
+- 4.[要求プロバイダー信頼と証明書利用者信頼](https://azuread.net/2014/02/19/%E8%A6%81%E6%B1%82%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC%E4%BF%A1%E9%A0%BC%E3%81%A8%E8%A8%BC%E6%98%8E%E6%9B%B8%E5%88%A9%E7%94%A8%E8%80%85%E4%BF%A1%E9%A0%BC/)
+  - 4-1.[ADFSを利用してAWSにシングルサインオンする方法](https://azuread.net/2014/12/04/adfs%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6aws%E3%81%AB%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%AA%E3%83%B3%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
+    - これも手順
+    
 # 文献１に剃って進めていく
 - ADの構築
 - ADFSの追加
