@@ -122,17 +122,75 @@ SQL> BEGIN
 PL/SQL procedure successfully completed.
 ```
 
-# RDS -> EC2へファイルの受け渡し（エラー）
+# RDS -> EC2へファイルの受け渡し
+## まず`tnsnames.ora`を作成
+- `tnsnames.ora`とはDB接続時に記載を省略できるもの（Linuxのhostsファイルみたいな）
+- ユーザー環境変数に`TNS_ADMIN`を`C:\OracleInstantClient`で登録
+- ※後述**tnsnames.oraなくてもいける**
 ```
-C:\Users\Administrator>exp admin/admin@ORCL file=C:\usrexp.dmp owner=admin
+ORCL =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = XXXX.rds.amazonaws.com)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = ORCL)
+    )
+  )
+```
 
-Export: Release 19.0.0.0.0 - Production on Sun Jan 17 00:33:38 2021
+## 実行
+```
+C:\Users\Administrator>exp admin/XXXXXX(パスワード)@ORCL file=C:\usrexp.dmp owner=admin
+
+Export: Release 19.0.0.0.0 - Production on Sun Jan 17 00:41:32 2021
 Version 19.9.0.0.0
 
 Copyright (c) 1982, 2020, Oracle and/or its affiliates.  All rights reserved.
 
 
-EXP-00056: ORACLE error 12154 encountered
-ORA-12154: TNS:could not resolve the connect identifier specified
-EXP-00000: Export terminated unsuccessfully
+Connected to: Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Production
+Version 19.9.0.0.0
+Export done in US7ASCII character set and AL16UTF16 NCHAR character set
+server uses AL32UTF8 character set (possible charset conversion)
+
+About to export specified users ...
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user ADMIN
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user ADMIN
+About to export ADMIN's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export ADMIN's tables via Conventional Path ...
+. . exporting table                            EMP          1 rows exported
+. . exporting table           SYS_EXPORT_SCHEMA_01          6 rows exported
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully without warnings.
 ```
+![image](https://user-images.githubusercontent.com/60077121/104828171-acfe5b00-58a9-11eb-8a24-a04fd189a77b.png)
+
+### EC2側のインバウンドでRDSからの通信は許可必要なし
+- EC2 -> RDSの通信が確立しているので必要なし。（プライベートサブネットのEC2がアウトバウンドだけでインターネット出れるのと同じ）
+
+### `tnsnames.ora`なくてもいける
+```
+C:\Users\Administrator>exp admin/Hoge1234@database-1.ckqtks0xjen9.ap-northeast-1.rds.amazonaws.com:1521/ORCL file=C:\test04.dmp owner=admin
+```
+![image](https://user-images.githubusercontent.com/60077121/104828293-159a0780-58ab-11eb-9f8f-39368fb5134c.png)
