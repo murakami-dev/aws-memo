@@ -15,6 +15,8 @@
 - 5.[Data Pump のダンプファイルをRDS for Oracle インスタンスへ転送する](https://dev.classmethod.jp/articles/transfer-data-pump-file-to-rds-instace/)
 - 6.[export](https://oracle-chokotto.com/ora_export.html)
   - ClientであるEC2にdumpファイルをエクスポート。expdpはRDS内にdumpが保存されるのでOS入れないため取り出せない。
+- 7.[オリジナルのエクスポート](https://docs.oracle.com/cd/E96517_01/sutil/oracle-original-export-utility.html#GUID-901CBBE0-65FB-439E-942D-F2038C18BCD2)
+  - expコマンドの公式Doc
 
 # やったこと
 ## RDS作成
