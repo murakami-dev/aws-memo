@@ -13,6 +13,8 @@
 - 3.[RDS for Oracle環境でData Pumpを利用する](https://dev.classmethod.jp/articles/data-pump-on-rds-for-oracle/)
 - 4.[RDS for Oracle へ Data Pump インポートする前にやっておくべき 3 つのこと](https://dev.classmethod.jp/articles/3-tasks-before-import-oracle-rds-with-datapump/)
 - 5.[Data Pump のダンプファイルをRDS for Oracle インスタンスへ転送する](https://dev.classmethod.jp/articles/transfer-data-pump-file-to-rds-instace/)
+- 6.[export](https://oracle-chokotto.com/ora_export.html)
+  - ClientであるEC2にdumpファイルをエクスポート。expdpはRDS内にdumpが保存されるのでOS入れないため取り出せない。
 
 # やったこと
 ## RDS作成
@@ -195,3 +197,7 @@ Export terminated successfully without warnings.
 C:\Users\Administrator>exp admin/Hoge1234@database-1.ckqtks0xjen9.ap-northeast-1.rds.amazonaws.com:1521/ORCL file=C:\test04.dmp owner=admin
 ```
 ![image](https://user-images.githubusercontent.com/60077121/104828293-159a0780-58ab-11eb-9f8f-39368fb5134c.png)
+
+# 落書きしていない画像のこしておく
+![image](https://user-images.githubusercontent.com/60077121/104828459-e7b5c280-58ac-11eb-874a-67e5c04f7492.png)
+
