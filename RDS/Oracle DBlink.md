@@ -121,3 +121,18 @@ SQL> BEGIN
 
 PL/SQL procedure successfully completed.
 ```
+
+# RDS -> EC2へファイルの受け渡し（エラー）
+```
+C:\Users\Administrator>exp admin/admin@ORCL file=C:\usrexp.dmp owner=admin
+
+Export: Release 19.0.0.0.0 - Production on Sun Jan 17 00:33:38 2021
+Version 19.9.0.0.0
+
+Copyright (c) 1982, 2020, Oracle and/or its affiliates.  All rights reserved.
+
+
+EXP-00056: ORACLE error 12154 encountered
+ORA-12154: TNS:could not resolve the connect identifier specified
+EXP-00000: Export terminated unsuccessfully
+```
