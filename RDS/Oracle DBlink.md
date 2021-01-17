@@ -125,6 +125,7 @@ PL/SQL procedure successfully completed.
 # RDS -> EC2へファイルの受け渡し
 ## まず`tnsnames.ora`を作成
 - `tnsnames.ora`とはDB接続時に記載を省略できるもの（Linuxのhostsファイルみたいな）
+  - https://qiita.com/ghogho-seki/items/ac58466b693a01ad6464
 - ユーザー環境変数に`TNS_ADMIN`を`C:\OracleInstantClient`で登録
 - ※後述**tnsnames.oraなくてもいける**
 ```
