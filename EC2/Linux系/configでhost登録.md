@@ -1,0 +1,2 @@
+- [.ssh/configファイルでSSH接続を管理する](https://qiita.com/0084ken/items/2e4e9ae44ec5e01328f1)
+- [多段SSHの設定を.ssh/configにまとめる](https://qiita.com/ik-fib/items/12e4fab4478e360a82a1)
