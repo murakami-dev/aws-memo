@@ -89,7 +89,7 @@ def lambda_handler(event, context):
 - 解決策：コード中のパス`\`を`\\`にしないとダメ
 
 #### エラー InstanceIDはリスト型じゃないとダメ
-- 今は<cls str>だけどvalidなのは<cls list>だよ的なエラーが出る
+- Lambdaのログでは今は<cls str>だけどvalidなのは<cls list>だよ的なエラーが出る
 - CWlogsには`InvalidInstanceId`とでる
-- list()をやると[i,-,1,2,***]みたいになってダメだった
-- exceptのprint(instance_id)ではCWlogsに`i-1234567890abcdef0`と出た。なんで？
+- exceptのprint(instance_id)ではCWlogsに`i-073d9f1c864140cd8`と出た。ちゃんととれているようだがstr型のようです。
+  - list()をやると[i,-,1,2,***]みたいになってダメだった
