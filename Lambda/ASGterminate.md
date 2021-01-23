@@ -59,4 +59,37 @@ def lambda_handler(event, context):
 }
 ```
 
+### 3 boto3でsend_commandメソッド
+```
+import json
+import boto3
 
+def lambda_handler(event, context):
+    client = boto3.client('ssm')
+    instance_id = event["detail"]["EC2InstanceId"]
+    
+    try:
+        response = client.send_command(
+            InstanceIds = [instance_id],
+            DocumentName = "AWS-RunPowerShellScript",
+            Parameters = {
+                "commands": [
+                    ".\\test-en-IIS.ps1"
+                    ],
+                "workingDirectory": ["C:\\Users\\hiroya"]
+            },
+        )
+        return response
+    except:
+        print(instance_id)
+```
+
+#### エラー1
+- `SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape`
+- 解決策：コード中のパス`\`を`\\`にしないとダメ
+
+#### エラー InstanceIDはリスト型じゃないとダメ
+- 今は<cls str>だけどvalidなのは<cls list>だよ的なエラーが出る
+- CWlogsには`InvalidInstanceId`とでる
+- list()をやると[i,-,1,2,***]みたいになってダメだった
+- exceptのprint(instance_id)ではCWlogsに`i-1234567890abcdef0`と出た。なんで？
