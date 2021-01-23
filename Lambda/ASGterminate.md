@@ -166,4 +166,39 @@ def lambda_handler(event, context):
 ```
 
 ### エラー5 `Object of type datetime is not JSON serializable`
-- []()
+- エラーの原因は`return response`していたresponseの中身にdatetimeがあり、それがJSON対応していないこと。
+  - >これはJSONに日付（date/datetime）の型が定義されていないことが原因で、そのためjsonモジュールはどのように出力すれば良いのかわからず、エラーとなってしまいます。このエラーに対応する方法です。
+  - `send_command`のレスポンスに`'ExpiresAfter': datetime(2015, 1, 1),`（この日付以降は無効）などdatetimeがあった。
+    - [boto3のsend_commandのReturns](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.send_command)
+- 解決策は実行結果をreturnしないこと。
+#### コード
+```
+import json
+import boto3
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    client = boto3.client('ssm')
+    instance_id = event["detail"]["EC2InstanceId"]
+    
+    try:
+        client.send_command(
+            InstanceIds=[instance_id],
+            DocumentName="AWS-RunPowerShellScript",
+            Parameters={
+                "commands": [
+                    ".\\test-en-IIS.ps1"
+                    ],
+                "workingDirectory": ["C:\\Users\\hiroya"]
+            },
+        )
+        print(instance_id)
+        
+    except Exception as e:
+        print(type(instance_id))
+        logger.error(e)
+        raise e
+```
