@@ -202,3 +202,40 @@ def lambda_handler(event, context):
         logger.error(e)
         raise e
 ```
+
+# 最終的なコード
+- 例外処理のところをちゃんとした。詳細はプライベートのPythonで。
+```
+import boto3
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    client = boto3.client('ssm')
+    instance_id = event["detail"]["EC2InstanceId"]
+    
+    try:
+        logger.info({
+            'InstanceIds':instance_id,
+            'action':'send_command run'
+        })
+        client.send_command(
+            InstanceIds=[instance_id],
+            DocumentName="AWS-RunPowerShellScript",
+            Parameters={
+                "commands": [
+                    ".\\test-en-IIS.ps1"
+                    ],
+                "workingDirectory": ["C:\\Users\\hiroya"]
+            },
+        )
+        logger.info({
+            'InstanceIds':instance_id,
+            'action':'send_command done'
+        })
+        
+    except Exception as e:
+        logger.exception(e)
+```
