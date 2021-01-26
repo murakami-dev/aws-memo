@@ -1,0 +1,2 @@
+- [route　～ルーティングテーブルの表示／設定を行う](https://www.atmarkit.co.jp/ait/articles/0111/01/news002.html)
+  - @IT
