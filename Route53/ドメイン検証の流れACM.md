@@ -33,7 +33,18 @@ stg-development.work    nameserver = ns-1771.awsdns-29.co.uk
 stg-development.work    nameserver = ns-414.awsdns-51.com
 stg-development.work    nameserver = ns-898.awsdns-48.net
 ```
-![image](https://user-images.githubusercontent.com/60077121/103218060-61692900-495d-11eb-8565-1e238b130c04.png)
+### Aレコードが変更されたことを確認
+```
+C:\Users\user>nslookup stg-development.work
+サーバー:  UnKnown
+Address:  172.20.10.1
+
+権限のない回答:
+名前:    stg-development.work
+Address:  54.199.234.1
+```
+![image](https://user-images.githubusercontent.com/60077121/106347883-3d568a00-6305-11eb-98ac-cd96adb75cf6.png)
+
 
 ## ACMで証明書取得、ドメイン検証
 - 下記の操作後、すぐに検証状態が成功になった
@@ -55,6 +66,9 @@ stg-development.work    nameserver = ns-898.awsdns-48.net
 - NSレコードのTTLを短くする
   - [ステップ 4: TTL 設定を下げる](https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/migrate-dns-domain-in-use.html#migrate-dns-lower-ttl)
 ![image](https://user-images.githubusercontent.com/60077121/103224260-c4ad8800-496a-11eb-933f-02b0ecd16e93.png)
+
+### ブラウザのキャッシュをクリアしないと反映されない
+Ghromeの場合、その他のツール→閲覧履歴の消去→消去
 
 ### ローカルのフルサービスリゾルバのキャッシュもクリアする
 ```
