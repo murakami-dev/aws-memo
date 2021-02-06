@@ -36,7 +36,10 @@
 - レプリケーション
   - レプリケーションなしだとこんな感じの出方
   - ![image](https://user-images.githubusercontent.com/60077121/99684651-096d1600-2ac5-11eb-83ed-8d556ceb1edd.png)
-
+- マルチAZのフェイルオーバーのダウンタイムは1,2分
+  - [RDS マルチ AZ 配置](https://aws.amazon.com/jp/rds/features/multi-az/) 
+  - >Amazon Aurora の場合 1 分間以内 (Maria DB Connector/J を使用する場合わずか 30 秒)、その他のデータベースエンジンでは 1～2 分間です
+- ![image](https://user-images.githubusercontent.com/60077121/107112763-6941b480-689d-11eb-92f8-0a0ab6479174.png)
 
 ## 接続
 - VPC
@@ -86,13 +89,6 @@ You cannot move DB instance database-1 to subnet group tech-kadai-subnetgroup. T
 - 以下のサイトでcsv -> マークダウンも
 - https://tableconvert.com/
 
-### 没Tips:パラメータグループをExcelに出力する方法
-- まずはCLIでパラメータをhoge.jsonに書き込む
-  - `aws rds describe-db-parameters --db-parameter-group-name mydbparametergroup > hoge.json`
-- hoge.jsonをエディタで編集。`ParameterValue`のkeyがある項目を先頭に持ってくる。**これをしないとExcelにしたときに`ParameterValue`の列がなくなる**
-- 以下のとおりにする
-  - [JSONファイルをExcelに変換](https://qiita.com/afukuma/items/65c6e96bd15b319e160f)
-
 ## オプショングループ
 - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html
 ```
@@ -121,6 +117,15 @@ Amazon RDS では、新しい DB インスタンスごとに空のデフォル�
 https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
 - 週次で行われる
 - メンテナンス中はパフォーマンス落ちることがある。**まれにマルチAZフェイルオーバーが必要なことがある**
+- マルチAZのときはスタンバイでメンテナンス→スタンバイがプライマリに昇格→プライマリでメンテナンス
+  - [DB インスタンスのメンテナンス](https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html)
+- 停止を伴うものあるし稀にメンテナンスウィンドウ以外に発生する場合もある
+  - [RDSのメンテナンス基礎知識（パッチ適用）](https://tech-dive.xyz/2019/02/15/post-2144/)★これは良いブログ
+  - >一部のメンテナンス項目では、Amazon RDS が DB インスタンス を少しの間オフラインにする必要があります。リソースをオフラインにする必要があるメンテナンス項目には、必要なオペレーティングシステムやデータベースのパッチが含まれます。セキュリティやインスタンスの信頼性に関連するパッチのみ、必須のパッチ適用として自動的にスケジューリングされます。このようなパッチは頻繁に発生するものではありません (通常数ヵ月ごとに一度です)。またお客様のメンテナンスウィンドウのごく一部以外を使用する必要があることは稀なはずです。
+- メンテナンスはウィンドウ内に開始されるが、ウィンドウ内で終わるとは限らない
+  - >メンテナンス時間は、保留中のオペレーションを開始する時刻を指定しますが、オペレーションの合計所要時間は制限されません。メンテナンスオペレーションは、メンテナンスウィンドウが終了するまでに完了するかどうかは保証されておらず、指定終了時間を超える場合もあります。
+- 止めたくない場合はマルチAZ。こうすればダウンタイムはフェイルオーバー時の1,2分に抑えられる。
+  - [必要な Amazon RDS メンテナンスの実行時におけるダウンタイムを最小限に抑えるにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/rds-required-maintenance/)
 - マイナーバージョン自動アップグレードの有効化
 - メンテナンスウィンドウ
 
