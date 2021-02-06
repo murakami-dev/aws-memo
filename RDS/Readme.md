@@ -4,6 +4,8 @@
 
 ## DB インスタンスサイズ
 - db.t3.smallなど。cpu,メモリ(Gib RAM),EBS(Mbps)
+- [Amazon RDS DB インスタンスを変更する](https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
+  - 様々なインスタンスの変更とダウンタイムの関係
 
 ## ストレージ
 - タイプ
