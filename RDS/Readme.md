@@ -34,14 +34,16 @@
    - https://aws.amazon.com/jp/premiumsupport/knowledge-center/rds-stuck-modifying/
 
 ## 可用性と耐久性
-- マルチAZかどうか
-- レプリケーション
-  - レプリケーションなしだとこんな感じの出方
-  - ![image](https://user-images.githubusercontent.com/60077121/99684651-096d1600-2ac5-11eb-83ed-8d556ceb1edd.png)
+### マルチAZシングルAZ
 - マルチAZのフェイルオーバーのダウンタイムは1,2分
   - [RDS マルチ AZ 配置](https://aws.amazon.com/jp/rds/features/multi-az/) 
   - >Amazon Aurora の場合 1 分間以内 (Maria DB Connector/J を使用する場合わずか 30 秒)、その他のデータベースエンジンでは 1～2 分間です
+- プライマリAZの変更はマルチAZ構成の状態で行う必要あり。シングルAZ構成でAZ変えたい場合は一旦マルチAZ構成に。
 - ![image](https://user-images.githubusercontent.com/60077121/107112763-6941b480-689d-11eb-92f8-0a0ab6479174.png)
+
+### レプリケーション
+  - レプリケーションなしだとこんな感じの出方
+  - ![image](https://user-images.githubusercontent.com/60077121/99684651-096d1600-2ac5-11eb-83ed-8d556ceb1edd.png)
 
 ## 接続
 - VPC
@@ -111,7 +113,10 @@ Amazon RDS では、新しい DB インスタンスごとに空のデフォル�
 - 復元
   - [Aurora MySQL の スナップショットの復元、ポイントインタイムリカバリ、バックトラックの違いを簡単にまとめてみた](https://dev.classmethod.jp/articles/aurora-mysql-snapshot-point-in-time-backtrack/)
   - スナップショットから復元
-    - ナップショットを元に新たなクラスターを作成する
+    - スナップショットを元に新たなクラスターを作成する
+    - [RDSインスタンスをスナップショットからリストアする際に、元のインスタンスと同じエンドポイントにする方法](https://dev.classmethod.jp/articles/tsnote-rds-restore-endpoint-001/)
+      - エンドポイントを変えないために既存のRDSの識別子を変えてから、復元時に元の識別子を指定する
+      - >同一アカウント内、同一リージョン、同一識別子であれば、エンドポイントは同じ
   - ポイントインタイムリカバリ
     - >RDS は、DB インスタンスのトランザクションログを 5 分ごとに Amazon S3 にアップロードします。DB インスタンスの復元可能な直近の時間を調べるには、AWS CLI の describe-db-instances コマンドを使用し、DB インスタンスの [LatestRestorableTime] フィールドに返される値を参照します。Amazon RDS コンソールで各 DB インスタンスの復元可能な直近の時間を表示するには、[自動バックアップ] を選択します。
 ### 自動バックアップ
@@ -162,6 +167,7 @@ https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInsta
 - 保持期間
 
 ## モニタリング
+- [RDS のモニタリングの概要についてまとめた](https://dev.classmethod.jp/articles/rds-monitoring-summary/)**これはいい記事**
 - 詳細モニタリングを有効にするかどうか
 
 
