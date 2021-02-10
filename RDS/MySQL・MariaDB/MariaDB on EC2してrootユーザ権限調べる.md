@@ -28,7 +28,25 @@ MariaDB [(none)]> show grants;
 ```
 
 ## 結論
-- マスターユーザとrootユーザーは同じではない
+- マスターユーザとrootユーザーは同じではない。**以下は良い記事**
+  - https://qiita.com/thaim/items/4ad87859334399eebc04
+- SUPER権限やFILE権限（インスタンス上のファイルにアクセスする）などがない
+  - SUPERがない
+```
+MariaDB [(none)]> SELECT user, Super_priv FROM mysql.user;
++----------+------------+
+| user     | Super_priv |
++----------+------------+
+| rdsadmin | Y          |
+| admin    | N          |
+| fuga     | N          |
++----------+------------+
+3 rows in set (0.01 sec)
+
+MariaDB [(none)]> UPDATE mysql.user SET Super_priv='Y' WHERE user='admin';
+ERROR 1054 (42S22): Unknown column 'ERROR (RDS): SUPER PRIVILEGE CANNOT BE GRANTED OR MAINTAINED' in 'field list'
+MariaDB [(none)]>
+```
 
 
 # 文献
