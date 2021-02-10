@@ -3,6 +3,7 @@
 - yumのパッケージの勉強になる
 
 # 参考
+- https://it.hirokun.net/entry/amazonlinux2-mariadb10_5
 - https://onoredekaiketsu.com/upgrad-to-mariadb-10-3/
 
 # 手順
