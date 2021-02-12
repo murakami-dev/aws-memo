@@ -29,11 +29,15 @@ stg-development.work.   60      IN      A       54.178.250.120
 ```
 
 # 文献
-- [bind導入ガイド](https://rfs.jp/server/bind)
+- [初歩から解説！BINDでシンプルDNSサーバー構築【構築編】](https://www.isoroot.jp/blog/2929/)
+  - name.confの書き方はこれを参考にした。
 - [BINDの設定(named.conf)](http://cos.linux-dvr.biz/archives/87)
   - このブログシリーズ良い
+- [AWS上にBINDでDNSサーバ構築(キャッシュサーバ、権威サーバ)](https://qiita.com/hayashier/items/5f7a722aa8d40e0c91f7)
+  - /var/named/stg-development.workの書き方はこれを参考にした
 - [@IT BINDで作るDNSサーバ](BINDで作るDNSサーバ)
   - これ古いのでだめ
+- [bind導入ガイド](https://rfs.jp/server/bind)
 
 # 手順
 ## yumにbindあるか調べる
