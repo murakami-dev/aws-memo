@@ -10,7 +10,8 @@
 | 1  | none | 設定なし | 記録されない（試していないけど） |
 | 2  | none  | rds_pgaudit | 記録されない（OS上で設定すれば一部のログを残せる）→下記本来の使い方参照。 |
 | 3 | all | 設定なし | 記録される（検証済み） |
-| 4 | all| rds_pgaudit |記録された。特にテーブルとroleの紐づけ設定（`ALTER DATABASE`）していなくても。 |
+| 4-1 | all| rds_pgaudit |記録された。特にテーブルとdatabaseの紐づけ設定（`ALTER DATABASE`）していなくても |
+| 4-2 | all| rds_pgaudit |databaseとroleの紐づけ設定（`ALTER DATABASE`）した場合でも、全ログが記録された（末尾に参考残す） |
 
 # 文献
 - [PostgreSQL を実行している Amazon RDS DB インスタンスを監査するために pgaudit 拡張機能を使用する方法を教えてください。](https://aws.amazon.com/jp/premiumsupport/knowledge-center/rds-postgresql-pgaudit/)
@@ -58,8 +59,7 @@ postgres=> show pgaudit.role;
  rds_pgaudit
 (1 row)
 
-postgres=> show pgaudit.log
-postgres-> ;
+postgres=> show pgaudit.log;
  pgaudit.log
 -------------
  none
@@ -127,4 +127,15 @@ INSERT 0 1
 ```
 2021-02-13T00:51:53.000+09:00	2021-02-12 15:51:53 UTC:10.123.10.212(57116):postgres@test_database:[28213]:LOG: AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO test_table VALUES ('0002', 'test_databaseにaudit設定後', 28);",<not logged>
 2021-02-13T00:57:44.000+09:00	2021-02-12 15:57:44 UTC:10.123.10.212(57184):postgres@test_database:[4269]:LOG: AUDIT: SESSION,1,1,WRITE,INSERT,,,"INSERT INTO test_table VALUES ('0004', 'audit設定している方に再INSERT', 28);",<not logged>
+```
+
+# 参考：冒頭の表4-2検証
+- `audit.log`=all , `audit.role`=rds_pgauditとする。
+- 初期DB`postgres`にはロール紐づけず、DB`test_database`には`ALTER DATABASE test_database set pgaudit.log='All';`など上記の手順を行う
+
+## 結果
+- 全部記録された
+```
+2021-02-13 01:21:33 UTC:10.123.10.212(55090):postgres@test_database:[893]:LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO test02 VALUES ('0002', 'audit.log=all,audit.role=設定あり,ロール紐づけたDBだよ', 28);",<not logged>
+2021-02-13 01:23:19 UTC:10.123.10.212(55106):postgres@postgres:[3253]:LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO test03 VALUES ('0003', 'audit.log=all,audit.role=設定あり,ロール紐づけていないDBだよ', 28);",<not logged>
 ```
