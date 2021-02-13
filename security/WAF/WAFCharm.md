@@ -7,6 +7,7 @@
 - 4.[WafCharmご利用手順](https://www.wafcharm.com/blog/check-wafcharm-setting-jp/)
 - 5.[WafCharmご利用の際に必要となるIAMポリシー](https://www.wafcharm.com/blog/aws-iam-setting-for-wafcharm-jp/)
 - 6.[WafCharm レポート機能の構築方法](https://oji-cloud.net/2020/09/03/post-5344/)
+  - 6-1.[こっちの方が公式](https://docs.wafcharm.com/manual/new_aws_waf/new_aws_waf_reporting_and_notification_JA.pdf)
 - 7.[AWS WAF のログからブロックが発生したAWSリソースを特定する](https://blog.serverworks.co.jp/awswaf-httpsourceId)
 - 8.[AWS WAF v2でWafCharmを導入設定する際に知っておきたいこと](https://dev.classmethod.jp/articles/aws-waf-v2-wafcharm/)
   - 9.[new AWS WAF でのルールグループの例外設定](https://www.wafcharm.com/blog/new-aws-waf-managed-rule-rulegourp-exception-jp/)
