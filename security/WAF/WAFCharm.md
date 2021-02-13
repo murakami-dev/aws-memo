@@ -82,10 +82,13 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 ```
 
 ## ③IAMの作成
-- IAMユーザとIAMポリシーを作成する
+- 文献5のとおりIAMユーザとIAMポリシーを作成する
 - 仕組みとしてはWAFCharm用のIAMユーザーがプログラムによるアクセスでログインし、WAFを運用してくれる。
 - 必要なポリシーは「AWSWAFFullAccess」と「AmazonS3ReadOnlyAccess」の2つ
-### 以上でルールが設定される
+
+## ④WAFCharm側の設定
+- 文献4
+## 以上でルールが設定される
 - ![image](https://user-images.githubusercontent.com/60077121/101999272-b4689c80-3d1e-11eb-893c-69063a3ceea1.png)
 
 # レポート通知機能の導入
