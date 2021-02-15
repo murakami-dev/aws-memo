@@ -145,6 +145,10 @@ Amazon RDS では、新しい DB インスタンスごとに空のデフォル�
   - 期限が切れたらマネコン左下のアップデートに表示されるので、DBの変更から実施する
 - 保管データの暗号化
   - 起動時に設定する（途中変更不可）
+  - 暗号化は物理的なストレージ持ち出しへの対策でしかない（EC2->RDS接続したら別にデータ見れる）
+    - [Black Belt Online Seminar AWS上の暗号化ソリューション](https://www.slideshare.net/AmazonWebServicesJapan/black-belt-online-seminar-aws)13ページ
+    - [EBSボリュームの暗号化についてまとめてみた](https://blog.jicoman.info/2018/04/ebs-encryption/)
+      - >ボリューム内のデータが暗号化されるからといって、リモートログイン後にファイルアクセスするには復号しなければならないかというとそうではありません。暗号化と復号は透過的に処理されるため、リモート接続後は復号するためのコマンドや処理は必要ありません。 EBSボリュームの暗号化 = AWSデータセンターに設置されている物理サーバのストレージの暗号化 といえます。AWSデータセンターからストレージが万が一盗まれたり、データセンターに侵入して直接サーバにログインされた場合に備えた対策といえます。なので、万が一サーバにSSHなどでリモートから侵入された場合、EBSボリュームが暗号化されたとしてもデータは抜き取ることができてしまいます。
 
 ## メンテナンス
 https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
@@ -159,6 +163,9 @@ https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInsta
   - >メンテナンス時間は、保留中のオペレーションを開始する時刻を指定しますが、オペレーションの合計所要時間は制限されません。メンテナンスオペレーションは、メンテナンスウィンドウが終了するまでに完了するかどうかは保証されておらず、指定終了時間を超える場合もあります。
 - 止めたくない場合はマルチAZ。こうすればダウンタイムはフェイルオーバー時の1,2分に抑えられる。
   - [必要な Amazon RDS メンテナンスの実行時におけるダウンタイムを最小限に抑えるにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/rds-required-maintenance/)
+- メンテナンスを事前に知りたい
+  - [Amazon RDSのメンテナンスについて調べてみた](https://blog.jicoman.info/2017/01/rds_maintenance/)
+  - [RDS hardware maintenance scheduled イベントに対応する方法](https://blog.serverworks.co.jp/_RDS-hardware-maintenance-scheduled)
 - マイナーバージョン自動アップグレードの有効化
 - メンテナンスウィンドウ
 
