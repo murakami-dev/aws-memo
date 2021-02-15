@@ -89,7 +89,7 @@ You cannot move DB instance database-1 to subnet group tech-kadai-subnetgroup. T
 - jqインストールしてexeを環境変数PATHのディレクトリに置く。
   - https://stedolan.github.io/jq/
 - 以下のコマンドをGit Bashで。iconvがあるから
-  - `aws rds describe-db-parameters --db-parameter-group-name mcframe-test-param-1i6lky51dqz61 | jq-win64.exe -r '["名前","値","許可された値","変更可能","送信元","適用タイプ","データ型","説明","ApplyMethod","MinimumEngineVersion"], (.Parameters[] | [.ParameterName,.ParameterValue,.AllowedValues,.IsModifiable,.Source,.ApplyType,.DataType,.Description,.ApplyMethod,.MinimumEngineVersion]) | @csv' | iconv -t sjis > 1414_cmsdb.csv`
+  - `aws rds describe-db-parameters --db-parameter-group-name xxxxxxxx | jq-win64.exe -r '["Name","Values","Allowed values","Modifiable","Source","Apply type","Data type","Description","ApplyMethod","MinimumEngineVersion"], (.Parameters[] | [.ParameterName,.ParameterValue,.AllowedValues,.IsModifiable,.Source,.ApplyType,.DataType,.Description,.ApplyMethod,.MinimumEngineVersion]) | @csv' > param.csv`
 - 以下のサイトでcsv -> マークダウンも
 - https://tableconvert.com/
 
