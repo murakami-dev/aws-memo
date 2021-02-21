@@ -31,36 +31,13 @@
   - >代替ドメイン名（CNAME）をCloudFrontディストリビューションに追加するには、ドメイン名を使用するための承認を検証する信頼できる証明書を添付する必要があります。
 - **つまりバージニア北部でのACM登録は必須**
 
-## CloudFront設定
-- 以下は詳細を勉強したい
-- [ディストリビューションを作成または更新する場合に指定する値](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html)
-### 各項目
-#### Origin Domain Name
-- パブリックDNS名を入れる
-#### Origin Path
-- >オプション。 CloudFrontがAmazonS3バケット内のディレクトリまたはカスタムオリジンからコンテンツをリクエストするようにする場合は、ここに/で始まるディレクトリ名を入力します。 CloudFrontは、リクエストをオリジンに転送するときに、オリジンドメイン名の値にディレクトリ名を追加します（例：myawsbucket / production）。ディレクトリ名の末尾に/を含めないでください。
-#### Enable Origin Shield
-- [Amazon CloudFrontにオリジンへのリクエストを軽減するキャッシュレイヤー(Origin Shield)が追加されました](https://dev.classmethod.jp/articles/amazon-cloudfront-support-cache-layer-origin-shield/)
-- >Origin Shield を利用すると、オリジンとの通信は Origin Shield に集約されます。 オリジンへのリクエストが発生するのは、Origin Shield にキャッシュがない場合だけです。
-- >各リージョナルエッジキャッシュが個別にオリジンにリクエストしなくなるため、オリジンの負荷が軽減
-- >エッジローケーション 〜 リージョナルエッジキャッシュ 〜 Origin Shield(オリジンのそば) 間は CloudFront のグローバルネットワークを利用するためネットワークパフォーマンスが向上
-- ![image](https://user-images.githubusercontent.com/60077121/108588508-f8ba8d80-739c-11eb-9893-8e146cece093.png)
-
-#### Origin ID
-
-#### Origin Custom Headers
-
-### Default Cache Behavior Settings
-#### Cache Policy
-
-#### Origin Request Policy
-
-
-
+## Route53でCFのエイリアスを設定
+## CFの設定
+#### 重要：今回は証明書を適用していないEC2をオリジンにしたので`Origin Protocol Policy`は`HTTP Only`にすること
+### その他
 - 独自ドメインでアクセスしたい場合、CNAMEには独自ドメインを設定すること。その場合、証明書はCFのは使えない。ACM使うこと。
 - 証明書はACMの証明書を使用すること
-  - **証明書は『米国東部（バージニア北部）リージョン』のACMに格納されている必要があります**
-- 
+  - **証明書は『米国東部（バージニア北部）リージョン』のACMに格納されている必要があります** 
 
 
   
