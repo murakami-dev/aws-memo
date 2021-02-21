@@ -1,9 +1,26 @@
+# CloudFront設定
+- 以下は詳細を勉強したい
+- [ディストリビューションを作成または更新する場合に指定する値](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html)
+## 各項目
+### Origin Domain Name
+- パブリックDNS名を入れる
+### Origin Path
+- >オプション。 CloudFrontがAmazonS3バケット内のディレクトリまたはカスタムオリジンからコンテンツをリクエストするようにする場合は、ここに/で始まるディレクトリ名を入力します。 CloudFrontは、リクエストをオリジンに転送するときに、オリジンドメイン名の値にディレクトリ名を追加します（例：myawsbucket / production）。ディレクトリ名の末尾に/を含めないでください。
+### Enable Origin Shield
+- [Amazon CloudFrontにオリジンへのリクエストを軽減するキャッシュレイヤー(Origin Shield)が追加されました](https://dev.classmethod.jp/articles/amazon-cloudfront-support-cache-layer-origin-shield/)
+- >Origin Shield を利用すると、オリジンとの通信は Origin Shield に集約されます。 オリジンへのリクエストが発生するのは、Origin Shield にキャッシュがない場合だけです。
+- >各リージョナルエッジキャッシュが個別にオリジンにリクエストしなくなるため、オリジンの負荷が軽減
+- >エッジローケーション 〜 リージョナルエッジキャッシュ 〜 Origin Shield(オリジンのそば) 間は CloudFront のグローバルネットワークを利用するためネットワークパフォーマンスが向上
+- ![image](https://user-images.githubusercontent.com/60077121/108588508-f8ba8d80-739c-11eb-9893-8e146cece093.png)
 
-
-
-# リージョナルエッジキャッシュ
+##### リージョナルエッジキャッシュとは
 - [CloudFrontのリージョナルエッジキャッシュが発表されました](https://dev.classmethod.jp/articles/cloudfront-regional-edge-cache/)
 - クライアント→エッジロケーション→リージョナルエッジキャッシュ→オリジンシールド→オリジン
+
+### Origin ID
+
+### Origin Custom Headers
+
 
 # キャッシュの仕組み
 - [コンテンツがキャッシュに保持される期間 (有効期限) の管理](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
