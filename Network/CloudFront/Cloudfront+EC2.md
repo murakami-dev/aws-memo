@@ -6,6 +6,7 @@
   - Apacheログをfluentd使って収集
 - ES使って可視化したい
 - CWlogsをS3にエクスポートしたい。定期に出来るのか？
+- 一部のパスに署名付きクッキーで閲覧制限（別ページで）
 
 # 構成
 ![image](https://user-images.githubusercontent.com/60077121/108596589-5533a200-73c9-11eb-82ec-2011ba9a84f0.png)
@@ -22,6 +23,7 @@
 - 自分のドメイン→EC2はできている
 
 ## バージニア北部のACMで証明書リクエスト
+- [代替ドメイン名 (CNAME) を追加してカスタム URL を使用する](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html)
 - CFではバージニア北部の証明書しかカスタム証明書適用できない
 - Route53でCFのエイリアスレコード登録したければ、CFのCNAMEにレコード名（独自ドメイン名）が設定されていることが必要
   - [Route 53 エイリアスリソースレコードセットを作成するときに、優先エイリアスターゲットを選択できないのはなぜですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/route-53-no-targets/)
