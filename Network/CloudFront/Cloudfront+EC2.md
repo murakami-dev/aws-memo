@@ -9,7 +9,8 @@
 - 一部のパスに署名付きクッキーで閲覧制限（別ページで）
 
 # 構成
-![image](https://user-images.githubusercontent.com/60077121/108596589-5533a200-73c9-11eb-82ec-2011ba9a84f0.png)
+![image](https://user-images.githubusercontent.com/60077121/108626120-e2dac480-7491-11eb-80b0-cdf35032caca.png)
+
 
 # 文献
 - [料金](https://aws.amazon.com/jp/cloudfront/pricing/)
@@ -41,6 +42,7 @@
 #### ログ記録（スタンダードログ）はON
 - スタンダードログとリアルタイムログがある
 - [標準ログ (アクセスログ) の設定および使用](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html)
+- [リアルタイムログ出力をサポートしたCloudFrontを試してみた](https://dev.classmethod.jp/articles/cloudfront-realtimelogs/)
   
   
   
