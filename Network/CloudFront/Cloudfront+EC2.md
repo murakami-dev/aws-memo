@@ -38,8 +38,9 @@
 - 独自ドメインでアクセスしたい場合、CNAMEには独自ドメインを設定すること。その場合、証明書はCFのは使えない。ACM使うこと。
 - 証明書はACMの証明書を使用すること
   - **証明書は『米国東部（バージニア北部）リージョン』のACMに格納されている必要があります** 
-
-
+#### ログ記録（スタンダードログ）はON
+- スタンダードログとリアルタイムログがある
+- [標準ログ (アクセスログ) の設定および使用](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html)
   
   
   
