@@ -40,11 +40,28 @@ Installed /home/ec2-user/fluent/fluent.conf.
   @id forward_input
 </source>
 
+<filter **>
+  @type record_transformer
+  <record>
+    hostname ${hostname}
+  </record>
+</filter>
+
 <match httpd_access_log>
   @type s3
   s3_bucket ec2-logs-913926916566
   s3_region ap-northeast-1
-  path fluentd-logs/%{hostname}/
+  path "fluentd-logs/#{Socket.gethostname}"   ##{Socket.gethostname}でホスト名がとれる
+  s3_object_key_format %{path}%{time_slice}_%{index}.%{file_extension}
+  <format>
+    @type json
+  </format>
+  <buffer time>
+    @type file
+    timekey 60   #60秒ごとに転送
+    timekey_wait 60
+    path /var/log/td-agent/s3 # チャンクファイルのたまる場所（多分）
+  </buffer>
 </match>
 ```
 
