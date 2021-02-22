@@ -4,7 +4,9 @@
 # 文献
 - [fluentdと定番プラグインのインストール](https://www.atmarkit.co.jp/ait/articles/1403/05/news012_2.html)
   - インプットプラグイン`tail`やアウトプットプラグインを解説
-- [fluentdでOSのいろんなログをまとめてS3に出力する設定考えてみた](https://dev.classmethod.jp/articles/fluentd-settings-with-some-os-logs/)
+- [fluentdでOSのいろんなログをまとめてS3に出力する設定考えてみた](https://dev.classmethod.jp/articles/fluentd-settings-with-some-os-logs/)]
+- [fluentdでapacheのログに時間が出力されなくて苦労したので解決策と原理をまとめてみた](https://dev.classmethod.jp/articles/fluentd-cant-output-time-with-apache-format/)
+- [fluentdのbuffer周りで注意すべき点](https://qiita.com/kazuhiro-iwi/items/071100d200b243db9bd1)
 
 # 手順
 ## インストール
@@ -20,9 +22,30 @@ Installed /home/ec2-user/fluent/fluent.conf.
 ```
 
 ## 設定ファイルを編集
-詳細は下部とドキュメントを参照
+- 詳細は下部とドキュメントを参照
+- 今回
+```
+# add by murakami
+<source>
+  @type tail
+  <parse>
+    @type none
+  </parse>
+  path /var/log/httpd/access_log
+  tag httpd_access_log
+  pos_file /var/log/td-agent/tmp/access.log.pos
+  @id forward_input
+</source>
 
-## fluentdをrootで起動するよう設定
+<match httpd_access_log>
+  @type s3
+  s3_bucket ec2-logs-913926916566
+  s3_region ap-northeast-1
+  path fluentd-logs/%{hostname}/
+</match>
+```
+
+## fluentdをrootで起動するよう設定（オプション）
 - [fluentd(td-agent)をrootで起動させる方法](https://qiita.com/katuemon/items/7105c24271c07ce7b412)
 - 以下をrootに変更
 ```
@@ -85,7 +108,46 @@ Warning: td-agent.service changed on disk. Run 'systemctl daemon-reload' to relo
 - アウトプットプラグインの中にデフォルトでS3が入っている
   - https://docs.fluentd.org/output/s3
 
+### bufferディレクティブ
+- [Config: Buffer Section](https://docs.fluentd.org/configuration/buffer-section)
+  - 結局これ見る方が分かりやすい
+- [fluentdのbuffer周りで注意すべき点](https://qiita.com/kazuhiro-iwi/items/071100d200b243db9bd1)
+- matchの中にある、ファイルの出力頻度を制御するディレクティブ
+  - buffer は Chunk の集合
+  - Chunk は 1 つの blob に連結されたイベントの集合
+  - それぞれの Chunk は file か memory で管理される
+  - buffer は Chunk を 2 つの場所に分けて管理
+    - stage と呼ばれる Chunk を入力ソース(Event)で埋めていく場所
+    - queue と呼ばれる送信前のチャンクが待機している場所
+  - 新しく作成された全てのチャンクはstage に入れられ、時間内に queue に移動される (その後転送される)
+  - stagedの状態からenqueuedの状態へ移行する処理がflushである
+- ![image](https://user-images.githubusercontent.com/60077121/108700622-36a8e480-754a-11eb-97ce-c5015950bd59.png)
 
+#### Buffer Plugin Type
+- memory(デフォルト)とfileがある
+```
+<buffer>
+  @type file
+</buffer>
+```
+
+#### Chunk Keys
+- <buffer xxxxx>の部分のこと。
+- チャンクのグループ分けを制御。
+- 指定しない場合、すべてのインプットは同じチャンクに入る
+```
+<buffer ARGUMENT_CHUNK_KEYS>
+  # ...
+</buffer>
+```
+  
+#### Parameters
+- チャンクキーにtimeを使用するとtime関連のparam使える
+  - timekey : 指定したx秒ごとにチャンクをフラッシュ
+  - timekey_wait : 指定したx秒後にデータを転送
+
+#### Buffering Parameters
+chunk_limit_size : チャンクの最大容量。fileの場合256MB
 
 ## 初期の`/etc/td-agent/td-agent.conf`
 ```
