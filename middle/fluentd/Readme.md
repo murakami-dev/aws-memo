@@ -4,15 +4,14 @@
 # 文献
 - [fluentdと定番プラグインのインストール](https://www.atmarkit.co.jp/ait/articles/1403/05/news012_2.html)
   - インプットプラグイン`tail`やアウトプットプラグインを解説
-- [FluentdでS3にログを収集してみる](https://dev.classmethod.jp/articles/fluentd-s3/)
-  - 参考になるけどアウトプットの`time_slice_format`は最新バージョンではbufferディレクティブで設定するみたいなので注意
-  - >
+- [fluentdでOSのいろんなログをまとめてS3に出力する設定考えてみた](https://dev.classmethod.jp/articles/fluentd-settings-with-some-os-logs/)
+
 # 手順
 ## インストール
 - AmazonLinux2なら以下
   - `curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh`
   - https://docs.fluentd.org/installation/install-by-rpm#step1-install-from-rpm-repository
-## 設定ファイルを準備（オプション）
+## 設定ファイルを準備（これはやらない方がいい。confのバックアップとるならcpでやろう）
 - >デフォルトでは/etc/td-agent/td-agent.confが読み込まれます。このデフォルトのファイルに設定を追加してもいいのですが、新たに設定ファイルを作って管理する場合は、以下のコマンドを用います。
 
 ```
@@ -30,6 +29,23 @@ Installed /home/ec2-user/fluent/fluent.conf.
 [Service]
 User=td-agent   ←rootにする
 Group=td-agent  ←rootにする
+LimitNOFILE=65536
+Environment=LD_PRELOAD=/opt/td-agent/lib/libjemalloc.so
+Environment=GEM_HOME=/opt/td-agent/lib/ruby/gems/2.7.0/
+Environment=GEM_PATH=/opt/td-agent/lib/ruby/gems/2.7.0/
+Environment=FLUENT_CONF=/etc/td-agent/td-agent.conf       ←ここを/home/ec2-user/fluent/fluent.confに変えたら良いかと思うけどうまくいかなかった。
+Environment=FLUENT_PLUGIN=/etc/td-agent/plugin
+Environment=FLUENT_SOCKET=/var/run/td-agent/td-agent.sock
+Environment=TD_AGENT_LOG_FILE=/var/log/td-agent/td-agent.log
+Environment=TD_AGENT_OPTIONS=
+EnvironmentFile=-/etc/sysconfig/td-agent
+PIDFile=/var/run/td-agent/td-agent.pid
+RuntimeDirectory=td-agent
+Type=forking
+# XXX: Fix fluentd executables path
+ExecStart=/opt/td-agent/bin/fluentd --log $TD_AGENT_LOG_FILE --daemon /var/run/td-agent/td-agent.pid $TD_AGENT_OPTIONS
+ExecStop=/bin/kill -TERM ${MAINPID}
+ExecReload=/bin/kill -HUP ${MAINPID}
 ```
 
 ## 起動
@@ -40,6 +56,11 @@ Warning: td-agent.service changed on disk. Run 'systemctl daemon-reload' to relo
 [root@ip-10-123-10-251 td-agent]# sudo systemctl restart td-agent.service
 [root@ip-10-123-10-251 td-agent]#
 ```
+
+```
+2021-02-22 07:11:14 +0000 [error]: config error file="/etc/td-agent/td-agent.conf" error_class=Fluent::ConfigError error="<parse> section is required."
+```
+
 
 # 設定ファイルなどの解説
 ## 概要
