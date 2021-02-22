@@ -9,6 +9,9 @@
 - [fluentdのbuffer周りで注意すべき点](https://qiita.com/kazuhiro-iwi/items/071100d200b243db9bd1)
 
 # 手順
+## まずは初期設定
+- タイムゾーン変更
+- タイムゾーン変更したらアパッチを再起動して反映しよう`systemctl restart httpd`
 ## インストール
 - AmazonLinux2なら以下
   - `curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh`
