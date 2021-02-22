@@ -47,6 +47,7 @@ Installed /home/ec2-user/fluent/fluent.conf.
 
 ## fluentdをrootで起動するよう設定（オプション）
 - [fluentd(td-agent)をrootで起動させる方法](https://qiita.com/katuemon/items/7105c24271c07ce7b412)
+- `vim /usr/lib/systemd/system/td-agent.service`
 - 以下をrootに変更
 ```
 [Service]
@@ -112,6 +113,7 @@ Warning: td-agent.service changed on disk. Run 'systemctl daemon-reload' to relo
 - [Config: Buffer Section](https://docs.fluentd.org/configuration/buffer-section)
   - 結局これ見る方が分かりやすい
 - [fluentdのbuffer周りで注意すべき点](https://qiita.com/kazuhiro-iwi/items/071100d200b243db9bd1)
+- [fluentdメモ - (4) 設定ファイル調査 Buffer編](https://qiita.com/tomotagwork/items/ef51fc60adbb2ca8db92)
 - matchの中にある、ファイルの出力頻度を制御するディレクティブ
   - buffer は Chunk の集合
   - Chunk は 1 つの blob に連結されたイベントの集合
@@ -122,6 +124,7 @@ Warning: td-agent.service changed on disk. Run 'systemctl daemon-reload' to relo
   - 新しく作成された全てのチャンクはstage に入れられ、時間内に queue に移動される (その後転送される)
   - stagedの状態からenqueuedの状態へ移行する処理がflushである
 - ![image](https://user-images.githubusercontent.com/60077121/108700622-36a8e480-754a-11eb-97ce-c5015950bd59.png)
+- ![image](https://user-images.githubusercontent.com/60077121/108711350-94442d80-7558-11eb-976c-735e80aad5ae.png)
 
 #### Buffer Plugin Type
 - memory(デフォルト)とfileがある
