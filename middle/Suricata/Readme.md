@@ -69,7 +69,7 @@ af-packet:
       tpacket-v3: yes
 ```
 
-### update
+### update（やらなくていい）
 - suricataルールをアップデートするコマンド
 - `/var/lib/suricata/rules`にルールが作成される（量が多いので見ても意味ない）
 ```
@@ -120,6 +120,12 @@ af-packet:
 23/2/2021 -- 03:33:32 - <Info> -- Writing rules to /var/lib/suricata/rules/suricata.rules: total: 28492; enabled: 21105; added: 28492; removed 0; modified: 0
 23/2/2021 -- 03:33:32 - <Info> -- Testing with suricata -T.
 23/2/2021 -- 03:33:37 - <Info> -- Done.
+```
+
+### ルールを入れるディレクトリ作成
+```
+# Create the default suricata rules directory
+mkdir /var/lib/suricata/rules
 ```
 
 ### アラートの設定
