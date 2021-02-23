@@ -122,8 +122,35 @@ af-packet:
 23/2/2021 -- 03:33:37 - <Info> -- Done.
 ```
 
-### yamlの反映
+### アラートの設定
 ```
-suricata -c /etc/suricata/suricata.yaml -i eth1
+# Add a rule to match all UDP traffic
+echo 'alert udp any any -> any any (msg:"UDP traffic detected"; sid:200001; rev:1;)' > /var/lib/suricata/rules/suricata.rules
 ```
 
+### 設定ファイルの反映
+```
+# Start suricata listening on eth0 in daemon mode
+suricata -c /etc/suricata/suricata.yaml -k none -i eth0 -D
+```
+
+## パケットを送信してみる
+- 違うサーバ（パケット送信元）でnetcat をインストール
+```
+[ec2-user@ip-10-123-10-212 ~]$ sudo yum install nmap-ncat.x86_64
+```
+
+- パケット送信
+  - Suricata(3.81.xx)の10000ポートに`-u`でUDPパケット送る
+  - SuricataではSG空けておこう
+```
+[ec2-user@ip-10-123-10-212 ~]$ nc -u 3.81.95.61 10000
+yeah
+Ncat: Connection refused.
+```
+
+## Suricataでログを確認
+- `/var/log/suricata/fast.log`
+```
+02/23/2021-04:50:18.504494  [**] [1:200001:1] UDP traffic detected [**] [Classification: (null)] [Priority: 3] {UDP} 54.199.234.1:37859 -> 10.11.0.26:10000
+```
