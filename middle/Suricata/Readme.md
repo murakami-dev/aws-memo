@@ -133,6 +133,15 @@ mkdir /var/lib/suricata/rules
 # Add a rule to match all UDP traffic
 echo 'alert udp any any -> any any (msg:"UDP traffic detected"; sid:200001; rev:1;)' > /var/lib/suricata/rules/suricata.rules
 ```
+#### その他のルール設定例（詳細は下部に追記していこう）
+- [公式DocのSuricataRules](https://suricata.readthedocs.io/en/suricata-6.0.1/rules/intro.html)
+- [AWSの例](https://docs.aws.amazon.com/ja_jp/network-firewall/latest/developerguide/suricata-examples.html)
+  - >特定のドメインへのHTTPトラフィックのみを許可し、すべてのSSHトラフィックを許可し、他のすべてのTCPトラフィックを拒否します。
+```
+pass http $HOME_NET any -> $EXTERNAL_NET any (http.host; dotprefix; content:".example.com"; endswith; msg:"Allowed HTTP domain"; priority:10; sid:102120; rev:1;)
+pass tcp any any -> any 22 (msg:"Allow ssh traffic"; sid:102121; rev:1;)
+drop tcp any any -> any any (msg:"Drop tcp traffic"; flow:established; sid:102122; priority:2; rev:1;)
+```
 
 ### 設定ファイルの反映
 ```
@@ -160,3 +169,8 @@ Ncat: Connection refused.
 ```
 02/23/2021-04:50:18.504494  [**] [1:200001:1] UDP traffic detected [**] [Classification: (null)] [Priority: 3] {UDP} 54.199.234.1:37859 -> 10.11.0.26:10000
 ```
+
+# Suricataルールのメモ
+## ipレピュテーション
+- AWSのネットワークファイアウォールは非対応
+- [SuricataRule記法 6.32. IP Reputation Keyword](https://suricata.readthedocs.io/en/suricata-6.0.1/rules/ip-reputation-rules.html)
