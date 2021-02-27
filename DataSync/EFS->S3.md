@@ -6,7 +6,8 @@
   - ちょっと古いかも。エージェントは不要
 - [DataSync を使用して、プライベートネットワーク経由で異なるリージョンの Amazon EFS ファイルシステム間でデータを転送するにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/datasync-transfer-efs-cross-region/)
 - [AWS DataSync を使用して VPC を離れることなく、オンプレミスから AWS にファイルを転送する](https://aws.amazon.com/jp/blogs/news/transferring-files-from-on-premises-to-aws-and-back-without-leaving-your-vpc-using-aws-datasync/)
-- 
+- [AWS DataSync を使用して Amazon FSx for Windows File Server に移行する](https://aws.amazon.com/jp/blogs/news/migrate-to-amazon-fsx-for-windows-file-server-using-aws-datasync/)
+  - オンプレからの移行
 # 手順
 ## EFS作成
 
