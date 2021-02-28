@@ -19,6 +19,12 @@
 - [CloudFront の Cache Policy と Origin Request Policy を理解する](https://qiita.com/t-kigi/items/6d7cfccdb629690b8d29)
 - [ポリシーの使用](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html)
 # 手順
+- EC2作成
+- CloudFront設定
+  - CNAMEに独自ドメインを設定
+  - **独自ドメイン使うので証明書はCloudFront.netは使えない。ACMのもの使う。しかもバージニア** 
+    - [Amazon CloudFront の代替ドメイン名(CNAMEs)設定に SSL 証明書が必須になりました](https://dev.classmethod.jp/articles/201904_enhancing-domain-security-on-cloudfront/)
+- Route53設定
 
 ## EC2、Route53
 - 自分のドメイン→EC2はできている
