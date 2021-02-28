@@ -87,7 +87,8 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/control
 - 無料。ストレージ料金だけ。
 - S3に入る。**選択したS3のプレフィックス配下に`E2LM2M8JS9TNGA.2021-02-28-00.c5259020.gz`**という形式。ログのパーティション分割はされない（2021/2/28みたいな）
 - >通常は数分以内に出力されますが、ベストエフォートではあるため公式ガイド上では 1 時間以内 または 最大で 24 時間 遅れることもあると記載されています。
-
+- >ディストリビューション専用のログファイルに書き込みます。
+- 
 ## リアルタイムログ
 - [[アップデート] Amazon CloudFront でリアルタイムなログ出力が可能になりました](https://dev.classmethod.jp/articles/cloudfront-support-real-time-log/)
   - 良い記事
