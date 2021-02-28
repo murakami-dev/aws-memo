@@ -88,7 +88,33 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/control
 - S3に入る。**選択したS3のプレフィックス配下に`E2LM2M8JS9TNGA.2021-02-28-00.c5259020.gz`**という形式。ログのパーティション分割はされない（2021/2/28みたいな）
 - >通常は数分以内に出力されますが、ベストエフォートではあるため公式ガイド上では 1 時間以内 または 最大で 24 時間 遅れることもあると記載されています。
 - >ディストリビューション専用のログファイルに書き込みます。
-- 
+### ログはディストリビューションごとにアクセスごとにS3へ配信
+- だから結構細かい単位になる
+#### curlでアクセス
+```
+murakami@HW-1191:~$ curl httpbin.org/ip
+{
+  "origin": "182.251.254.14"
+}
+murakami@HW-1191:~$ curl stg-development.work
+略
+murakami@HW-1191:~$ curl stg-development.work
+murakami@HW-1191:~$ curl stg-development.work
+murakami@HW-1191:~$ date
+Sun Feb 28 16:35:17 JST 2021
+```
+#### S3には5分後に出力
+![image](https://user-images.githubusercontent.com/60077121/109411257-22e6fd80-79e4-11eb-85ce-688b02ad7cd4.png)
+
+#### ログの中身
+```
+#Version: 1.0
+#Fields: date time x-edge-location sc-bytes c-ip cs-method cs(Host) cs-uri-stem sc-status cs(Referer) cs(User-Agent) cs-uri-query cs(Cookie) x-edge-result-type x-edge-request-id x-host-header cs-protocol cs-bytes time-taken x-forwarded-for ssl-protocol ssl-cipher x-edge-response-result-type cs-protocol-version fle-status fle-encrypted-fields c-port time-to-first-byte x-edge-detailed-result-type sc-content-type sc-content-len sc-range-start sc-range-end
+2021-02-28	07:35:14	NRT51-C4	586	182.251.254.14	GET	d1pktia78oopcc.cloudfront.net	/	301	-	curl/7.68.0	-	-	Redirect	HjoYpgtwxmNZfbMKBIxqQPmN5VqzFi4PB2uFQqDdjYNJXZXEpWi8Ug==	stg-development.work	http	84	0.000	-	-	-	Redirect	HTTP/1.1	-	-	3779	0.000	Redirect	text/html	183	-	-
+2021-02-28	07:35:09	NRT51-C4	586	182.251.254.14	GET	d1pktia78oopcc.cloudfront.net	/	301	-	curl/7.68.0	-	-	Redirect	cRUsOpLOGNkVraUTIX26CmCbefpnZjHQST5_wzRgJSi0tueK8daf3g==	stg-development.work	http	84	0.000	-	-	-	Redirect	HTTP/1.1	-	-	3411	0.000	Redirect	text/html	183	-	-
+2021-02-28	07:35:12	NRT51-C4	586	182.251.254.14	GET	d1pktia78oopcc.cloudfront.net	/	301	-	curl/7.68.0	-	-	Redirect	myJmzs1vNjKmvqLr9RkssCTTwJ9U87ALEzJrM3SC7nI3gi1xJ3AE1A==	stg-development.work	http	84	0.000	-	-	-	Redirect	HTTP/1.1	-	-	3605	0.000	Redirect	text/html	183	-	-
+```
+
 ## リアルタイムログ
 - [[アップデート] Amazon CloudFront でリアルタイムなログ出力が可能になりました](https://dev.classmethod.jp/articles/cloudfront-support-real-time-log/)
   - 良い記事
