@@ -136,4 +136,12 @@ Sun Feb 28 16:35:17 JST 2021
 - 1. と 2. を掛けてリアルタイムログが Kinesis Data Streams に送る 1 秒あたりデータ量が決まります
 - ひとつのシャードが 1 秒あたりに処理できるデータ量は 1 MB、または 1000 レコードです。10 〜 20 % 程度のバッファを持たせてシャード数を決めることが推奨
 
-
+# オリジンリクエストへのカスタムヘッダーの追加
+- https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html
+## ユースケース
+- 上記に載っているが、抜粋すると
+  - CloudFront からのリクエストの識別
+    - ALBへのアクセスをCFだけにするとか
+  - 特定のディストリビューションから送信されたリクエストの判断
+  - Cross-Origin Resource Sharing (CORS) の有効化
+  - コンテンツへのアクセス制御
