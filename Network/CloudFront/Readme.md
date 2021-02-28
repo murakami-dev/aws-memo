@@ -1,3 +1,4 @@
+- [Blackbelt CF deepdive](https://d1.awsstatic.com/webinars/jp/pdf/services/20201028_BlackBelt_Amazon_CloudFront_deep_dive.pdf)
 # CloudFront設定
 - 以下は詳細を勉強したい
 - [ディストリビューションを作成または更新する場合に指定する値](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html)
