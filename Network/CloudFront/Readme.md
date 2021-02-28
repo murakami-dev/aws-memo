@@ -84,8 +84,28 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/control
 
 # ログ
 ## 標準ログ
-- S3に入る
+- 無料。ストレージ料金だけ。
+- S3に入る。**選択したS3のプレフィックス配下に`E2LM2M8JS9TNGA.2021-02-28-00.c5259020.gz`**という形式。ログのパーティション分割はされない（2021/2/28みたいな）
+- >通常は数分以内に出力されますが、ベストエフォートではあるため公式ガイド上では 1 時間以内 または 最大で 24 時間 遅れることもあると記載されています。
 
 ## リアルタイムログ
+- [[アップデート] Amazon CloudFront でリアルタイムなログ出力が可能になりました](https://dev.classmethod.jp/articles/cloudfront-support-real-time-log/)
+  - 良い記事
+  - >リアルタイムログは Kinesis Data Streams を使用し、S3、Amazon Redshift、Amazon Elasticsearch Service、またはサードパーティのログ処理サービスにログを配信することが出来ます。
+  - >リクエストから数秒以内にアクセスログ出力が可能
+  - 標準ログよりも詳細なログが見れる。出力するログは選ぶ形式
+    - >リアルタイムログではエッジサーバーがビューワーへの応答で送信した HTTP ヘッダーなども確認することができます。 
 - 追加料金必要
+### ログのパーティション分割・変換が標準ログより自由
+- >リアルタイムログは Kinesis Data Streams を介して出力します。コンシューマーとして Kinesis Data Firehose を使うことで YYYY/MM/DD/HH のようなパーティション分割が簡単に出来ます。
+- 出力先としてはKinesis Data Streamsだけ。
+  - よくあるパターンはCF -> Kinesis Data Streams -> Kiesis Data Firehose(ログのパーティション分割) -> S3
+
+### Kinesis Data Streamsのシャード算出
+- CloudFront 使用状況レポート、または CloudFront Requests メトリクスをもとに 1 秒あたりのリクエスト数を確認
+- 単一のリアルタイムログレコードサイズを決める
+  - 一般的に約 500 バイトですが、すべてのフィールドを含む場合は約 1 Kバイト
+- 1. と 2. を掛けてリアルタイムログが Kinesis Data Streams に送る 1 秒あたりデータ量が決まります
+- ひとつのシャードが 1 秒あたりに処理できるデータ量は 1 MB、または 1000 レコードです。10 〜 20 % 程度のバッファを持たせてシャード数を決めることが推奨
+
 
