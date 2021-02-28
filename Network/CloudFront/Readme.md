@@ -75,3 +75,17 @@ https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/control
 - [認証ヘッダーをオリジンに転送するように CloudFront を設定するにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/cloudfront-authorization-header/)
 
 ### デフォルトではOrigin Request Policyはなし
+
+
+# オリジンへのアクセスをCloufFrontからのみに絞る
+- S3ならOAI
+- ELBならカスタムヘッダ
+  - https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/restrict-access-to-load-balancer.html
+
+# ログ
+## 標準ログ
+- S3に入る
+
+## リアルタイムログ
+- 追加料金必要
+
