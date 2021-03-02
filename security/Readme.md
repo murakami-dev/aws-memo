@@ -45,6 +45,11 @@
 # WAFってなに
 - [WAFとはbyIPA](https://www.ipa.go.jp/files/000017312.pdf)
 
+# AWS上のセキュリティ対策をどういう順序でやっていけばいいか
+- https://speakerdeck.com/cmusudakeisuke/awsshang-falsesekiyuriteidui-ce-wodouiushun-xu-deyatuteikebaiika
+- ![image](https://user-images.githubusercontent.com/60077121/109730302-a418dd00-7bfc-11eb-95d6-56db6705a9ae.png)
+- ![image](https://user-images.githubusercontent.com/60077121/109730381-be52bb00-7bfc-11eb-85f7-e50cebd26136.png)
+- ![image](https://user-images.githubusercontent.com/60077121/109730453-d6c2d580-7bfc-11eb-827f-2e0776d72fcc.png)
 
 # Best Practices for Security, Identity, & Compliance
 - これもセキュリティの柱みたいな構成で、各ホワイトペーパーを紹介
