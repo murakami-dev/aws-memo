@@ -44,6 +44,27 @@
 - 3.3[ELB配下のEC2からメール送信する場合のEC2のDNS登録はどのようにしたらいいですか？](https://support.serverworks.co.jp/hc/ja/articles/115006282408)
   - >EC2からメール送信を行う場合は、EC2もELBとは別にサブドメインを設け、Aレコードに登録をお願いいたします。送信元MTA（EC2）のDNS登録は、smtp、mail、sendのようなメール送信をしていることがわかるサブドメインでの登録を推奨いたします。
   - EC2にサブドメインのDNSつけて、AレコードでNATGWのEIP登録する
+-4.公式[Amazon EC2 インスタンスまたは AWS Lambda 関数のポート 25 に対する制限を解除するにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/ec2-port-25-throttle/)
 
+## 文献1のメール制限をまとめると
+### 送信側の制限（自らがスパムを送らないために）
+#### 25番のアウトバウンドを制御
+AWSへの制限解除申請が必要
 
+### 中継受信側メールサーバでの制限（スパムを見分けるためにやっていること）
+#### RBL(Real-time Blackhole List)
+- >過去にスパムメールを送ったことがある送信メールサーバーを報告してブラックリスト化し、ブラックリストを配信する仕組み
+- >AWSがElastic IPおよびPublic IPをストックし様々なAWSユーザーに割り当てることから、新規に取得するElastic IPおよびPublic IPが最初からRBLに載っている可能性が高いです。
+- **AWSへの申請でメール送信を行うEC2にひも付けるElastic IPを入力します。この登録を行うと、AWSがRBLからElastic IPを除外するよう 、セキュリティベンダーなどに対応してくれます**
 
+#### DNSレコードの整合性
+- >受信メールサーバーがDNSサーバーに問合せを行います。送信メールサーバーのホスト名とIPアドレスを対応づけるDNSの正引き(A)レコードと逆引き(PTR)レコードの内容が合致しないと、メールを破棄する
+- >メールの送信を行うEC2インスタンスのElastic IPとホスト名の逆引き(PTR)レコードをAWSが登録してくれます。ただし、以下の条件があります。
+  - 独自ドメインであること
+  - 正引き登録されていること
+- `mail.example.com -> xx.xx.xx.xx(EC2またはNATGWのIP)`を登録すること。文献4参照
+  - EC2が複数ある場合、異なるホスト名で同じNATGWのIPを登録する、で合っていそう。レシーバからはIP→ホスト名を逆引きしてメールのFromと突合できれば良いので
+
+#### SPF(Sender Policy Framework)/Sender ID
+
+#### DKIM(DomainKeys Identified Mail)
