@@ -10,6 +10,7 @@ connect to aspmx5.googlemail.com[209.85.146.26]:25: Connection timed out
 
 # SPF
 - [送信ドメインを認証するためのSPFレコードに詳しくなろう](https://sendgrid.kke.co.jp/blog/?p=3509)
+### こんな感じで登録した
 - ![image](https://user-images.githubusercontent.com/60077121/110047165-b9bf0b80-7d90-11eb-9c2e-ee8f62e7e8c6.png)
 
 # dkim
