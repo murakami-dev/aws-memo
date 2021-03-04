@@ -5,7 +5,24 @@
 # 文献
 - [PowerShell のモジュール詳解とモジュールへのコマンドレット配置手法を考える](https://tech.guitarrapc.com/entry/2013/12/03/014013)
 - [PowerShell モジュールをインストールする](https://docs.microsoft.com/ja-jp/powershell/scripting/developer/module/installing-a-powershell-module?view=powershell-7.1)
+  - 公式
+- [PowerShellで、モジュールとしてfunctionを外部ファイルに定義する](http://taeisheauton4programming.blogspot.com/2018/07/powershellfunction.html)
+  - モジュールのインポートはこれを参考にした
+- [関数を PowerShell プロンプトで実行する](https://www.vwnet.jp/Windows/PowerShell/2016100401/UseFunctionInPsPrompt.htm) 
+  - モジュールとして使用する以外にも方法はありそう
 
+# インポートするモジュール
+- https://tech.guitarrapc.com/entry/2013/10/07/083837
+
+# 手順
+- `%ProgramFiles%\WindowsPowerShell\Modules`（全ユーザが参照するディレクトリ）に`New-ZipCompression`フォルダ作成。フォルダ名は関数名と同じじゃないとダメ。
+- 上記フォルダの中に`New-ZipCompression.psm1`を作成し、上記ページ内のfunctionをコピペ。
+- PowerShellで`Import-Module New-ZipCompression`して`Get-Module -Name New-ZipCompression`
+
+![image](https://user-images.githubusercontent.com/60077121/110041635-bffcba00-7d87-11eb-9623-40bb75e936d0.png)
+
+
+# 以下は旧内容
 # インポートするモジュール
 - https://github.com/guitarrapc/PowerShellUtil/tree/master/PS-Zip
 
