@@ -144,3 +144,6 @@ Web Site Config に登録する IAM User (Credential) が持つ権限は「登�
 - これもHELPのレポート・通知機能のPDFにマニュアルあり
 
 ## WafCharm の Web ACL Config 、 Web Site Configとは
+- >WafCharm の Web ACL Config 1つに対しては WafCharm の Web Site Config を複数設定することができます。
+- >1つの AWS WAF の Web ACL に複数の ALB をアタッチできることを示しています。また WafCharm では Web ACL を1つ作ると、5,000 円/1WebACL の月額 が発生するため、Web ACL の数は必要ではない限り増やさないほうが安く運用できます。
+- ただし検知メールにはURIのフルパスが記載されるわkではないため、追うのに手間がかかる（文献7）
