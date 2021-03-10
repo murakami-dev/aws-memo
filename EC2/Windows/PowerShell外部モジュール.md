@@ -21,6 +21,23 @@
 
 ![image](https://user-images.githubusercontent.com/60077121/110041635-bffcba00-7d87-11eb-9623-40bb75e936d0.png)
 
+### コマンドが使えるようになっているか確認
+```
+PS C:\Users\hiroya> Get-Command New-ZipCompression
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        New-ZipCompression                                 0.0        New-ZipCompression
+
+
+PS C:\Users\hiroya> Get-Command New-ZipCompress
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        New-ZipCompress                                    0.0        PS-Zip
+```
+
+
 
 # 以下は旧内容
 # インポートするモジュール
