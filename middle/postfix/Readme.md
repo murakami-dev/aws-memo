@@ -1,6 +1,5 @@
-# 主な設定
-## main.cf
-### hostnameなどの定義
+# main.cf
+## hostnameなどの定義
 - myhostnameが指定されていない場合、postfixはシステムのホスト名を取得する。システムのホスト名は完全修飾ホスト名を返さない場合もあるのでmyhostnameは指定推奨。
 - mydomainが未定の場合、postfixはmyhostnameの最初の構成要素を除いたものをmaydomainとして設定する（mail.stg-development.workならstg-development.work）
   - 面倒なのでmydomainも指定しよう
@@ -18,7 +17,8 @@ mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #       mail.$mydomain, www.$mydomain, ftp.$mydomain
 ```
 
-### リレー制御
+## リレー制御
+### mynetworks
 - どのclientサーバにメールリレーを許可するか
 - 基本はmynetworks_styleで設定。mynetworksでは個々のIP書く場合、CIDR表記したい場合、ネットワーク外のサーバにもリレーさせたい場合に指定
 - mynetworksが設定されている場合はこれが優先。
@@ -33,7 +33,39 @@ mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mynetworks = hash:/etc/postfix/network_table
 ```
 
-### chroot
+### relay_domains
+- デフォルトの内容
+```
+#relay_domains = $mydestination
+```
+#### 説明
+- 以下はmain.cfに記載されている英文説明抜粋
+  - 信頼されたネットワーク(IP address matches $mynetworks)からのメールなら受ける
+  - 信頼されていないネットワークの場合、relay_domainsに記載のネットワークなら受ける
+    - ただし、`$inet_interfaces`や `$mydestination`などが宛先の場合は`relay_domains`に記載がなくても受けるよ
+
+### relay_recipients_maps
+- オプション設定
+- 有効にすると/etc/postfix/relay_recipientsにある宛先しかリレーしないよ
+```
+# REJECTING UNKNOWN RELAY USERS
+#
+# The relay_recipient_maps parameter specifies optional lookup tables
+# with all addresses in the domains that match $relay_domains.
+#
+# If this parameter is defined, then the SMTP server will reject
+# mail for unknown relay users. This feature is off by default.
+#
+# The right-hand side of the lookup tables is conveniently ignored.
+# In the left-hand side, specify an @domain.tld wild-card, or specify
+# a user@domain.tld address.
+#
+#relay_recipient_maps = hash:/etc/postfix/relay_recipients
+```
+
+### transport
+
+## chroot
 - セキュリティ対策のひとつ。
 - ルートディレクトリ配下ではなく特定のディレクトリをルートにみたてるもの
 - デフォルトは以下。有効になっている。
@@ -41,7 +73,7 @@ mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 queue_directory = /var/spool/postfix
 ```
 
-#### こうなってる（キューの仕組みに関わる。後述）
+### こうなってる（キューの仕組みに関わる。後述）
 ```
 [ec2-user@ip-10-123-10-6 postfix]$ pwd
 /var/spool/postfix
@@ -50,7 +82,7 @@ active  corrupt  deferred  hold      maildrop  private  saved
 bounce  defer    flush     incoming  pid       public   trace
 ```
 
-## master.cf
+# master.cf
 - 以下は冒頭だけ
 - `private`:アクセスをpostfixシステムに限定。inetではパブリックアクセスの`n`を指定
 - `maxproc`:最大プロセス数。なにも指定しない場合はmain.cfの`defaul_process_limit`が使われる
