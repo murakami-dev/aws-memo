@@ -61,8 +61,20 @@ s3 =
 
 ## あとはやるだけ
 - time使ったら転送時間測れるらしい
-
 ```
 time aws s3 cp test.dat s3://BUCKET/default
 ```
+### 時間測ってやること
+```
+C:\Users\user>aws configure set default.s3.max_bandwidth 10MB/s
+
+C:\Users\user>aws s3 cp C:\Users\user\testfile s3://test-en
+upload: .\testfile to s3://test-en/testfile
+
+C:\Users\user>echo %date% %time%
+2021/03/10 23:57:38.68
+```
+## 結果
+- 10MB/sにして30GBのファイルをS3へ転送したら50分かかった
+![image](https://user-images.githubusercontent.com/60077121/110647762-78e54d80-81fb-11eb-843e-4c69b70f6eb6.png)
 
