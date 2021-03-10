@@ -4,6 +4,8 @@
 - 下部に帯域制限
 
 # 手順
+- [AWS CLI を使用して、Amazon S3 にファイルをマルチパートアップロードする方法を教えてください。](https://aws.amazon.com/jp/premiumsupport/knowledge-center/s3-multipart-upload-cli/)
+  - >この例では、aws s3 cp コマンドを使用していますが、オブジェクトを S3 バケット (aws s3 sync または aws s3 mv など) にアップロードする他の aws s3 コマンドもオブジェクトが大きい場合は自動的にマルチパートアップロードを実行します。
 ## ローカルに10GBくらいの重いファイルを作成
 - [Windows 10対応：巨大サイズのファイルを簡単に作る（fsutilコマンド編）](https://www.atmarkit.co.jp/ait/articles/0209/28/news002.html)
 - [AWS CLI での高レベル (S3) コマンドの使用](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
