@@ -62,8 +62,22 @@ mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #
 #relay_recipient_maps = hash:/etc/postfix/relay_recipients
 ```
+### relayhost
+- メールゲートウェイがある場合はこれを指定する
+- **NATGW経由で配信する場合、これの指定は必要か？**
+```
+#relayhost = $mydomain
+#relayhost = [gateway.my.domain]
+#relayhost = [mailserver.isp.tld]
+#relayhost = uucphost
+#relayhost = [an.ip.add.ress]
+```
 
 ### transport
+- /etc/postfix/transport
+- オプション項目であり、上記ファイルはコメントアウトされている。
+- >The relayhost parameter specifies the default host to send mail to when no entry is matched in the optional transport(5) table
+  - transportで指定がない場合は、relayhostパラメタで指定されたホストへリレーする。
 
 ## chroot
 - セキュリティ対策のひとつ。
