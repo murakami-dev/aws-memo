@@ -18,6 +18,35 @@ mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 ```
 
 ## リレー制御
+### リレー制御の概要
+- 人事hr.example.comはメールサーバmail.example.com
+- 営業sales.example.comはメールサーバmail2.example.com
+- に届くとする
+#### 内向け
+- 1.hr.example.comとsales.example.comのMXレコードがgw.example.comを指すようにDNS設定をする
+- 2.main.cfのrelay_domainにドメインを指定
+  - `relat_domain = hr.example.com, sales.example.com`
+- 3.transport_mapsにトランスポートルックアップテーブルを指定する
+  - transport_maps = hash:/etc/postfix/transport
+- 4.内部メールシステムを指すように各ドメインのエントリをトランスポートファイルに追加
+  - 各システムに対するMX参照を無効にするために内部メールのホストを[]で囲んである
+```
+#
+#tranport
+#
+hr.example.com  relay:[mail1.example.com]
+sales.example.com relay:[mail2.example.com]
+```
+- 5.`postfix reload`
+- ※relay_recipient_mapsの設定も推奨。受信者リストの管理
+
+#### 外向け
+- 1.mynetworks(or mynetwork_style)パラメタにクライアントが設定されていること確認
+- 2.クライアントのSMTPサーバにmail1.example.comが指定されるようにする
+- 3.mai.cfのrelay_hostパラメタにゲートウェイを設定
+- 4.`postfix reload`
+
+
 ### mynetworks
 - どのclientサーバにメールリレーを許可するか
 - 基本はmynetworks_styleで設定。mynetworksでは個々のIP書く場合、CIDR表記したい場合、ネットワーク外のサーバにもリレーさせたい場合に指定
@@ -95,6 +124,14 @@ queue_directory = /var/spool/postfix
 active  corrupt  deferred  hold      maildrop  private  saved
 bounce  defer    flush     incoming  pid       public   trace
 ```
+
+## メーリングリスト
+- `/etc/aliases`
+- 例えば以下のように設定し、`postalias /etc/aliases`を実行すると、needlepoint@example.comに届いたメールはすべてそれぞれのアドレスに配信
+```
+needlepoint:  a@example.com, b@example.com, c@example.com
+```
+### 追加設定は割愛。p145
 
 # master.cf
 - 以下は冒頭だけ
