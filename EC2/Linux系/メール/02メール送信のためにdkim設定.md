@@ -10,6 +10,8 @@ connect to aspmx5.googlemail.com[209.85.146.26]:25: Connection timed out
 - 25番で制限されている場合も上記のようなログはでるとのこと
 - 下記のブログでは制限解除の申請してる
 - https://www.chocoyoung.com/post-559
+- **ローカルユーザどうしではメール送れた**
+  - [[mailコマンド]Linuxからメールを送る](https://qiita.com/shuntaro_tamura/items/40a7d9b4400f31ec0923)
 
 # SPF
 - [送信ドメインを認証するためのSPFレコードに詳しくなろう](https://sendgrid.kke.co.jp/blog/?p=3509)
@@ -143,4 +145,80 @@ total 8
 connect to alt2.aspmx.l.google.com[2607:f8b0:4023:1006::1b]:25: Network is unreachable
 ```
 
+# メールの送信
+### 直接メール送れた。
+```
+[root@ip-10-123-10-6 new]# cat 1615602020.Vca02I51f7eM844642.ip-10-123-10-6.ap-northeast-1.compute.internal
+Return-Path: <muser@stg-development.work>
+X-Original-To: test@stg-development.work
+Delivered-To: test@stg-development.work
+Received: by mail.stg-development.work (Postfix, from userid 0)
+        id C2CE9805823; Sat, 13 Mar 2021 02:20:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.stg-development.work C2CE9805823
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=stg-development.work; s=default; t=1615602020;
+        bh=g3zLYH4xKxcPrHOD18z9YfpQcnk/GaJedfustWU5uGs=;
+        h=Date:From:To:Subject:From;
+        b=xhvqddByk+WHqUM+VmiuUND8J16r1aMjra0od9k15t6JuvoR22AO4eYKnlgEZxzFB
+         pZBUHC5iaIhgGrcn9LPHjd9xM71qFgrZ6IbM4b5/WE0wgZh9KxIIymxbyN6api+I2x
+         QntV+2iVMcoIzqwuWy9R/HzdNYOx00V2gWUQRwaA=
+Date: Sat, 13 Mar 2021 02:20:20 +0000
+From: muser@stg-development.work
+To: test@stg-development.work
+Subject: title
+Message-ID: <604c2164.9Hm2iAl75Nf/0/F2%muser@stg-development.work>
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
+test
+```
+### 同じサーバ内だけどメールリレーの構文でも送信できた
+```
+[root@ip-10-123-10-6 new]# echo "smtp-handson" | mail -v -s "Relay Success" -S smtp=smtp://localhost:25 -r muser@stg-development.work test@stg-development.work
+Resolving host localhost . . . done.
+Connecting to ::1:25 . . .Connecting to 127.0.0.1:25 . . . connected.
+220 mail.stg-development.work ESMTP Postfix
+>>> HELO ip-10-123-10-6.ap-northeast-1.compute.internal
+250 mail.stg-development.work
+>>> MAIL FROM:<muser@stg-development.work>
+250 2.1.0 Ok
+>>> RCPT TO:<test@stg-development.work>
+250 2.1.5 Ok
+>>> DATA
+354 End data with <CR><LF>.<CR><LF>
+>>> .
+250 2.0.0 Ok: queued as 29F0A805823
+>>> QUIT
+221 2.0.0 Bye
+[root@ip-10-123-10-6 new]# ls
+1615601941.Vca02I51f7dM4660.ip-10-123-10-6.ap-northeast-1.compute.internal    1615602367.Vca02I51f7fM269950.ip-10-123-10-6.ap-northeast-1.compute.internal
+1615602020.Vca02I51f7eM844642.ip-10-123-10-6.ap-northeast-1.compute.internal
+[root@ip-10-123-10-6 new]# cat 1615602367.Vca02I51f7fM269950.ip-10-123-10-6.ap-northeast-1.compute.internal
+Return-Path: <muser@stg-development.work>
+X-Original-To: test@stg-development.work
+Delivered-To: test@stg-development.work
+Received: from ip-10-123-10-6.ap-northeast-1.compute.internal (localhost [127.0.0.1])
+        by mail.stg-development.work (Postfix) with SMTP id 29F0A805823
+        for <test@stg-development.work>; Sat, 13 Mar 2021 02:26:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.stg-development.work 29F0A805823
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=stg-development.work; s=default; t=1615602367;
+        bh=HHNALJelevoXjZnpuz9+XeOEE1GVptdeDJek9mNF5l4=;
+        h=Date:From:To:Subject:From;
+        b=xQniGPmf7XxCzISnXNWunU23AIyrK76yEK5aKw+JiPn6QCWq575ioCYn07GIDrh9v
+         fteh+wXqlkFiUB5J7wA9dT5/B9TWToUzmva34pRjpobNZIcZwQdCFxU+yUGiHmHuLM
+         J0KlXD7CDlGWnuNha7gmNMg7hjCP8w5Jl4+/3hbI=
+Date: Sat, 13 Mar 2021 02:26:07 +0000
+From: muser@stg-development.work
+To: test@stg-development.work
+Subject: Relay Success
+Message-ID: <604c22bf.56LEikBhdmV/7+Ia%muser@stg-development.work>
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+smtp-handson
+```
