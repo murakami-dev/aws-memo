@@ -7,6 +7,9 @@
 ```
 connect to aspmx5.googlemail.com[209.85.146.26]:25: Connection timed out
 ```
+- 25番で制限されている場合も上記のようなログはでるとのこと
+- 下記のブログでは制限解除の申請してる
+- https://www.chocoyoung.com/post-559
 
 # SPF
 - [送信ドメインを認証するためのSPFレコードに詳しくなろう](https://sendgrid.kke.co.jp/blog/?p=3509)
